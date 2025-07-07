@@ -27,6 +27,10 @@ public class DataManager {
         wareHouseService.writeOffBook(bookId);
     }
 
+    public Book findBook(int id) {
+        return wareHouseService.findBook(id);
+    }
+
     public void createOrder(Book book, Customer customer, Date orderDate) {
         orderService.createOrder(book, customer, orderDate);
     }

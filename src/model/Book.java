@@ -10,6 +10,7 @@ public class Book {
     private double price;
     private StatusBook status;  // в наличии или отсутствует
     private int bookId;
+    private int count = 0;
 
     public Book(String name, String authtor, int year, double price) {
         this.name = name;
@@ -17,7 +18,8 @@ public class Book {
         this.year = year;
         this.price = price;
         this.status = StatusBook.IN_STOCK;
-        this.bookId = 0;
+        this.bookId = count;
+        count++;
     }
 
     public Book(String name, String authtor, int year, double price, StatusBook status, int bookId) {
@@ -79,13 +81,12 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "name='" + name + '\'' +
-                ", authtor='" + authtor + '\'' +
-                ", year=" + year +
-                ", price=" + price +
-                ", status=" + status +
-                ", bookId=" + bookId +
-                '}';
+        return String.format("Книга: %s | Автор: %s | Год: %d | Цена: %.2f | %s | ID: %d",
+                name,
+                authtor,
+                year,
+                price,
+                status.getValue(), // Используем локализованное значение статуса
+                bookId);
     }
 }

@@ -46,10 +46,10 @@ public class RequestBook {
 
     @Override
     public String toString() {
-        return "RequestBook{" +
-                "customer=" + customer +
-                ", book=" + book +
-                ", status=" + status +
-                '}';
+        return "Запрос на книгу:" +
+                "\nКлиент: " + customer.getFullName() + " (ID: " + customer.getCustomerID() + ")" +
+                "\nКнига: " + book.getName() + " (ID: " + book.getBookId() + ")" +
+                "\nСтатус запроса: " + status +
+                "\nСтатус книги: " + book.getStatus();
     }
 }

@@ -44,4 +44,8 @@ public class WareHouseService {
     public WareHouse getWareHouse() {
         return wareHouse;
     }
+
+    public Book findBook(int id) {
+        return wareHouse.findBook(id);
+    }
 }

@@ -82,13 +82,11 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", book=" + book +
-                ", customer=" + customer +
-                ", orderDate=" + orderDate +
-                ", finalPrice=" + finalPrice +
-                ", status=" + status +
-                '}';
+        return "Заказ #" + orderId +
+                "\nКнига: " + book.getName() + " (ID: " + book.getBookId() + ")" +
+                "\nКлиент: " + customer.getFullName() + " (ID: " + customer.getCustomerID() + ")" +
+                "\nДата заказа: " + orderDate +
+                "\nСумма: " + String.format("%.2f руб.", finalPrice) +
+                "\nСтатус: " + status.getValue();
     }
 }

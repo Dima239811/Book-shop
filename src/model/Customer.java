@@ -73,4 +73,14 @@ public class Customer {
     public void setCustomerID(int customerID) {
         this.customerID = customerID;
     }
+
+    @Override
+    public String toString() {
+        return "Клиент #" + customerID +
+                "\nФИО: " + fullName +
+                "\nВозраст: " + age +
+                "\nТелефон: " + phoneNumber +
+                "\nEmail: " + (email != null ? email : "не указан") +
+                "\nАдрес: " + (address != null ? address : "не указан");
+    }
 }

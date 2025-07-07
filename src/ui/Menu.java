@@ -13,8 +13,6 @@ public class Menu {
         this.name = name;
         this.menuItems = new ArrayList<>();
         //menuItems.add(new MenuItem("Добавление книги", new AddBookAction(), null));
-
-
     }
 
     public String getName() {
@@ -31,6 +29,5 @@ public class Menu {
 
     public void addMenuItem(MenuItem menuItem) {
         this.menuItems.add(menuItem);
-        System.out.println(menuItem.getTitle() + "добавлен");;
     }
 }
