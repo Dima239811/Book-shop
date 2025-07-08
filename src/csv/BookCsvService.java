@@ -40,7 +40,7 @@ public class BookCsvService implements CsvService<Book>{
                         b.getAuthtor().replace("\"", "\"\""),
                         b.getYear(),
                         b.getPrice(),
-                        b.getStatus()
+                        b.getStatus().getValue()
                 ));
             }
 
@@ -69,7 +69,8 @@ public class BookCsvService implements CsvService<Book>{
                     books.add(book);
 
                 } catch (Exception ex) {
-                    throw new DataImportException("\"Ошибка в строке %d: %s\", lineNum, e.getMessage())");
+                    String s = "\"Ошибка в строке \" " + lineNum + " " +  ex.getMessage();
+                    throw new DataImportException(s);
                 }
             }
 
@@ -89,18 +90,32 @@ public class BookCsvService implements CsvService<Book>{
         }
 
         try {
+            String statusValue = parts[6].replace("\"", "");
+            //System.out.println("status value = " + statusValue);
+            StatusBook status = null;
+
+            for (StatusBook s : StatusBook.values()) {
+                if (s.getValue().equalsIgnoreCase(statusValue)) {
+                    status = s;
+                    //System.out.println("статус = " + status.getValue());
+                    break;
+                }
+            }
+
+            if (status == null) {
+                throw new DataValidationException("Некорректный статус книги: " + statusValue);
+            }
+
             return new Book(
                     Integer.parseInt(parts[0]),
                     parts[1].replace("\"\"", "\""),
                     parts[2].replace("\"\"", "\""),
                     Integer.parseInt(parts[3]),
                     Double.parseDouble(parts[4]),
-                    StatusBook.valueOf(parts[5])
+                    status
             );
         } catch (NumberFormatException e) {
             throw new DataValidationException("Некорректный числовой формат");
-        } catch (IllegalArgumentException e) {
-            throw new DataValidationException("Некорректный статус книги");
         }
     }
 
