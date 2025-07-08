@@ -8,11 +8,19 @@ public class RequestBook {
     private Customer customer;
     private Book book;
     private RequestStatus status;
+    private int id;
 
     public RequestBook(Customer customer, Book book) {
         this.customer = customer;
         this.book = book;
         this.status = RequestStatus.OPEN;
+    }
+
+    public RequestBook(Customer customer, Book book, RequestStatus status, int id) {
+        this.customer = customer;
+        this.book = book;
+        this.status = status;
+        this.id = id;
     }
 
     public Customer getCustomer() {

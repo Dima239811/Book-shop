@@ -4,6 +4,8 @@ import controller.DataManager;
 import ui.action_factory.ActionFactory;
 import ui.action_factory.DefaultActionFactory;
 import ui.actions.book.AddBookAction;
+import ui.actions.csv.book.ExportBookAction;
+import ui.actions.csv.book.ImportBooksAction;
 import ui.menu_items.MenuItem;
 
 public class Builder {
@@ -12,7 +14,7 @@ public class Builder {
     private final ActionFactory actionFactory;
 
     public Builder(ActionFactory actionFactory) {
-        this.dataManager = new DataManager();
+        this.dataManager = DataManager.getInstance();
         this.actionFactory = actionFactory;
         buildMenu();
     }
@@ -105,6 +107,17 @@ public class Builder {
         rootMenu.addMenuItem(new MenuItem("Отчеты и аналитика", null, reportsMenu));
 
 
+        Menu importExportMenu = new Menu("Импорт/Экспорт данных");
+
+        // Для книг
+        Menu bookImportExportMenu = new Menu("Книги");
+        bookImportExportMenu.addMenuItem(new MenuItem("Импорт", new ImportBooksAction(dataManager), null));
+        bookImportExportMenu.addMenuItem(new MenuItem("Экспорт", new ExportBookAction(dataManager), null));
+
+        // Аналогично для других сущностей (заказы, клиенты)
+
+        importExportMenu.addMenuItem(new MenuItem("Книги", null, bookImportExportMenu));
+        rootMenu.addMenuItem(new MenuItem("Импорт/Экспорт", null, importExportMenu));
     }
 
     public Menu getRootMenu() {

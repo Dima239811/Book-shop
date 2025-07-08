@@ -9,12 +9,12 @@ import java.util.Scanner;
 public class MenuController {
     private static MenuController instance;
 
-    private DataManager dataManager;
+    private final DataManager dataManager;
     private Builder builder;
     private Navigator navigator;
 
     private MenuController() {
-        this.dataManager = new DataManager();
+        this.dataManager = DataManager.getInstance();
         ActionFactory actionFactory = new DefaultActionFactory(dataManager);
 
         this.builder = new Builder(actionFactory);

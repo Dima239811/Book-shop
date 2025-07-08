@@ -43,4 +43,8 @@ public interface ActionFactory {
 
     IAction showTotalRevenueAction();
 
+    IAction importBooksAction();
+
+    IAction exportBooksAction();
+
 }

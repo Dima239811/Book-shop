@@ -1,27 +1,38 @@
 package controller;
 
+import csv.BookCsvService;
 import enums.OrderStatus;
+import exception.DataExportException;
+import exception.DataImportException;
 import model.Book;
 import model.Customer;
 import model.Order;
 import model.RequestBook;
+import org.w3c.dom.ls.LSOutput;
 import service.*;
 
 import java.util.Date;
 import java.util.List;
 
 public class DataManager {
+    private static final DataManager INSTANCE = new DataManager();
     private final WareHouseService wareHouseService;
     private final OrderService orderService;
     private final CustomerService customerService;
     private final RequestBookService requestService;
+    private final BookCsvService bookCsvService;
 
-    public DataManager() {
+    private DataManager() {
         this.wareHouseService = new WareHouseService();
         this.orderService = new OrderService();
         this.customerService = new CustomerService();
         this.requestService = new RequestBookService();
+        this.bookCsvService = new BookCsvService();
     }
+    public static DataManager getInstance() {
+        return INSTANCE;
+    }
+
 
     public void writeOffBook(int bookId) {
         wareHouseService.writeOffBook(bookId);
@@ -29,6 +40,24 @@ public class DataManager {
 
     public Book findBook(int id) {
         return wareHouseService.findBook(id);
+    }
+
+    public void exportBooksToCsv(String filePath) throws DataExportException {
+        List<Book> books = getAllBooks();
+        //System.out.println("[DEBUG] Передано в экспорт: " + books.size() + " книг");
+        bookCsvService.exportToCsv(books, filePath);
+    }
+
+    public List<Book> importBooksFromCsv(String filePath, boolean update) throws DataImportException {
+        List<Book> imported = bookCsvService.importFromCsv(filePath);
+        imported.forEach(book -> {
+            if (update && wareHouseService.findBook(book.getBookId()) != null) {
+                wareHouseService.updateBook(book);
+            } else {
+                wareHouseService.addBook(book);
+            }
+        });
+        return imported;
     }
 
     public void createOrder(Book book, Customer customer, Date orderDate) {

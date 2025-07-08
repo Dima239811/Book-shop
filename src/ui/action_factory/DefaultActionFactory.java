@@ -6,6 +6,8 @@ import ui.actions.book.*;
 import ui.actions.completed_orders.ShowTotalRevenueAction;
 import ui.actions.completed_orders.SortCompletedOrdersByDateAction;
 import ui.actions.completed_orders.SortCompletedOrdersByPriceAction;
+import ui.actions.csv.book.ExportBookAction;
+import ui.actions.csv.book.ImportBooksAction;
 import ui.actions.order.*;
 import ui.actions.request.CreateBookRequestAction;
 import ui.actions.request.ShowAllBookRequestsAction;
@@ -122,6 +124,16 @@ public class DefaultActionFactory implements ActionFactory{
     @Override
     public IAction showTotalRevenueAction() {
         return new ShowTotalRevenueAction(dataManager);
+    }
+
+    @Override
+    public IAction importBooksAction() {
+        return new ImportBooksAction(dataManager);
+    }
+
+    @Override
+    public IAction exportBooksAction() {
+        return new ExportBookAction(dataManager);
     }
 
 }

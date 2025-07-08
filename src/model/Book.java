@@ -22,6 +22,16 @@ public class Book {
         count++;
     }
 
+    public Book(int bookId, String name, String authtor, int year, double price, StatusBook status) {
+        this.name = name;
+        this.authtor = authtor;
+        this.year = year;
+        this.price = price;
+        this.status = status;
+        this.bookId = bookId;
+        this.count = count;
+    }
+
     public Book(String name, String authtor, int year, double price, StatusBook status, int bookId) {
         this.name = name;
         this.authtor = authtor;
