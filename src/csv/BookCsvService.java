@@ -9,6 +9,7 @@ import model.Book;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class BookCsvService implements CsvService<Book>{
@@ -34,7 +35,7 @@ public class BookCsvService implements CsvService<Book>{
                     continue;
                 }
 
-                printWriter.println(String.format("%d,\"%s\",\"%s\",%d,%.2f,%s",
+                printWriter.println(String.format(Locale.US, "%d,\"%s\",\"%s\",%d,%.2f,%s",
                         b.getBookId(),
                         b.getName().replace("\"", "\"\""),
                         b.getAuthtor().replace("\"", "\"\""),
@@ -90,14 +91,13 @@ public class BookCsvService implements CsvService<Book>{
         }
 
         try {
-            String statusValue = parts[6].replace("\"", "");
+            String statusValue = parts[5].replace("\"", "");
             //System.out.println("status value = " + statusValue);
             StatusBook status = null;
 
             for (StatusBook s : StatusBook.values()) {
                 if (s.getValue().equalsIgnoreCase(statusValue)) {
                     status = s;
-                    //System.out.println("статус = " + status.getValue());
                     break;
                 }
             }

@@ -32,6 +32,15 @@ public class Order {
         this.status = OrderStatus.NEW;
     }
 
+    public Order(int orderId, Book book, Customer customer, Date orderDate, double finalPrice, OrderStatus status) {
+        this.orderId = orderId;
+        this.book = book;
+        this.customer = customer;
+        this.orderDate = orderDate;
+        this.finalPrice = finalPrice;
+        this.status = status;
+    }
+
     public int getOrderId() {
         return orderId;
     }

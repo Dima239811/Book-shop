@@ -27,9 +27,46 @@ public class OrderCol {
 
     public void addOrder(Book book, Customer customer, Date orderDate) {
         Order order = new Order(orderId, book, customer, orderDate, book.getPrice());
+
+        if (findOrder(order.getOrderId()) != null) {
+            updateOrder(order);
+            return;
+        }
+
         orderList.add(order);
         orderId ++;
         System.out.println("заказ создан");
+    }
+
+    public void addOrder(Order order) {
+        if (findOrder(order.getOrderId()) != null) {
+            updateOrder(order);
+            return;
+        }
+
+        orderList.add(order);
+    }
+
+    public void updateOrder(Order order) {
+        Order existing = findOrder(order.getOrderId());
+        if (existing != null) {
+            existing.setStatus(order.getStatus());
+            existing.setBook(order.getBook());
+            existing.setCustomer(order.getCustomer());
+            existing.setOrderDate(order.getOrderDate());
+            existing.setFinalPrice(order.getFinalPrice());
+            return;
+        }
+    }
+
+
+    public Order findOrder(int id) {
+        for (Order b: orderList) {
+            if (b.getOrderId() == id) {
+                return b;
+            }
+        }
+        return null;
     }
 
     public void changeStatus(int orderId, OrderStatus status) {

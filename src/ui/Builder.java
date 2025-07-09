@@ -2,10 +2,6 @@ package ui;
 
 import controller.DataManager;
 import ui.action_factory.ActionFactory;
-import ui.action_factory.DefaultActionFactory;
-import ui.actions.book.AddBookAction;
-import ui.actions.csv.book.ExportBookAction;
-import ui.actions.csv.book.ImportBooksAction;
 import ui.menu_items.MenuItem;
 
 public class Builder {
@@ -111,12 +107,19 @@ public class Builder {
 
         // Для книг
         Menu bookImportExportMenu = new Menu("Книги");
-        bookImportExportMenu.addMenuItem(new MenuItem("Импорт", new ImportBooksAction(dataManager), null));
-        bookImportExportMenu.addMenuItem(new MenuItem("Экспорт", new ExportBookAction(dataManager), null));
+        bookImportExportMenu.addMenuItem(new MenuItem("Импорт", actionFactory.importBooksAction(), null));
+        bookImportExportMenu.addMenuItem(new MenuItem("Экспорт", actionFactory.exportBooksAction(), null));
 
-        // Аналогично для других сущностей (заказы, клиенты)
+        // Для заказов
+        Menu orderImportExportMenu = new Menu("Заказы");
+        orderImportExportMenu.addMenuItem(new MenuItem("Импорт", actionFactory.importOrderAction(), null));
+        orderImportExportMenu.addMenuItem(new MenuItem("Экспорт", actionFactory.exportOrderAction(), null));
 
         importExportMenu.addMenuItem(new MenuItem("Книги", null, bookImportExportMenu));
+        importExportMenu.addMenuItem(new MenuItem("Заказы", null, orderImportExportMenu));
+
+
+
         rootMenu.addMenuItem(new MenuItem("Импорт/Экспорт", null, importExportMenu));
     }
 

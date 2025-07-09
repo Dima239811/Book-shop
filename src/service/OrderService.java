@@ -63,4 +63,14 @@ public class OrderService {
     public double calculateIncomeForPerioud(Date from, Date to) {
         return orderCol.calculateIncomeForPerioud(from, to);
     }
+
+    public void addOrder(Order order) {
+        orderCol.addOrder(order);
+    }
+
+    public Order findOrder(int id) {
+        return orderCol.findOrder(id);
+    }
+
+
 }

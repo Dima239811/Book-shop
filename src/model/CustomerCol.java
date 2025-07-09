@@ -17,4 +17,35 @@ public class CustomerCol {
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }
+
+    public Customer findCustomer(int id) {
+        for (Customer b: customers) {
+            if (b.getCustomerID() == id) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public void addCustomer(Customer customer) {
+        if (findCustomer(customer.getCustomerID()) != null) {
+            updateCustomer(customer);
+            return;
+        }
+
+        customers.add(customer);
+    }
+    public void updateCustomer(Customer customer) {
+        Customer existing = findCustomer(customer.getCustomerID());
+        if (existing != null) {
+            existing.setFullName(customer.getFullName());
+            existing.setAge(customer.getAge());
+            existing.setPhoneNumber(customer.getPhoneNumber());
+            existing.setAddress(customer.getAddress());
+            existing.setEmail(customer.getEmail());
+            return;
+        }
+    }
+
+
 }

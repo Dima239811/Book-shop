@@ -84,6 +84,11 @@ public class WareHouse {
 
     public boolean addBook(Book book) {
         if (this.maxCapacityBook > books.size()) {
+
+            if (findBook(book.getBookId()) != null) {
+                return updateBook(book);
+            }
+
             books.add(book);
             System.out.println("Книга успешно добавлена на склад!");
             return true;
@@ -125,6 +130,17 @@ public class WareHouse {
         return books;
     }
 
-
+    public boolean updateBook(Book updatedBook) {
+        Book existing = findBook(updatedBook.getBookId());
+        if (existing != null) {
+            existing.setName(updatedBook.getName());
+            existing.setAuthtor(updatedBook.getAuthtor());
+            existing.setYear(updatedBook.getYear());
+            existing.setPrice(updatedBook.getPrice());
+            existing.setStatus(updatedBook.getStatus());
+            return true;
+        }
+        return false;
+    }
 
 }

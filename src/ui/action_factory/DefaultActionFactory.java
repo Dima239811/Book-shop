@@ -8,6 +8,8 @@ import ui.actions.completed_orders.SortCompletedOrdersByDateAction;
 import ui.actions.completed_orders.SortCompletedOrdersByPriceAction;
 import ui.actions.csv.book.ExportBookAction;
 import ui.actions.csv.book.ImportBooksAction;
+import ui.actions.csv.order.ExportOrderAction;
+import ui.actions.csv.order.ImportOrderAction;
 import ui.actions.order.*;
 import ui.actions.request.CreateBookRequestAction;
 import ui.actions.request.ShowAllBookRequestsAction;
@@ -134,6 +136,16 @@ public class DefaultActionFactory implements ActionFactory{
     @Override
     public IAction exportBooksAction() {
         return new ExportBookAction(dataManager);
+    }
+
+    @Override
+    public IAction exportOrderAction() {
+        return new ExportOrderAction(dataManager);
+    }
+
+    @Override
+    public IAction importOrderAction() {
+        return new ImportOrderAction(dataManager);
     }
 
 }

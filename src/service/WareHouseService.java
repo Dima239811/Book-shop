@@ -49,20 +49,20 @@ public class WareHouseService {
         return wareHouse.findBook(id);
     }
 
-    public void updateBook(Book updatedBook) {
-        Book existingBook = wareHouse.findBook(updatedBook.getBookId());
-
-        if (existingBook != null) {
-            existingBook.setName(updatedBook.getName());
-            existingBook.setAuthtor(updatedBook.getAuthtor());
-            existingBook.setYear(updatedBook.getYear());
-            existingBook.setPrice(updatedBook.getPrice());
-            existingBook.setStatus(updatedBook.getStatus());
-            System.out.println("Книга успешно обновлена.");
-        } else {
-            System.out.println("Книга с ID " + updatedBook.getBookId() + " не найдена.");
-        }
-    }
+//    public void updateBook(Book updatedBook) {
+//        Book existingBook = wareHouse.findBook(updatedBook.getBookId());
+//
+//        if (existingBook != null) {
+//            existingBook.setName(updatedBook.getName());
+//            existingBook.setAuthtor(updatedBook.getAuthtor());
+//            existingBook.setYear(updatedBook.getYear());
+//            existingBook.setPrice(updatedBook.getPrice());
+//            existingBook.setStatus(updatedBook.getStatus());
+//            System.out.println("Книга успешно обновлена.");
+//        } else {
+//            System.out.println("Книга с ID " + updatedBook.getBookId() + " не найдена.");
+//        }
+//    }
 
 
 }

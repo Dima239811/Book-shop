@@ -1,6 +1,7 @@
 package controller;
 
 import csv.BookCsvService;
+import csv.OrderCsvService;
 import enums.OrderStatus;
 import exception.DataExportException;
 import exception.DataImportException;
@@ -21,6 +22,7 @@ public class DataManager {
     private final CustomerService customerService;
     private final RequestBookService requestService;
     private final BookCsvService bookCsvService;
+    private final OrderCsvService orderCsvService;
 
     private DataManager() {
         this.wareHouseService = new WareHouseService();
@@ -28,11 +30,11 @@ public class DataManager {
         this.customerService = new CustomerService();
         this.requestService = new RequestBookService();
         this.bookCsvService = new BookCsvService();
+        this.orderCsvService = new OrderCsvService();
     }
     public static DataManager getInstance() {
         return INSTANCE;
     }
-
 
     public void writeOffBook(int bookId) {
         wareHouseService.writeOffBook(bookId);
@@ -44,19 +46,15 @@ public class DataManager {
 
     public void exportBooksToCsv(String filePath) throws DataExportException {
         List<Book> books = getAllBooks();
-        //System.out.println("[DEBUG] Передано в экспорт: " + books.size() + " книг");
+        System.out.println("передано на экспорт " + books.size() + " книг");
         bookCsvService.exportToCsv(books, filePath);
     }
 
-    public List<Book> importBooksFromCsv(String filePath, boolean update) throws DataImportException {
+    public List<Book> importBooksFromCsv(String filePath) throws DataImportException {
         List<Book> imported = bookCsvService.importFromCsv(filePath);
-        imported.forEach(book -> {
-            if (update && wareHouseService.findBook(book.getBookId()) != null) {
-                wareHouseService.updateBook(book);
-            } else {
-                wareHouseService.addBook(book);
-            }
-        });
+        for (Book b: imported) {
+            wareHouseService.addBook(b);
+        }
         return imported;
     }
 
@@ -74,6 +72,21 @@ public class DataManager {
 
     public List<Order> sortOrders(String criteria) {
         return orderService.sortOrders(criteria);
+    }
+
+    public void exportOrdersToCsv(String filePath) throws Exception {
+        List<Order> orders = getAllOrder();
+        orderCsvService.exportToCsv(orders, filePath);
+    }
+
+    public List<Order> importOrdersFromCsv(String filePath) throws Exception {
+        List<Order> imported = orderCsvService.importFromCsv(filePath);
+        for (Order b: imported) {
+            orderService.addOrder(b);
+            wareHouseService.addBook(b.getBook());
+            customerService.addCustomer(b.getCustomer());
+        }
+        return imported;
     }
 
     public void addBookToWareHouse(Book book) {

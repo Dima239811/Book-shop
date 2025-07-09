@@ -10,7 +10,7 @@ public class Book {
     private double price;
     private StatusBook status;  // в наличии или отсутствует
     private int bookId;
-    private int count = 0;
+    private static int count = 2;
 
     public Book(String name, String authtor, int year, double price) {
         this.name = name;
@@ -30,6 +30,7 @@ public class Book {
         this.status = status;
         this.bookId = bookId;
         this.count = count;
+        count++;
     }
 
     public Book(String name, String authtor, int year, double price, StatusBook status, int bookId) {

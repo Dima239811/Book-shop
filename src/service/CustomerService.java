@@ -24,4 +24,9 @@ public class CustomerService {
         return customerCol;
     }
 
+    public void addCustomer(Customer customer) {
+        customerCol.addCustomer(customer);
+    }
+
+
 }
