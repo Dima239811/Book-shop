@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Date;
 import java.util.Locale;
 
-public class OrderCsvService implements CsvService<Order>{
+public class OrderCsvService implements ICsvService<Order> {
 
     @Override
     public void exportToCsv(List<Order> items, String filePath) throws Exception {

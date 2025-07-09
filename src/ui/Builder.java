@@ -18,7 +18,7 @@ public class Builder {
     public void buildMenu() {
         rootMenu = new Menu("Главное меню");
 
-        Menu booksMenu = new Menu("Операции с книгами");
+        Menu booksMenu = new Menu("Книги");
 
 
         booksMenu.addMenuItem(new MenuItem("Добавить книгу", actionFactory.createAddBookAction(),
@@ -43,7 +43,12 @@ public class Builder {
 
         rootMenu.addMenuItem(new MenuItem("Операции с книгами", null, booksMenu));
 
+        // клиенть
+        Menu customersMenu = new Menu("Работа с клиентами");
+        customersMenu.addMenuItem(new MenuItem("Просмотр всех клиентов",
+                actionFactory.showAllCustomer(), null));
 
+        rootMenu.addMenuItem(new MenuItem("Клиенты", null, customersMenu));
 
         // Меню для заказов
         Menu ordersMenu = new Menu("Работа с заказами");
@@ -95,7 +100,7 @@ public class Builder {
         // Подменю для аналитики
         Menu analyticsMenu = new Menu("Аналитика");
         analyticsMenu.addMenuItem(new MenuItem("Сумма заработанных средств", actionFactory.showTotalRevenueAction(), null));
-
+        analyticsMenu.addMenuItem(new MenuItem("Кол-во выполненных заказов", actionFactory.showCompletedOrdersCountAction(), null));
 
         reportsMenu.addMenuItem(new MenuItem("Выполненные заказы", null, completedOrdersMenu));
         reportsMenu.addMenuItem(new MenuItem("Финансовая аналитика", null, analyticsMenu));
@@ -115,8 +120,14 @@ public class Builder {
         orderImportExportMenu.addMenuItem(new MenuItem("Импорт", actionFactory.importOrderAction(), null));
         orderImportExportMenu.addMenuItem(new MenuItem("Экспорт", actionFactory.exportOrderAction(), null));
 
+        // Для клиентов
+        Menu customerImportExportMenu = new Menu("Клиенты");
+        customerImportExportMenu.addMenuItem(new MenuItem("Импорт", actionFactory.importClient(), null));
+        customerImportExportMenu.addMenuItem(new MenuItem("Экспорт", actionFactory.exportClient(), null));
+
         importExportMenu.addMenuItem(new MenuItem("Книги", null, bookImportExportMenu));
         importExportMenu.addMenuItem(new MenuItem("Заказы", null, orderImportExportMenu));
+        importExportMenu.addMenuItem(new MenuItem("Клиенты", null, customerImportExportMenu));
 
 
 

@@ -1,15 +1,14 @@
 package controller;
 
 import csv.BookCsvService;
+import csv.ICsvService;
+import csv.CustomerCsvService;
 import csv.OrderCsvService;
 import enums.OrderStatus;
-import exception.DataExportException;
-import exception.DataImportException;
 import model.Book;
 import model.Customer;
 import model.Order;
 import model.RequestBook;
-import org.w3c.dom.ls.LSOutput;
 import service.*;
 
 import java.util.Date;
@@ -21,8 +20,9 @@ public class DataManager {
     private final OrderService orderService;
     private final CustomerService customerService;
     private final RequestBookService requestService;
-    private final BookCsvService bookCsvService;
-    private final OrderCsvService orderCsvService;
+    private final ICsvService<Book> bookCsvService;
+    private final ICsvService<Order> orderCsvService;
+    private final ICsvService<Customer> customerCsvService;
 
     private DataManager() {
         this.wareHouseService = new WareHouseService();
@@ -31,6 +31,7 @@ public class DataManager {
         this.requestService = new RequestBookService();
         this.bookCsvService = new BookCsvService();
         this.orderCsvService = new OrderCsvService();
+        this.customerCsvService = new CustomerCsvService();
     }
     public static DataManager getInstance() {
         return INSTANCE;
@@ -44,13 +45,13 @@ public class DataManager {
         return wareHouseService.findBook(id);
     }
 
-    public void exportBooksToCsv(String filePath) throws DataExportException {
+    public void exportBooksToCsv(String filePath) throws Exception {
         List<Book> books = getAllBooks();
         System.out.println("передано на экспорт " + books.size() + " книг");
         bookCsvService.exportToCsv(books, filePath);
     }
 
-    public List<Book> importBooksFromCsv(String filePath) throws DataImportException {
+    public List<Book> importBooksFromCsv(String filePath) throws Exception {
         List<Book> imported = bookCsvService.importFromCsv(filePath);
         for (Book b: imported) {
             wareHouseService.addBook(b);
@@ -111,6 +112,20 @@ public class DataManager {
         return customerService.getAllCustomers();
     }
 
+    public void exportCustomersToCsv(String filePath) throws Exception {
+        List<Customer> customers = getAllCustomers();
+        System.out.println("передано на экспорт " + customers.size() + " клиентов");
+        customerCsvService.exportToCsv(customers, filePath);
+    }
+
+    public List<Customer> importCustomersFromCsv(String filePath) throws Exception {
+        List<Customer> imported = customerCsvService.importFromCsv(filePath);
+        for (Customer b: imported) {
+            customerService.addCustomer(b);
+        }
+        return imported;
+    }
+
     public void setCustomers(List<Customer> customers) {
         customerService.setCustomers(customers);
     }
@@ -133,5 +148,9 @@ public class DataManager {
 
     public double calculateIncomeForPeriod(Date from, Date to) {
         return orderService.calculateIncomeForPerioud(from, to);
+    }
+
+    public int getCountPerformedOrder(Date from, Date to) {
+        return orderService.getCountPerformedOrder(from ,to);
     }
 }

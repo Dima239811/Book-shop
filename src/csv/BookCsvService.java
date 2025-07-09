@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class BookCsvService implements CsvService<Book>{
+public class BookCsvService implements ICsvService<Book> {
     @Override
     public void exportToCsv(List<Book> items, String filePath) throws DataExportException {
         if (items == null) {
@@ -20,12 +20,20 @@ public class BookCsvService implements CsvService<Book>{
         }
         File file = new File(filePath.replace("\"", ""));
 
-        //System.out.println("[DEBUG] Начало экспорта " + items.size() + " книг");
+        try {
+            File parentDir = file.getParentFile();
+            if (parentDir != null) {
+                parentDir.mkdirs();
+                if (!parentDir.exists()) {
+                    throw new DataExportException("Не удалось создать директорию: " + parentDir.getAbsolutePath());
+                }
+            }
+        } catch (SecurityException e) {
+            throw new DataExportException("Нет прав на создание директории: " + e.getMessage());
+        }
 
         try (PrintWriter printWriter = new PrintWriter(file, "UTF-8")) {
 
-            //System.out.println("[DEBUG] Начало экспорта " + items.size() + " книг");
-            file.getParentFile().mkdirs();
             printWriter.println("id,name,author,year,price,status");
 
 

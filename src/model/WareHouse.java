@@ -90,7 +90,7 @@ public class WareHouse {
             }
 
             books.add(book);
-            System.out.println("Книга успешно добавлена на склад!");
+            //System.out.println("Книга успешно добавлена на склад!");
             return true;
         }
         else {

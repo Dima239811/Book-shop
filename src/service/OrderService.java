@@ -72,5 +72,8 @@ public class OrderService {
         return orderCol.findOrder(id);
     }
 
+    public int getCountPerformedOrder(Date from, Date to) {
+        return orderCol.getCountPerformedOrder(from ,to);
+    }
 
 }

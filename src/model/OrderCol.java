@@ -59,7 +59,6 @@ public class OrderCol {
         }
     }
 
-
     public Order findOrder(int id) {
         for (Order b: orderList) {
             if (b.getOrderId() == id) {
@@ -73,7 +72,7 @@ public class OrderCol {
         for (Order ord: orderList) {
             if (ord.getOrderId() == orderId) {
                 ord.setStatus(status);
-                System.out.println("указанный вами статус " + status + " установлен");
+                System.out.println("указанный вами статус /" + status.getValue() + "/ установлен");
                 return;
             }
         }
@@ -109,7 +108,6 @@ public class OrderCol {
 //
 //        return requestByPerformStatus;
 //    }
-
     public List<Order> sortPerformOrderByDate(Date from, Date to) {
         return filterOrdersByDateAndStatus(from, to, OrderStatus.COMPLETED)
                 .stream()
@@ -139,4 +137,10 @@ public class OrderCol {
                 .mapToDouble(Order::getFinalPrice)
                 .sum();
     }
+
+    public int getCountPerformedOrder(Date from, Date to) {
+        return  filterOrdersByDateAndStatus(from , to, OrderStatus.COMPLETED)
+                .stream().collect(Collectors.counting()).intValue();
+    }
+
 }

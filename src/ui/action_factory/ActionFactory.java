@@ -4,7 +4,9 @@ import ui.actions.IAction;
 
 public interface ActionFactory {
     IAction createAddBookAction();
+
     IAction writeOffBookAction();
+
     IAction allBooksListAction();
 
     IAction sortBooksByTitleAction();
@@ -41,6 +43,8 @@ public interface ActionFactory {
 
     IAction sortCompletedOrdersByPriceAction();
 
+    IAction showCompletedOrdersCountAction();
+
     IAction showTotalRevenueAction();
 
     IAction importBooksAction();
@@ -50,6 +54,20 @@ public interface ActionFactory {
     IAction exportOrderAction();
 
     IAction importOrderAction();
+
+    IAction showAllCustomer();
+
+    IAction importClient();
+
+    IAction exportClient();
+
+
+
+
+
+
+
+
 
 
 }

@@ -35,6 +35,7 @@ public class CustomerCol {
 
         customers.add(customer);
     }
+
     public void updateCustomer(Customer customer) {
         Customer existing = findCustomer(customer.getCustomerID());
         if (existing != null) {
