@@ -184,4 +184,9 @@ public class DefaultActionFactory implements ActionFactory{
         return new ExportRequestAction(dataManager);
     }
 
+    @Override
+    public IAction showStaleBooksAction() {
+        return new ShowStaleBooksAction(dataManager);
+    }
+
 }

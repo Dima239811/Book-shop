@@ -35,7 +35,7 @@ public class Builder {
         Menu sortMenu = new Menu("Сортировка книг");
         sortMenu.addMenuItem(new MenuItem("По названию (А-Я)", actionFactory.sortBooksByTitleAction(), null));
         sortMenu.addMenuItem(new MenuItem("По цене (дешевые первые)", actionFactory.sortBooksByPriceAction(), null));
-        sortMenu.addMenuItem(new MenuItem("По году (новые первые)", actionFactory.sortBooksByYearDescAction(), null));
+        sortMenu.addMenuItem(new MenuItem("По году", actionFactory.sortBooksByYearDescAction(), null));
         sortMenu.addMenuItem(new MenuItem("По наличию на складе", actionFactory.sortBooksByAvailiable(), null));
 
         bookListViewMenu.addMenuItem(new MenuItem("Сортировка", null, sortMenu));
@@ -92,6 +92,14 @@ public class Builder {
         // Отчеты и аналитика ---
         Menu reportsMenu = new Menu("Отчеты и аналитика");
 
+        // подменю для аналитики по книгам
+        Menu booksAnalyticsMenu = new Menu("Аналитика по книгам");
+        booksAnalyticsMenu.addMenuItem(new MenuItem(
+                "Залежавшиеся книги",
+                actionFactory.showStaleBooksAction(),
+                null
+        ));
+
         // Подменю для отчетов по выполненным заказам
         Menu completedOrdersMenu = new Menu("Выполненные заказы за период");
         completedOrdersMenu.addMenuItem(new MenuItem("Сортировка по дате", actionFactory.sortCompletedOrdersByDateAction(), null));
@@ -104,6 +112,7 @@ public class Builder {
 
         reportsMenu.addMenuItem(new MenuItem("Выполненные заказы", null, completedOrdersMenu));
         reportsMenu.addMenuItem(new MenuItem("Финансовая аналитика", null, analyticsMenu));
+        reportsMenu.addMenuItem(new MenuItem("Аналитика по книгам", null, booksAnalyticsMenu));
 
         rootMenu.addMenuItem(new MenuItem("Отчеты и аналитика", null, reportsMenu));
 

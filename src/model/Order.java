@@ -25,6 +25,8 @@ public class Order {
         orderCount++;
     }
 
+    public Order() {}
+
     public Order(int orderId, Book book, Customer customer, Date orderDate, double finalPrice) {
         this.orderId = orderId;
         this.book = book;

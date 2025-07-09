@@ -65,13 +65,6 @@ public interface ActionFactory {
 
     IAction exportRequestAction();
 
-
-
-
-
-
-
-
-
+    IAction showStaleBooksAction();
 
 }

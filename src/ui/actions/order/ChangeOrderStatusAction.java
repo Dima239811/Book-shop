@@ -39,15 +39,14 @@ public class ChangeOrderStatusAction implements IAction {
             int choice = scanner.nextInt();
             scanner.nextLine();
 
-            OrderStatus selectedStatus = switch (choice) {
-                case 1 -> OrderStatus.NEW;
-                case 2 -> OrderStatus.COMPLETED;
-                case 3 -> OrderStatus.CANCELLED;
-                case 4 -> OrderStatus.PROCESSING;
-                default -> {
-                    throw new IncorrectNumberException("Некорректный вариант. Попробуйте снова.");
-                }
-            };
+            OrderStatus selectedStatus;
+            switch (choice) {
+                case 1: selectedStatus = OrderStatus.NEW; break;
+                case 2: selectedStatus = OrderStatus.COMPLETED; break;
+                case 3: selectedStatus = OrderStatus.CANCELLED; break;
+                case 4: selectedStatus = OrderStatus.PROCESSING; break;
+                default: throw new IncorrectNumberException("Некорректный вариант");
+            }
 
             dataManager.changeStatusOrder(id, selectedStatus);
             System.out.println("Статус заказа успешно изменен.");

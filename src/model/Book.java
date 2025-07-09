@@ -12,6 +12,9 @@ public class Book {
     private int bookId;
     private static int count = 2;
 
+
+    public Book() {}
+
     public Book(String name, String authtor, int year, double price) {
         this.name = name;
         this.authtor = authtor;

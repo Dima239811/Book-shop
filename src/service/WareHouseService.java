@@ -62,5 +62,4 @@ public class WareHouseService implements IService<Book> {
         wareHouse.update(item);
     }
 
-
 }

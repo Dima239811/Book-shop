@@ -3,14 +3,18 @@ package controller;
 import csv.*;
 import enums.OrderStatus;
 import enums.StatusBook;
-import model.Book;
-import model.Customer;
-import model.Order;
-import model.RequestBook;
+import model.*;
 import service.*;
+import util.AppConfig;
+import util.JsonUtil;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DataManager {
     private static final DataManager INSTANCE = new DataManager();
@@ -33,6 +37,7 @@ public class DataManager {
         this.customerCsvService = new CustomerCsvService();
         this.requestBookCsvService = new RequestBookCsvService();
     }
+
     public static DataManager getInstance() {
         return INSTANCE;
     }
@@ -53,7 +58,7 @@ public class DataManager {
 
     public List<Book> importBooksFromCsv(String filePath) throws Exception {
         List<Book> imported = bookCsvService.importFromCsv(filePath);
-        for (Book b: imported) {
+        for (Book b : imported) {
             wareHouseService.add(b);
         }
         return imported;
@@ -82,7 +87,7 @@ public class DataManager {
 
     public List<Order> importOrdersFromCsv(String filePath) throws Exception {
         List<Order> imported = orderCsvService.importFromCsv(filePath);
-        for (Order b: imported) {
+        for (Order b : imported) {
             orderService.add(b);
             wareHouseService.add(b.getBook());
             customerService.add(b.getCustomer());
@@ -92,7 +97,10 @@ public class DataManager {
 
     public void addBookToWareHouse(Book book) {
         wareHouseService.add(book);
-        requestService.closeRequest(book);
+
+        if (AppConfig.isAutoCloseRequestsEnabled()) {
+            requestService.closeRequest(book);
+        }
     }
 
     public void addRequest(RequestBook requestBook) {
@@ -106,7 +114,7 @@ public class DataManager {
 
     public List<RequestBook> importRequestFromCsv(String filePath) throws Exception {
         List<RequestBook> imported = requestBookCsvService.importFromCsv(filePath);
-        for (RequestBook b: imported) {
+        for (RequestBook b : imported) {
             requestService.add(b);
             wareHouseService.add(b.getBook());
             customerService.add(b.getCustomer());
@@ -134,7 +142,7 @@ public class DataManager {
 
     public List<Customer> importCustomersFromCsv(String filePath) throws Exception {
         List<Customer> imported = customerCsvService.importFromCsv(filePath);
-        for (Customer b: imported) {
+        for (Customer b : imported) {
             customerService.add(b);
         }
         return imported;
@@ -161,6 +169,59 @@ public class DataManager {
     }
 
     public int getCountPerformedOrder(Date from, Date to) {
-        return orderService.getCountPerformedOrder(from ,to);
+        return orderService.getCountPerformedOrder(from, to);
+    }
+
+    public List<Book> getStaleBooks(int staleMonths) {
+        LocalDate staleDate = LocalDate.now().minusMonths(staleMonths);
+        return getAllBooks().stream()
+                .filter(book -> isBookStale(book, staleDate))
+                .collect(Collectors.toList());
+    }
+
+    private boolean isBookStale(Book book, LocalDate staleDate) {
+        Date staleDateAsDate = Date.from(staleDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        return getOrdersForBook(book.getBookId()).stream()
+                .noneMatch(order -> {
+                    Date orderDate = order.getOrderDate();
+                    return orderDate.after(staleDateAsDate) || orderDate.equals(staleDateAsDate);
+                });
+    }
+
+    public List<Order> getOrdersForBook(int bookId) {
+        return orderService.getAll().stream()
+                .filter(order -> order.getBook().getBookId() == bookId)
+                .collect(Collectors.toList());
+    }
+
+
+    public void saveStateToJson(String filePath) {
+        AppState state = new AppState(
+                getAllBooks(),
+                getAllOrder(),
+                getAllCustomers(),
+                getAllRequestBook()
+        );
+        JsonUtil.saveState(state, filePath);
+    }
+
+    public void loadStateFromJson(String filePath) {
+        AppState state = JsonUtil.loadState(filePath);
+        if (state == null) return;
+
+        for (Book book : state.getBooks()) {
+            wareHouseService.add(book);
+        }
+        for (Customer customer : state.getCustomers()) {
+            customerService.add(customer);
+        }
+        for (RequestBook request : state.getRequests()) {
+            requestService.add(request);
+        }
+        for (Order order : state.getOrders()) {
+            orderService.add(order);
+        }
+
     }
 }

@@ -9,6 +9,8 @@ public class Customer {
     private int customerID;
     private static int countId = 0;
 
+    public Customer() {}
+
     public Customer(String fullName, int age, String phoneNumber, String email, String address) {
         this.fullName = fullName;
         this.age = age;

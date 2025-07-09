@@ -11,13 +11,7 @@ public class RequestBook {
     private int id;
     private static int countId = 0;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    public RequestBook() {}
 
     public RequestBook(Customer customer, Book book) {
         this.customer = customer;
@@ -71,5 +65,13 @@ public class RequestBook {
                 "\nКнига: " + book.getName() + " (ID: " + book.getBookId() + ")" +
                 "\nСтатус запроса: " + status +
                 "\nСтатус книги: " + book.getStatus();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
