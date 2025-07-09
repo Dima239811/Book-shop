@@ -3,6 +3,7 @@ package ui.actions.request;
 import controller.DataManager;
 import model.Book;
 import model.Customer;
+import model.RequestBook;
 import ui.actions.IAction;
 
 import java.util.Date;
@@ -43,7 +44,9 @@ public class CreateBookRequestAction implements IAction {
             String address = scanner.nextLine();
             Customer customer = new Customer(name, age, "+79855566", email, address);
 
-            dataManager.addRequest(book, customer);
+            RequestBook requestBook = new RequestBook(customer, book);
+
+            dataManager.addRequest(requestBook);
 
 
         } catch (IllegalArgumentException e) {

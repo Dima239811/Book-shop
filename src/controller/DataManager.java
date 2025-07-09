@@ -2,6 +2,7 @@ package controller;
 
 import csv.*;
 import enums.OrderStatus;
+import enums.StatusBook;
 import model.Book;
 import model.Customer;
 import model.Order;
@@ -41,7 +42,7 @@ public class DataManager {
     }
 
     public Book findBook(int id) {
-        return wareHouseService.findBook(id);
+        return wareHouseService.getById(id);
     }
 
     public void exportBooksToCsv(String filePath) throws Exception {
@@ -53,13 +54,13 @@ public class DataManager {
     public List<Book> importBooksFromCsv(String filePath) throws Exception {
         List<Book> imported = bookCsvService.importFromCsv(filePath);
         for (Book b: imported) {
-            wareHouseService.addBook(b);
+            wareHouseService.add(b);
         }
         return imported;
     }
 
-    public void createOrder(Book book, Customer customer, Date orderDate) {
-        orderService.createOrder(book, customer, orderDate);
+    public void createOrder(Order order) {
+        orderService.add(order);
     }
 
     public void cancelOrder(int orderId) {
@@ -82,21 +83,20 @@ public class DataManager {
     public List<Order> importOrdersFromCsv(String filePath) throws Exception {
         List<Order> imported = orderCsvService.importFromCsv(filePath);
         for (Order b: imported) {
-            orderService.addOrder(b);
-            wareHouseService.addBook(b.getBook());
-            customerService.addCustomer(b.getCustomer());
+            orderService.add(b);
+            wareHouseService.add(b.getBook());
+            customerService.add(b.getCustomer());
         }
         return imported;
     }
 
     public void addBookToWareHouse(Book book) {
-        if (wareHouseService.addBook(book)) {
-            requestService.closeRequest(book);
-        }
+        wareHouseService.add(book);
+        requestService.closeRequest(book);
     }
 
-    public void addRequest(Book book, Customer customer) {
-        requestService.addRequest(customer, book);
+    public void addRequest(RequestBook requestBook) {
+        requestService.add(requestBook);
     }
 
     public void exportRequestToCsv(String filePath) throws Exception {
@@ -107,9 +107,9 @@ public class DataManager {
     public List<RequestBook> importRequestFromCsv(String filePath) throws Exception {
         List<RequestBook> imported = requestBookCsvService.importFromCsv(filePath);
         for (RequestBook b: imported) {
-            requestService.addRequest(b);
-            wareHouseService.addBook(b.getBook());
-            customerService.addCustomer(b.getCustomer());
+            requestService.add(b);
+            wareHouseService.add(b.getBook());
+            customerService.add(b.getCustomer());
         }
         return imported;
     }
@@ -119,11 +119,11 @@ public class DataManager {
     }
 
     public List<Book> getAllBooks() {
-        return wareHouseService.getAllBooks();
+        return wareHouseService.getAll();
     }
 
     public List<Customer> getAllCustomers() {
-        return customerService.getAllCustomers();
+        return customerService.getAll();
     }
 
     public void exportCustomersToCsv(String filePath) throws Exception {
@@ -135,21 +135,17 @@ public class DataManager {
     public List<Customer> importCustomersFromCsv(String filePath) throws Exception {
         List<Customer> imported = customerCsvService.importFromCsv(filePath);
         for (Customer b: imported) {
-            customerService.addCustomer(b);
+            customerService.add(b);
         }
         return imported;
     }
-
-//    public void setCustomers(List<Customer> customers) {
-//        customerService.setCustomers(customers);
-//    }
 
     public List<RequestBook> sortRequest(String criteria) {
         return requestService.sortRequest(criteria);
     }
 
     public List<RequestBook> getAllRequestBook() {
-        return requestService.getAllRequestBook();
+        return requestService.getAll();
     }
 
     public List<Order> sortPerformOrdersForPeriod(String criteria, Date from, Date to) {
@@ -157,7 +153,7 @@ public class DataManager {
     }
 
     public List<Order> getAllOrder() {
-        return orderService.getAllOrder();
+        return orderService.getAll();
     }
 
     public double calculateIncomeForPeriod(Date from, Date to) {

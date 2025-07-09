@@ -13,6 +13,7 @@ public class Order {
     private Date orderDate;
     private double finalPrice;
     private OrderStatus status;  // создан/ выполнен/ отменен
+    private static int orderCount = 0;
 
     public Order(Book book, Customer customer, Date orderDate, double finalPrice) {
         this.book = book;
@@ -20,7 +21,8 @@ public class Order {
         this.orderDate = orderDate;
         this.finalPrice = finalPrice;
         this.status = OrderStatus.NEW;
-        this.orderId = 0;
+        this.orderId = orderCount;
+        orderCount++;
     }
 
     public Order(int orderId, Book book, Customer customer, Date orderDate, double finalPrice) {
@@ -30,6 +32,7 @@ public class Order {
         this.orderDate = orderDate;
         this.finalPrice = finalPrice;
         this.status = OrderStatus.NEW;
+        orderCount++;
     }
 
     public Order(int orderId, Book book, Customer customer, Date orderDate, double finalPrice, OrderStatus status) {
@@ -39,6 +42,7 @@ public class Order {
         this.orderDate = orderDate;
         this.finalPrice = finalPrice;
         this.status = status;
+        orderCount++;
     }
 
     public int getOrderId() {

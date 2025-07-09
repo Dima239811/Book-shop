@@ -3,6 +3,7 @@ package ui.actions.order;
 import controller.DataManager;
 import model.Book;
 import model.Customer;
+import model.Order;
 import ui.actions.IAction;
 
 import java.util.Date;
@@ -43,7 +44,8 @@ public class CreateOrderAction implements IAction {
             String address = scanner.nextLine();
             Customer customer = new Customer(name, age, "+79855566", email, address);
 
-            dataManager.createOrder(book, customer, new Date());
+            Order order = new Order(book, customer, new Date(), book.getPrice());
+            dataManager.createOrder(order);
 
         } catch (IllegalArgumentException e) {
             System.out.println("Ошибка: " + e.getMessage());

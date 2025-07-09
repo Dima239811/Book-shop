@@ -7,31 +7,24 @@ import collection.RequestBookCol;
 
 import java.util.List;
 
-public class RequestBookService {
+public class RequestBookService implements IService<RequestBook>{
     private final RequestBookCol requestBookCol;
 
     public RequestBookService() {
         this.requestBookCol = new RequestBookCol();
     }
 
-    public void addRequest(Customer customer, Book book) {
-        requestBookCol.addRequest(customer, book);
-    }
-
-    public void addRequest(RequestBook requestBook) {
-        requestBookCol.addRequest(requestBook);
-    }
+//    public void addRequest(Customer customer, Book book) {
+//        requestBookCol.addRequest(customer, book);
+//    }
 
     public void closeRequest(Book book) {
         requestBookCol.closeRequest(book);
     }
 
     public void createRequest(Book book, Customer customer) {
-        requestBookCol.createRequest(book, customer);
-    }
-
-    public RequestBookCol getRequestBookCol() {
-        return requestBookCol;
+        RequestBook requestBook = new RequestBook(customer, book);
+        requestBookCol.add(requestBook);
     }
 
     public List<RequestBook> sortRequest(String criteria) {
@@ -41,12 +34,32 @@ public class RequestBookService {
             return requestBookCol.sortByCountRequest();
         } else {
             System.out.println("такого критерия сортировки нет");
-            return requestBookCol.getRequests();
+            return requestBookCol.getAll();
         }
     }
 
-    public List<RequestBook> getAllRequestBook() {
-        return requestBookCol.getRequests();
+    @Override
+    public List<RequestBook> getAll() {
+        return requestBookCol.getAll();
     }
 
+    @Override
+    public RequestBook getById(int id) {
+        return requestBookCol.findById(id);
+    }
+
+    @Override
+    public void add(RequestBook item) {
+        RequestBook existing = requestBookCol.findById(item.getId());
+        if (existing != null) {
+            update(item);
+        } else {
+            requestBookCol.add(item);
+        }
+    }
+
+    @Override
+    public void update(RequestBook item) {
+        requestBookCol.update(item);
+    }
 }

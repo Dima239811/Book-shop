@@ -15,60 +15,25 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OrderCol {
+public class OrderCol implements ICollection<Order> {
     private List<Order> orderList;
-    private int orderId = 0;
 
     public OrderCol() {
         this.orderList = new ArrayList<>();
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
-    }
-
-    public void addOrder(Book book, Customer customer, Date orderDate) {
-        Order order = new Order(orderId, book, customer, orderDate, book.getPrice());
-
-        if (findOrder(order.getOrderId()) != null) {
-            updateOrder(order);
-            return;
-        }
-
-        orderList.add(order);
-        orderId ++;
-        System.out.println("заказ создан");
-    }
-
-    public void addOrder(Order order) {
-        if (findOrder(order.getOrderId()) != null) {
-            updateOrder(order);
-            return;
-        }
-
-        orderList.add(order);
-    }
-
-    public void updateOrder(Order order) {
-        Order existing = findOrder(order.getOrderId());
-        if (existing != null) {
-            existing.setStatus(order.getStatus());
-            existing.setBook(order.getBook());
-            existing.setCustomer(order.getCustomer());
-            existing.setOrderDate(order.getOrderDate());
-            existing.setFinalPrice(order.getFinalPrice());
-            return;
-        }
-    }
-
-    public Order findOrder(int id) {
-        for (Order b: orderList) {
-            if (b.getOrderId() == id) {
-                return b;
-            }
-        }
-        return null;
-    }
+//    public void addOrder(Book book, Customer customer, Date orderDate) {
+//        Order order = new Order(orderId, book, customer, orderDate, book.getPrice());
+//
+//        if (findOrder(order.getOrderId()) != null) {
+//            updateOrder(order);
+//            return;
+//        }
+//
+//        orderList.add(order);
+//        orderId ++;
+//        System.out.println("заказ создан");
+//    }
 
     public void changeStatus(int orderId, OrderStatus status) {
         for (Order ord: orderList) {
@@ -102,14 +67,6 @@ public class OrderCol {
                 .collect(Collectors.toList());
     }
 
-//    public List<Order> sortPerformOrderByDate(Date from, Date to) {
-//        var requestByPerformStatus = orderList.stream()
-//                .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
-//                .filter(order -> !order.getOrderDate().before(from) && !order.getOrderDate().after(to))
-//                .sorted(new DateOrderComporator()).toList();
-//
-//        return requestByPerformStatus;
-//    }
     public List<Order> sortPerformOrderByDate(Date from, Date to) {
         return filterOrdersByDateAndStatus(from, to, OrderStatus.COMPLETED)
                 .stream()
@@ -145,4 +102,33 @@ public class OrderCol {
                 .stream().collect(Collectors.counting()).intValue();
     }
 
+    @Override
+    public void add(Order item) {
+        orderList.add(item);
+    }
+
+    @Override
+    public void update(Order customer) {
+        Order existing = findById(customer.getOrderId());
+        if (existing != null) {
+            existing.setBook(customer.getBook());
+            existing.setStatus(customer.getStatus());
+            existing.setCustomer(customer.getCustomer());
+            existing.setOrderDate(customer.getOrderDate());
+            existing.setFinalPrice(customer.getFinalPrice());
+        }
+    }
+
+    @Override
+    public Order findById(int id) {
+        return orderList.stream()
+                .filter(c -> c.getOrderId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public List<Order> getAll() {
+        return orderList;
+    }
 }
