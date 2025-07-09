@@ -28,6 +28,35 @@ public class RequestBookCol {
         System.out.println("Запрос на книгу оставлен.");
     }
 
+    public void addRequest(RequestBook requestBook) {
+        if (findRequest(requestBook.getId()) != null) {
+            updateRequest(requestBook);
+            return;
+        }
+
+        requests.add(requestBook);
+    }
+    public void updateRequest(RequestBook requestBook) {
+        RequestBook existing = findRequest(requestBook.getId());
+        if (existing != null) {
+            existing.setStatus(requestBook.getStatus());
+            existing.setBook(requestBook.getBook());
+            existing.setCustomer(requestBook.getCustomer());
+            return;
+        }
+    }
+
+    public RequestBook findRequest(int id) {
+        for (RequestBook b: requests) {
+            if (b.getId() == id) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+
+
     public void closeRequest(Book book) {
         for (RequestBook requestBook: requests) {
             if (book.getAuthtor().equals(requestBook.getBook().getAuthtor()) & book.getName().equals(requestBook.getBook().getName())) {

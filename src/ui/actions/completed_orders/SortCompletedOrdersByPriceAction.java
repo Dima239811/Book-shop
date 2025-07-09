@@ -40,7 +40,7 @@ public class SortCompletedOrdersByPriceAction implements IAction {
                 System.out.println("-----------------------------------------------");
             }
         } catch (ParseException e) {
-            System.out.println("Ошибка: Неверный формат даты. Используйте дд.мм.гггг");
+            System.out.println("Неверный формат даты. Используйте дд.мм.гггг");
         }
     }
 

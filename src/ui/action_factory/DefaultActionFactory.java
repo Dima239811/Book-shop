@@ -13,6 +13,8 @@ import ui.actions.csv.customer.ExportCustomerAction;
 import ui.actions.csv.customer.ImportCustomerAction;
 import ui.actions.csv.order.ExportOrderAction;
 import ui.actions.csv.order.ImportOrderAction;
+import ui.actions.csv.request.ExportRequestAction;
+import ui.actions.csv.request.ImportRequestAction;
 import ui.actions.customer.ShowAllCustomer;
 import ui.actions.order.*;
 import ui.actions.request.CreateBookRequestAction;
@@ -170,6 +172,16 @@ public class DefaultActionFactory implements ActionFactory{
     @Override
     public IAction exportClient() {
         return new ExportCustomerAction(dataManager);
+    }
+
+    @Override
+    public IAction importRequestAction() {
+        return new ImportRequestAction(dataManager);
+    }
+
+    @Override
+    public IAction exportRequestAction() {
+        return new ExportRequestAction(dataManager);
     }
 
 }

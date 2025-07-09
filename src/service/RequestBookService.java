@@ -18,6 +18,10 @@ public class RequestBookService {
         requestBookCol.addRequest(customer, book);
     }
 
+    public void addRequest(RequestBook requestBook) {
+        requestBookCol.addRequest(requestBook);
+    }
+
     public void closeRequest(Book book) {
         requestBookCol.closeRequest(book);
     }

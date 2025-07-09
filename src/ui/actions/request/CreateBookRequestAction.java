@@ -25,24 +25,30 @@ public class CreateBookRequestAction implements IAction {
             int id = scanner.nextInt();
             scanner.nextLine();
             Book book = dataManager.findBook(id);
-            if (book!= null) {
-                System.out.println("Ваша книга найдена!");
-                System.out.println("Введите имя клиента");
-                String name = scanner.nextLine();
-                System.out.println("Введите возраст клиента");
-                int age = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Введите email клиента");
-                String email = scanner.nextLine();
-                System.out.println("Введите адресс клиента");
-                String address = scanner.nextLine();
-                Customer customer = new Customer(name, age, "+79855566", email, address);
 
-                dataManager.addRequest(book, customer);
+            if (book == null) {
+                throw new IllegalArgumentException("Книга с ID " + id + " не найдена");
             }
 
-        } catch (Exception ex) {
-            System.out.println("некоректный id");
-        }
+            System.out.println("Ваша книга найдена!");
+            System.out.println("Введите имя клиента");
+            String name = scanner.nextLine();
+            System.out.println("Введите возраст клиента");
+            int age = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println("Введите email клиента");
+            String email = scanner.nextLine();
+            System.out.println("Введите адресс клиента");
+            String address = scanner.nextLine();
+            Customer customer = new Customer(name, age, "+79855566", email, address);
+
+            dataManager.addRequest(book, customer);
+
+
+        } catch (IllegalArgumentException e) {
+                System.out.println("Ошибка: " + e.getMessage());
+            } catch (Exception e) {
+                System.out.println("Неожиданная ошибка: " + e.getMessage());
+            }
     }
 }

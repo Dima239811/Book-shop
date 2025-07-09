@@ -2,8 +2,10 @@ package ui.actions.order;
 
 import controller.DataManager;
 import enums.OrderStatus;
+import exception.IncorrectNumberException;
 import ui.actions.IAction;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ChangeOrderStatusAction implements IAction {
@@ -15,36 +17,45 @@ public class ChangeOrderStatusAction implements IAction {
 
     @Override
     public void execute() {
-        System.out.println("введите id заказа для изменения статуса");
         Scanner scanner = new Scanner(System.in);
-        int id = scanner.nextInt();
-        System.out.println("Выберите цифру статуса заказа, который вы хотите поставить");
-        System.out.println("1. " + OrderStatus.NEW.getValue());
-        System.out.println("2. " + OrderStatus.COMPLETED.getValue());
-        System.out.println("3. " + OrderStatus.CANCELLED.getValue());
-        System.out.println("4. " + OrderStatus.PROCESSING.getValue());
 
-        int choise = scanner.nextInt();
+        try {
+            System.out.println("Введите id заказа для изменения статуса:");
+            if (!scanner.hasNextInt()) {
+                throw new IncorrectNumberException("Ошибка: ID должен быть числом.");
+            }
+            int id = scanner.nextInt();
+            scanner.nextLine();
 
-        OrderStatus selectedStatus = null;
-        switch (choise) {
-            case 1:
-                selectedStatus = OrderStatus.NEW;
-                break;
-            case 2:
-                selectedStatus = OrderStatus.COMPLETED;
-                break;
-            case 3:
-                selectedStatus = OrderStatus.CANCELLED;
-                break;
-            case 4:
-                selectedStatus = OrderStatus.PROCESSING;
-                break;
-            default:
-                System.out.println("некорректный вариант");
-                return;
+            System.out.println("Выберите цифру статуса заказа:");
+            System.out.println("1. " + OrderStatus.NEW.getValue());
+            System.out.println("2. " + OrderStatus.COMPLETED.getValue());
+            System.out.println("3. " + OrderStatus.CANCELLED.getValue());
+            System.out.println("4. " + OrderStatus.PROCESSING.getValue());
+
+            if (!scanner.hasNextInt()) {
+                throw new IncorrectNumberException("Ошибка: Введите число от 1 до 4.");
+            }
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            OrderStatus selectedStatus = switch (choice) {
+                case 1 -> OrderStatus.NEW;
+                case 2 -> OrderStatus.COMPLETED;
+                case 3 -> OrderStatus.CANCELLED;
+                case 4 -> OrderStatus.PROCESSING;
+                default -> {
+                    throw new IncorrectNumberException("Некорректный вариант. Попробуйте снова.");
+                }
+            };
+
+            dataManager.changeStatusOrder(id, selectedStatus);
+            System.out.println("Статус заказа успешно изменен.");
+
+        } catch (IncorrectNumberException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Ошибка: " + e.getMessage());
         }
-
-        dataManager.changeStatusOrder(id, selectedStatus);
     }
 }

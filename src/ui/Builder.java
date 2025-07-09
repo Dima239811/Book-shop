@@ -125,11 +125,15 @@ public class Builder {
         customerImportExportMenu.addMenuItem(new MenuItem("Импорт", actionFactory.importClient(), null));
         customerImportExportMenu.addMenuItem(new MenuItem("Экспорт", actionFactory.exportClient(), null));
 
+        // Для запросов
+        Menu requestImportExportMenu = new Menu("Запросы на книги");
+        requestImportExportMenu.addMenuItem(new MenuItem("Импорт", actionFactory.importRequestAction(), null));
+        requestImportExportMenu.addMenuItem(new MenuItem("Экспорт", actionFactory.exportRequestAction(), null));
+
         importExportMenu.addMenuItem(new MenuItem("Книги", null, bookImportExportMenu));
         importExportMenu.addMenuItem(new MenuItem("Заказы", null, orderImportExportMenu));
         importExportMenu.addMenuItem(new MenuItem("Клиенты", null, customerImportExportMenu));
-
-
+        importExportMenu.addMenuItem(new MenuItem("Запросы на книги", null, requestImportExportMenu));
 
         rootMenu.addMenuItem(new MenuItem("Импорт/Экспорт", null, importExportMenu));
     }

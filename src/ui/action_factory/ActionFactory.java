@@ -61,6 +61,10 @@ public interface ActionFactory {
 
     IAction exportClient();
 
+    IAction importRequestAction();
+
+    IAction exportRequestAction();
+
 
 
 

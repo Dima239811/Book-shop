@@ -9,11 +9,22 @@ public class RequestBook {
     private Book book;
     private RequestStatus status;
     private int id;
+    private static int countId = 0;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public RequestBook(Customer customer, Book book) {
         this.customer = customer;
         this.book = book;
         this.status = RequestStatus.OPEN;
+        this.id = countId;
+        countId++;
     }
 
     public RequestBook(Customer customer, Book book, RequestStatus status, int id) {
@@ -21,6 +32,7 @@ public class RequestBook {
         this.book = book;
         this.status = status;
         this.id = id;
+        countId++;
     }
 
     public Customer getCustomer() {

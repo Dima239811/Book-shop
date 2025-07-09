@@ -1,9 +1,6 @@
 package controller;
 
-import csv.BookCsvService;
-import csv.ICsvService;
-import csv.CustomerCsvService;
-import csv.OrderCsvService;
+import csv.*;
 import enums.OrderStatus;
 import model.Book;
 import model.Customer;
@@ -23,6 +20,7 @@ public class DataManager {
     private final ICsvService<Book> bookCsvService;
     private final ICsvService<Order> orderCsvService;
     private final ICsvService<Customer> customerCsvService;
+    private final ICsvService<RequestBook> requestBookCsvService;
 
     private DataManager() {
         this.wareHouseService = new WareHouseService();
@@ -32,6 +30,7 @@ public class DataManager {
         this.bookCsvService = new BookCsvService();
         this.orderCsvService = new OrderCsvService();
         this.customerCsvService = new CustomerCsvService();
+        this.requestBookCsvService = new RequestBookCsvService();
     }
     public static DataManager getInstance() {
         return INSTANCE;
@@ -98,6 +97,21 @@ public class DataManager {
 
     public void addRequest(Book book, Customer customer) {
         requestService.addRequest(customer, book);
+    }
+
+    public void exportRequestToCsv(String filePath) throws Exception {
+        List<RequestBook> requestBooks = getAllRequestBook();
+        requestBookCsvService.exportToCsv(requestBooks, filePath);
+    }
+
+    public List<RequestBook> importRequestFromCsv(String filePath) throws Exception {
+        List<RequestBook> imported = requestBookCsvService.importFromCsv(filePath);
+        for (RequestBook b: imported) {
+            requestService.addRequest(b);
+            wareHouseService.addBook(b.getBook());
+            customerService.addCustomer(b.getCustomer());
+        }
+        return imported;
     }
 
     public List<Book> sortBooks(String criteria) {

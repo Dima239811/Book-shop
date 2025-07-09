@@ -21,7 +21,7 @@ public class WriteOffBookAction implements IAction {
             int id = scanner.nextInt();
             dataManager.writeOffBook(id);
         } catch (Exception ex) {
-            System.out.println("Некорректный ввод");
+            System.out.println("Некорректный ввод, введите целое число");
             return;
         }
 
