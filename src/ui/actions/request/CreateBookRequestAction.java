@@ -6,6 +6,7 @@ import model.Customer;
 import ui.actions.IAction;
 
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CreateBookRequestAction implements IAction {
@@ -47,7 +48,11 @@ public class CreateBookRequestAction implements IAction {
 
         } catch (IllegalArgumentException e) {
                 System.out.println("Ошибка: " + e.getMessage());
-            } catch (Exception e) {
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Некорректно заполнено поле");
+        }
+        catch (Exception e) {
                 System.out.println("Неожиданная ошибка: " + e.getMessage());
             }
     }
