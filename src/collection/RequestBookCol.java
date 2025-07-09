@@ -1,16 +1,17 @@
-package model;
+package collection;
 
 
 
 import comparator.request.LetterRequestComporator;
 import enums.RequestStatus;
 import enums.StatusBook;
+import model.Book;
+import model.Customer;
+import model.RequestBook;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class RequestBookCol {
     private List<RequestBook> requests = new ArrayList<>();
@@ -36,6 +37,7 @@ public class RequestBookCol {
 
         requests.add(requestBook);
     }
+
     public void updateRequest(RequestBook requestBook) {
         RequestBook existing = findRequest(requestBook.getId());
         if (existing != null) {
@@ -54,8 +56,6 @@ public class RequestBookCol {
         }
         return null;
     }
-
-
 
     public void closeRequest(Book book) {
         for (RequestBook requestBook: requests) {

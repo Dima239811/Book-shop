@@ -1,32 +1,39 @@
 package service;
 
 import model.Customer;
-import model.CustomerCol;
+import collection.CustomerCol;
 
 import java.util.List;
 
-public class CustomerService {
+public class CustomerService implements IService<Customer>  {
     private final CustomerCol customerCol;
 
     public CustomerService() {
         this.customerCol = new CustomerCol();
     }
 
-    public List<Customer> getAllCustomers() {
-        return customerCol.getCustomers();
+    @Override
+    public List<Customer> getAll() {
+        return customerCol.getAll();
     }
 
-    public void setCustomers(List<Customer> customers) {
-        customerCol.setCustomers(customers);
+    @Override
+    public Customer getById(int id) {
+        return customerCol.findById(id);
     }
 
-    public CustomerCol getCustomerCol() {
-        return customerCol;
+    @Override
+    public void add(Customer item) {
+        Customer existing = customerCol.findById(item.getCustomerID());
+        if (existing != null) {
+            update(item);
+        } else {
+            customerCol.add(item);
+        }
     }
 
-    public void addCustomer(Customer customer) {
-        customerCol.addCustomer(customer);
+    @Override
+    public void update(Customer item) {
+        customerCol.update(item);
     }
-
-
 }

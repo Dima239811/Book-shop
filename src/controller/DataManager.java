@@ -140,9 +140,9 @@ public class DataManager {
         return imported;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        customerService.setCustomers(customers);
-    }
+//    public void setCustomers(List<Customer> customers) {
+//        customerService.setCustomers(customers);
+//    }
 
     public List<RequestBook> sortRequest(String criteria) {
         return requestService.sortRequest(criteria);

@@ -3,7 +3,7 @@ package service;
 import model.Book;
 import model.Customer;
 import model.RequestBook;
-import model.RequestBookCol;
+import collection.RequestBookCol;
 
 import java.util.List;
 

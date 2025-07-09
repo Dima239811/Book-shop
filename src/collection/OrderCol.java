@@ -1,12 +1,14 @@
-package model;
+package collection;
 
 
 
-import comparator.book.YearComporator;
 import comparator.order.DateOrderComporator;
 import comparator.order.PriceOrderComporator;
 import comparator.order.StatusOrderComporator;
 import enums.OrderStatus;
+import model.Book;
+import model.Customer;
+import model.Order;
 
 import java.util.ArrayList;
 import java.util.Date;

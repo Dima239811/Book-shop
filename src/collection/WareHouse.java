@@ -1,4 +1,4 @@
-package model;
+package collection;
 
 
 
@@ -7,11 +7,13 @@ import comparator.book.LetterComporator;
 import comparator.book.PriceComporator;
 import comparator.book.YearComporator;
 import enums.StatusBook;
+import model.Book;
+import model.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WareHouse {
+public class WareHouse implements ICollection<Book> {
     private List<Book> books;
     private String NameWareHouse;
     private String address;
@@ -34,13 +36,9 @@ public class WareHouse {
         this.maxCapacityBook = maxCapacityBook;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
+//    public List<Book> getBooks() {
+//        return books;
+//    }
 
     public String getNameWareHouse() {
         return NameWareHouse;
@@ -82,31 +80,14 @@ public class WareHouse {
         System.out.println("Книга с id " + bookId + "  не найдена");
     }
 
-    public boolean addBook(Book book) {
-        if (this.maxCapacityBook > books.size()) {
-
-            if (findBook(book.getBookId()) != null) {
-                return updateBook(book);
-            }
-
-            books.add(book);
-            //System.out.println("Книга успешно добавлена на склад!");
-            return true;
-        }
-        else {
-            System.out.println("Склад переполнен!");
-            return false;
-        }
-    }
-
-    public Book findBook(int id) {
-        for (Book b: books) {
-            if (b.getBookId() == id) {
-                return b;
-            }
-        }
-        return null;
-    }
+//    public Book findBook(int id) {
+//        for (Book b: books) {
+//            if (b.getBookId() == id) {
+//                return b;
+//            }
+//        }
+//        return null;
+//    }
 
     public List<Book> sortByName() {
         LetterComporator lettersComporators = new LetterComporator();
@@ -130,17 +111,46 @@ public class WareHouse {
         return books;
     }
 
-    public boolean updateBook(Book updatedBook) {
-        Book existing = findBook(updatedBook.getBookId());
-        if (existing != null) {
-            existing.setName(updatedBook.getName());
-            existing.setAuthtor(updatedBook.getAuthtor());
-            existing.setYear(updatedBook.getYear());
-            existing.setPrice(updatedBook.getPrice());
-            existing.setStatus(updatedBook.getStatus());
-            return true;
-        }
-        return false;
+//    public boolean updateBook(Book updatedBook) {
+//        Book existing = findBook(updatedBook.getBookId());
+//        if (existing != null) {
+//            existing.setName(updatedBook.getName());
+//            existing.setAuthtor(updatedBook.getAuthtor());
+//            existing.setYear(updatedBook.getYear());
+//            existing.setPrice(updatedBook.getPrice());
+//            existing.setStatus(updatedBook.getStatus());
+//            return true;
+//        }
+//        return false;
+//    }
+
+    @Override
+    public void add(Book item) {
+        books.add(item);
     }
 
+    @Override
+    public void update(Book item) {
+        Book existing = findById(item.getBookId());
+        if (existing != null) {
+            existing.setName(item.getName());
+            existing.setAuthtor(item.getAuthtor());
+            existing.setYear(item.getYear());
+            existing.setPrice(item.getPrice());
+            existing.setStatus(item.getStatus());
+        }
+    }
+
+    @Override
+    public Book findById(int id) {
+        return books.stream()
+                .filter(c -> c.getBookId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public List<Book> getAll() {
+        return books;
+    }
 }
