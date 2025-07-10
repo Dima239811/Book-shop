@@ -16,10 +16,10 @@ public class AppConfig {
             if (input != null) {
                 properties.load(input);
             } else {
-                System.out.println("⚠ Конфигурационный файл не найден. Используются значения по умолчанию.");
+                System.out.println("Конфигурационный файл не найден. Используются значения по умолчанию.");
             }
         } catch (IOException e) {
-            System.out.println("⚠ Ошибка чтения конфигурации. Используются значения по умолчанию.");
+            System.out.println("Ошибка чтения конфигурации. Используются значения по умолчанию.");
         }
     }
 
@@ -28,7 +28,7 @@ public class AppConfig {
             return Integer.parseInt(properties.getProperty("book.stale.months",
                     String.valueOf(DEFAULT_STALE_MONTHS)));
         } catch (NumberFormatException e) {
-            System.out.println("⚠ Некорректное значение book.stale.months. Используется значение по умолчанию.");
+            System.out.println("Некорректное значение book.stale.months. Используется значение по умолчанию.");
             return DEFAULT_STALE_MONTHS;
         }
     }

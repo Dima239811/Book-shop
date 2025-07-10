@@ -1,5 +1,6 @@
 package ui.actions.book;
 
+import anotation.AppSettings;
 import controller.DataManager;
 import model.Book;
 import ui.actions.IAction;
@@ -17,7 +18,8 @@ public class ShowStaleBooksAction implements IAction {
     @Override
     public void execute() {
         try {
-            int staleMonths = AppConfig.getStaleBookMonths();
+            //int staleMonths = AppConfig.getStaleBookMonths();
+            int staleMonths = AppSettings.getInstance().getStaleBookMonths();
             List<Book> staleBooks = dataManager.getStaleBooks(staleMonths);
 
             if (staleBooks.isEmpty()) {

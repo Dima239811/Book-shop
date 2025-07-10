@@ -1,5 +1,6 @@
 package controller;
 
+import anotation.AppSettings;
 import csv.*;
 import enums.OrderStatus;
 import enums.StatusBook;
@@ -100,7 +101,10 @@ public class DataManager {
     public void addBookToWareHouse(Book book) {
         wareHouseService.add(book);
 
-        if (AppConfig.isAutoCloseRequestsEnabled()) {
+//        if (AppConfig.isAutoCloseRequestsEnabled()) {
+//            requestService.closeRequest(book);
+//        }
+        if (AppSettings.getInstance().isAutoCloseRequestsEnabled()) {
             requestService.closeRequest(book);
         }
     }
