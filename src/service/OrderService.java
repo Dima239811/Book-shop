@@ -1,5 +1,7 @@
 package service;
 
+import collection.ICollection;
+import dependesies.annotation.Inject;
 import dependesies.factory.BeanFactory;
 import enums.OrderStatus;
 import model.Book;
@@ -11,7 +13,9 @@ import java.util.Date;
 import java.util.List;
 
 public class OrderService implements IService<Order>{
-    private final OrderCol orderCol = BeanFactory.getInstance().getBean(OrderCol.class);
+
+    @Inject
+    private OrderCol orderCol;
 
 //    public OrderService() {
 //        this.orderCol = new OrderCol();

@@ -1,8 +1,12 @@
 package dependesies.factory;
 
 import java.lang.annotation.*;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
+import dependesies.annotation.Inject;
 import dependesies.config.Configuration;
 import dependesies.config.JavaConfiguration;
 import dependesies.configurator.BeanConfigurator;
@@ -16,7 +20,8 @@ public class BeanFactory {
 
     private BeanFactory() {
         this.configuration = new JavaConfiguration();
-        beanConfigurator = new JavaBeanConfigurator(configuration.getPackageToScan());
+        beanConfigurator = new JavaBeanConfigurator(configuration.getPackageToScan()
+        , configuration.getInterfaceToImplementation());
     }
 
     public static BeanFactory getInstance() {
@@ -29,11 +34,21 @@ public class BeanFactory {
         if (implementationClass.isInterface()) {
             implementationClass = beanConfigurator.getImplementationClass(implementationClass);
         }
-
+        T bean = null;
         try {
-            return implementationClass.getDeclaredConstructor().newInstance();
+            bean = implementationClass.getDeclaredConstructor().newInstance();
+            for (Field field : Arrays.stream(implementationClass.getDeclaredFields()).
+                    filter(field -> field.isAnnotationPresent(Inject.class))
+                    .collect(Collectors.toList())) {
+                field.setAccessible(true);
+                field.set(bean, BEAN_FACTORY.getBean(field.getType()));
+            }
+
+
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException("No default constructor in " + implementationClass.getName(), e);
         }
+
+        return bean;
     }
 }
