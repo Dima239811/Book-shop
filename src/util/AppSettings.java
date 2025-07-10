@@ -1,4 +1,4 @@
-package anotation;
+package util;
 
 public class AppSettings {
     private static AppSettings instance;

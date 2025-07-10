@@ -1,43 +1,40 @@
 package controller;
 
-import anotation.AppSettings;
+import dependesies.factory.BeanFactory;
+import util.AppSettings;
 import csv.*;
 import enums.OrderStatus;
-import enums.StatusBook;
 import model.*;
 import service.*;
-import util.AppConfig;
 import util.JsonUtil;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DataManager {
     private static final DataManager INSTANCE = new DataManager();
-    private final WareHouseService wareHouseService;
-    private final OrderService orderService;
-    private final CustomerService customerService;
-    private final RequestBookService requestService;
-    private final ICsvService<Book> bookCsvService;
-    private final ICsvService<Order> orderCsvService;
-    private final ICsvService<Customer> customerCsvService;
-    private final ICsvService<RequestBook> requestBookCsvService;
+    private final WareHouseService wareHouseService = BeanFactory.getInstance().getBean(WareHouseService.class);
+    private final OrderService orderService = BeanFactory.getInstance().getBean(OrderService.class);
+    private final CustomerService customerService = BeanFactory.getInstance().getBean(CustomerService.class);
+    private final RequestBookService requestService = BeanFactory.getInstance().getBean(RequestBookService.class);
+    private final ICsvService<Book> bookCsvService = BeanFactory.getInstance().getBean(BookCsvService.class);
+    private final ICsvService<Order> orderCsvService = BeanFactory.getInstance().getBean(OrderCsvService.class);
+    private final ICsvService<Customer> customerCsvService = BeanFactory.getInstance().getBean(CustomerCsvService.class);
+    private final ICsvService<RequestBook> requestBookCsvService = BeanFactory.getInstance().getBean(RequestBookCsvService.class);
 
-    private DataManager() {
-        this.wareHouseService = new WareHouseService();
-        this.orderService = new OrderService();
-        this.customerService = new CustomerService();
-        this.requestService = new RequestBookService();
-        this.bookCsvService = new BookCsvService();
-        this.orderCsvService = new OrderCsvService();
-        this.customerCsvService = new CustomerCsvService();
-        this.requestBookCsvService = new RequestBookCsvService();
-    }
+//    private DataManager() {
+//        this.wareHouseService = new WareHouseService();
+//        this.orderService = new OrderService();
+//        this.customerService = new CustomerService();
+//        this.requestService = new RequestBookService();
+//        this.bookCsvService = new BookCsvService();
+//        this.orderCsvService = new OrderCsvService();
+//        this.customerCsvService = new CustomerCsvService();
+//        this.requestBookCsvService = new RequestBookCsvService();
+//    }
 
     public static DataManager getInstance() {
         return INSTANCE;

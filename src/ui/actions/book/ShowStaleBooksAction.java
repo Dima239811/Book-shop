@@ -1,10 +1,9 @@
 package ui.actions.book;
 
-import anotation.AppSettings;
+import util.AppSettings;
 import controller.DataManager;
 import model.Book;
 import ui.actions.IAction;
-import util.AppConfig;
 
 import java.util.List;
 

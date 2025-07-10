@@ -1,5 +1,6 @@
 package service;
 
+import dependesies.factory.BeanFactory;
 import enums.OrderStatus;
 import model.Book;
 import model.Customer;
@@ -10,14 +11,10 @@ import java.util.Date;
 import java.util.List;
 
 public class OrderService implements IService<Order>{
-    private final OrderCol orderCol;
+    private final OrderCol orderCol = BeanFactory.getInstance().getBean(OrderCol.class);
 
-    public OrderService() {
-        this.orderCol = new OrderCol();
-    }
-
-//    public void createOrder(Book book, Customer customer, Date orderDate) {
-//        orderCol.addOrder(book, customer, orderDate);
+//    public OrderService() {
+//        this.orderCol = new OrderCol();
 //    }
 
     public void cancelOrder(int orderId) {
