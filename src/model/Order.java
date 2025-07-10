@@ -47,6 +47,11 @@ public class Order {
         orderCount++;
     }
 
+    public static void setOrderCount(int value) {
+        orderCount = value;
+    }
+
+
     public int getOrderId() {
         return orderId;
     }

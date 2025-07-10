@@ -65,6 +65,8 @@ public class DataManager {
     }
 
     public void createOrder(Order order) {
+        wareHouseService.add(order.getBook());
+        customerService.add(order.getCustomer());
         orderService.add(order);
     }
 
@@ -104,6 +106,8 @@ public class DataManager {
     }
 
     public void addRequest(RequestBook requestBook) {
+        wareHouseService.add(requestBook.getBook());
+        customerService.add(requestBook.getCustomer());
         requestService.add(requestBook);
     }
 
@@ -222,6 +226,27 @@ public class DataManager {
         for (Order order : state.getOrders()) {
             orderService.add(order);
         }
+
+        int maxBookId = state.getBooks().stream()
+                .mapToInt(Book::getBookId)
+                .max()
+                .orElse(0);
+        Book.setCount(maxBookId + 1);
+
+        int maxCustomerId = state.getCustomers().stream()
+                .mapToInt(Customer::getCustomerID)
+                .max().orElse(0);
+        Customer.setCountId(maxCustomerId + 1);
+
+        int maxOrderId = state.getOrders().stream()
+                .mapToInt(Order::getOrderId)
+                .max().orElse(0);
+        Order.setOrderCount(maxOrderId + 1);
+
+        int maxRequestId = state.getRequests().stream()
+                .mapToInt(RequestBook::getId)
+                .max().orElse(0);
+        RequestBook.setCountId(maxRequestId + 1);
 
     }
 }

@@ -10,7 +10,7 @@ public class Book {
     private double price;
     private StatusBook status;  // в наличии или отсутствует
     private int bookId;
-    private static int count = 2;
+    private static int count = 0;
 
 
     public Book() {}
@@ -32,7 +32,7 @@ public class Book {
         this.price = price;
         this.status = status;
         this.bookId = bookId;
-        this.count = count;
+        this.count = bookId;
         count++;
     }
 
@@ -92,6 +92,11 @@ public class Book {
     public void setBookId(int bookId) {
         this.bookId = bookId;
     }
+
+    public static void setCount(int value) {
+        count = value;
+    }
+
 
     @Override
     public String toString() {

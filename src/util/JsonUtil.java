@@ -12,7 +12,7 @@ public class JsonUtil {
 
     public static void saveState(AppState state, String filePath) {
         try {
-            mapper.writeValue(new File(filePath), state);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), state);
         } catch (Exception e) {
             e.printStackTrace();
         }

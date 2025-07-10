@@ -30,6 +30,11 @@ public class Customer {
         this.customerID = customerID;
     }
 
+    public static void setCountId(int value) {
+        countId = value;
+    }
+
+
     public String getFullName() {
         return fullName;
     }

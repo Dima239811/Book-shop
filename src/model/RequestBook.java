@@ -28,6 +28,9 @@ public class RequestBook {
         this.id = id;
         countId++;
     }
+    public static void setCountId(int value) {
+        countId = value;
+    }
 
     public Customer getCustomer() {
         return customer;
