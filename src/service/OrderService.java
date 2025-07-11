@@ -2,6 +2,7 @@ package service;
 
 import collection.ICollection;
 import dependesies.annotation.Inject;
+import dependesies.annotation.PostConstruct;
 import dependesies.factory.BeanFactory;
 import enums.OrderStatus;
 import model.Book;
@@ -20,6 +21,11 @@ public class OrderService implements IService<Order>{
 //    public OrderService() {
 //        this.orderCol = new OrderCol();
 //    }
+
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("OrderService has been initialized!");
+    }
 
     public void cancelOrder(int orderId) {
         orderCol.changeStatus(orderId, OrderStatus.CANCELLED);

@@ -11,22 +11,25 @@ import dependesies.config.Configuration;
 import dependesies.config.JavaConfiguration;
 import dependesies.configurator.BeanConfigurator;
 import dependesies.configurator.JavaBeanConfigurator;
+import dependesies.context.ApplicationContext;
+import lombok.Getter;
 import lombok.SneakyThrows;
 
 public class BeanFactory {
-    private static final BeanFactory BEAN_FACTORY = new BeanFactory();
+    //private static final BeanFactory BEAN_FACTORY = new BeanFactory();
+    @Getter
     private final BeanConfigurator beanConfigurator;
-    private final Configuration configuration;
 
-    private BeanFactory() {
+    private final Configuration configuration;
+    private ApplicationContext applicationContext;
+
+    public BeanFactory(ApplicationContext applicationContext) {
         this.configuration = new JavaConfiguration();
         beanConfigurator = new JavaBeanConfigurator(configuration.getPackageToScan()
         , configuration.getInterfaceToImplementation());
+        this.applicationContext = applicationContext;
     }
 
-    public static BeanFactory getInstance() {
-        return BEAN_FACTORY;
-    }
 
     @SneakyThrows
     public <T> T getBean(Class<T> beanType) {
@@ -41,7 +44,7 @@ public class BeanFactory {
                     filter(field -> field.isAnnotationPresent(Inject.class))
                     .collect(Collectors.toList())) {
                 field.setAccessible(true);
-                field.set(bean, BEAN_FACTORY.getBean(field.getType()));
+                field.set(bean, applicationContext.getBean(field.getType()));
             }
 
 
