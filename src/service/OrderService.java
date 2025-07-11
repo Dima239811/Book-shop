@@ -1,6 +1,7 @@
 package service;
 
 import collection.ICollection;
+import dependesies.annotation.Component;
 import dependesies.annotation.Inject;
 import dependesies.annotation.PostConstruct;
 import dependesies.factory.BeanFactory;
@@ -13,6 +14,7 @@ import collection.OrderCol;
 import java.util.Date;
 import java.util.List;
 
+@Component
 public class OrderService implements IService<Order>{
 
     @Inject

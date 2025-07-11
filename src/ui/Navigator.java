@@ -1,5 +1,7 @@
 package ui;
 
+import dependesies.annotation.Inject;
+import dependesies.annotation.Named;
 import ui.menu_items.MenuItem;
 
 import java.util.List;
@@ -9,10 +11,10 @@ public class Navigator {
     private Menu currentMenu;
     private final Stack<Menu> history = new Stack<>();
 
-    public Navigator(Menu currentMenu) {
-        this.currentMenu = currentMenu;
+    @Inject
+    public Navigator(@Named("rootMenu") Menu rootMenu) {
+        this.currentMenu = rootMenu;
     }
-
     public void setCurrentMenu(Menu currentMenu) {
         this.currentMenu = currentMenu;
     }

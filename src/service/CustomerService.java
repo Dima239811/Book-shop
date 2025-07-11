@@ -1,16 +1,21 @@
 package service;
 
+import dependesies.annotation.Component;
+import dependesies.annotation.Inject;
 import model.Customer;
 import collection.CustomerCol;
 
 import java.util.List;
 
+@Component
 public class CustomerService implements IService<Customer>  {
-    private final CustomerCol customerCol;
 
-    public CustomerService() {
-        this.customerCol = new CustomerCol();
-    }
+    @Inject
+    private CustomerCol customerCol;
+
+//    public CustomerService() {
+//        this.customerCol = new CustomerCol();
+//    }
 
     @Override
     public List<Customer> getAll() {

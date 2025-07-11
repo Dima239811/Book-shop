@@ -24,8 +24,8 @@ public class Main {
         Main main = new Main();
         ApplicationContext context = main.run();
 
-        //DataManager dataManager = context.getBean(DataManager.class);
-        DataManager dataManager = DataManager.getInstance();
+        DataManager dataManager = context.getBean(DataManager.class);
+        //DataManager dataManager = DataManager.getInstance();
 
         dataManager.loadStateFromJson("state.json");
 
@@ -34,7 +34,7 @@ public class Main {
             dataManager.saveStateToJson("state.json");
         }));
 
-        MenuController menuController = MenuController.getInstance();
+        MenuController menuController = context.getBean(MenuController.class);
         menuController.run();
     }
 }

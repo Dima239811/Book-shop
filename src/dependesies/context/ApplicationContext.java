@@ -33,6 +33,8 @@ public class ApplicationContext {
         return bean;
     }
 
+
+
     @SneakyThrows
     private void callPostProcessors(Object bean) {
         for (Class processor : beanFactory.getBeanConfigurator().getScanner().getSubTypesOf(BeanPostProcessor.class))

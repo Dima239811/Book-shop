@@ -3,6 +3,7 @@ package collection;
 
 
 import comparator.request.LetterRequestComporator;
+import dependesies.annotation.Component;
 import enums.RequestStatus;
 import enums.StatusBook;
 import model.Book;
@@ -13,8 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class RequestBookCol implements ICollection<RequestBook> {
-    private List<RequestBook> requests = new ArrayList<>();
+    private final List<RequestBook> requests = new ArrayList<>();
 
 //    public void addRequest(Customer customer, Book book) {
 //        requests.add(new RequestBook(customer,book));

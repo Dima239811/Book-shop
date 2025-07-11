@@ -5,6 +5,7 @@ package collection;
 import comparator.order.DateOrderComporator;
 import comparator.order.PriceOrderComporator;
 import comparator.order.StatusOrderComporator;
+import dependesies.annotation.Component;
 import enums.OrderStatus;
 import model.Book;
 import model.Customer;
@@ -15,12 +16,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class OrderCol implements ICollection<Order> {
-    private List<Order> orderList;
+    private final List<Order> orderList = new ArrayList<>();
 
-    public OrderCol() {
-        this.orderList = new ArrayList<>();
-    }
+//    public OrderCol() {
+//        this.orderList = new ArrayList<>();
+//    }
 
 //    public void addOrder(Book book, Customer customer, Date orderDate) {
 //        Order order = new Order(orderId, book, customer, orderDate, book.getPrice());

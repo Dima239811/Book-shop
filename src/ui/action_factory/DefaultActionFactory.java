@@ -1,6 +1,7 @@
 package ui.action_factory;
 
 import controller.DataManager;
+import dependesies.annotation.Inject;
 import ui.actions.IAction;
 import ui.actions.book.*;
 import ui.actions.completed_orders.ShowCompletedOrdersCountAction;
@@ -23,11 +24,9 @@ import ui.actions.request.SortRequestsByCountAction;
 import ui.actions.request.SortRequestsByTitleAction;
 
 public class DefaultActionFactory implements ActionFactory{
-    private final DataManager dataManager;
 
-    public DefaultActionFactory(DataManager dataManager) {
-        this.dataManager = dataManager;
-    }
+    @Inject
+    private DataManager dataManager;
 
     @Override
     public IAction createAddBookAction() {

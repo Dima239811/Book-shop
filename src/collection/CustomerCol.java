@@ -1,16 +1,18 @@
 package collection;
 
+import dependesies.annotation.Component;
 import model.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CustomerCol implements ICollection<Customer> {
-    private List<Customer> customers;
+    private final List<Customer> customers = new ArrayList<>();
 
-    public CustomerCol() {
-        this.customers = new ArrayList<>();
-    }
+//    public CustomerCol() {
+//        this.customers = new ArrayList<>();
+//    }
 
     @Override
     public void add(Customer item) {
