@@ -1,5 +1,6 @@
 package service;
 
+import dependesies.annotation.Inject;
 import model.Book;
 import collection.WareHouse;
 import model.Customer;
@@ -7,11 +8,13 @@ import model.Customer;
 import java.util.List;
 
 public class WareHouseService implements IService<Book> {
-    private final WareHouse wareHouse;
 
-    public WareHouseService() {
-        this.wareHouse = new WareHouse();
-    }
+    @Inject
+    private WareHouse wareHouse;
+
+//    public WareHouseService() {
+//        this.wareHouse = new WareHouse();
+//    }
 
     public void writeOffBook(int bookId) {
         wareHouse.writeOffBookFromWareHouse(bookId);

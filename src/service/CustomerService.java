@@ -1,15 +1,24 @@
 package service;
 
+import dependesies.annotation.Inject;
+import dependesies.annotation.PostConstruct;
 import model.Customer;
 import collection.CustomerCol;
 
 import java.util.List;
 
 public class CustomerService implements IService<Customer>  {
-    private final CustomerCol customerCol;
 
-    public CustomerService() {
-        this.customerCol = new CustomerCol();
+    @Inject
+    private CustomerCol customerCol;
+
+//    public CustomerService() {
+//        this.customerCol = new CustomerCol();
+//    }
+
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("CustomerService has been inizialized");
     }
 
     @Override

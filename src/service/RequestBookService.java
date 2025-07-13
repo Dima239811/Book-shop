@@ -1,5 +1,6 @@
 package service;
 
+import dependesies.annotation.Inject;
 import model.Book;
 import model.Customer;
 import model.RequestBook;
@@ -8,11 +9,13 @@ import collection.RequestBookCol;
 import java.util.List;
 
 public class RequestBookService implements IService<RequestBook>{
-    private final RequestBookCol requestBookCol;
 
-    public RequestBookService() {
-        this.requestBookCol = new RequestBookCol();
-    }
+    @Inject
+    private RequestBookCol requestBookCol;
+
+//    public RequestBookService() {
+//        this.requestBookCol = new RequestBookCol();
+//    }
 
 //    public void addRequest(Customer customer, Book book) {
 //        requestBookCol.addRequest(customer, book);

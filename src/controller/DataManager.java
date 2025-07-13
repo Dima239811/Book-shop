@@ -1,6 +1,7 @@
 package controller;
 
 import csv.*;
+import dependesies.annotation.Inject;
 import enums.OrderStatus;
 import enums.StatusBook;
 import model.*;
@@ -17,30 +18,45 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DataManager {
-    private static final DataManager INSTANCE = new DataManager();
-    private final WareHouseService wareHouseService;
-    private final OrderService orderService;
-    private final CustomerService customerService;
-    private final RequestBookService requestService;
-    private final ICsvService<Book> bookCsvService;
-    private final ICsvService<Order> orderCsvService;
-    private final ICsvService<Customer> customerCsvService;
-    private final ICsvService<RequestBook> requestBookCsvService;
+    //private static final DataManager INSTANCE = new DataManager();
+    @Inject
+    private WareHouseService wareHouseService;
 
-    private DataManager() {
-        this.wareHouseService = new WareHouseService();
-        this.orderService = new OrderService();
-        this.customerService = new CustomerService();
-        this.requestService = new RequestBookService();
-        this.bookCsvService = new BookCsvService();
-        this.orderCsvService = new OrderCsvService();
-        this.customerCsvService = new CustomerCsvService();
-        this.requestBookCsvService = new RequestBookCsvService();
-    }
+    @Inject
+    private OrderService orderService;
 
-    public static DataManager getInstance() {
-        return INSTANCE;
-    }
+    @Inject
+    private CustomerService customerService;
+
+    @Inject
+    private RequestBookService requestService;
+
+    @Inject
+    private ICsvService<Book> bookCsvService;
+
+    @Inject
+    private ICsvService<Order> orderCsvService;
+
+    @Inject
+    private ICsvService<Customer> customerCsvService;
+
+    @Inject
+    private ICsvService<RequestBook> requestBookCsvService;
+
+//    private DataManager() {
+//        this.wareHouseService = new WareHouseService();
+//        this.orderService = new OrderService();
+//        this.customerService = new CustomerService();
+//        this.requestService = new RequestBookService();
+//        this.bookCsvService = new BookCsvService();
+//        this.orderCsvService = new OrderCsvService();
+//        this.customerCsvService = new CustomerCsvService();
+//        this.requestBookCsvService = new RequestBookCsvService();
+//    }
+
+//    public static DataManager getInstance() {
+//        return INSTANCE;
+//    }
 
     public void writeOffBook(int bookId) {
         wareHouseService.writeOffBook(bookId);

@@ -16,11 +16,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OrderCol implements ICollection<Order> {
-    private List<Order> orderList;
+    private List<Order> orderList = new ArrayList<>();
 
-    public OrderCol() {
-        this.orderList = new ArrayList<>();
-    }
+//    public OrderCol() {
+//        this.orderList = new ArrayList<>();
+//    }
 
 //    public void addOrder(Book book, Customer customer, Date orderDate) {
 //        Order order = new Order(orderId, book, customer, orderDate, book.getPrice());

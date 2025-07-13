@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerCol implements ICollection<Customer> {
-    private List<Customer> customers;
+    private List<Customer> customers = new ArrayList<>();
 
-    public CustomerCol() {
-        this.customers = new ArrayList<>();
-    }
+//    public CustomerCol() {
+//        this.customers = new ArrayList<>();
+//    }
 
     @Override
     public void add(Customer item) {

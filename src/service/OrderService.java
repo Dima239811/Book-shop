@@ -1,5 +1,6 @@
 package service;
 
+import dependesies.annotation.Inject;
 import enums.OrderStatus;
 import model.Book;
 import model.Customer;
@@ -10,11 +11,13 @@ import java.util.Date;
 import java.util.List;
 
 public class OrderService implements IService<Order>{
-    private final OrderCol orderCol;
 
-    public OrderService() {
-        this.orderCol = new OrderCol();
-    }
+    @Inject
+    private OrderCol orderCol;
+
+//    public OrderService() {
+//        this.orderCol = new OrderCol();
+//    }
 
 //    public void createOrder(Book book, Customer customer, Date orderDate) {
 //        orderCol.addOrder(book, customer, orderDate);

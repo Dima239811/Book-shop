@@ -1,16 +1,21 @@
 package ui;
 
 import controller.DataManager;
+import dependesies.annotation.Inject;
 import ui.action_factory.ActionFactory;
 import ui.menu_items.MenuItem;
 
 public class Builder {
     private Menu rootMenu;
-    private final DataManager dataManager;
+
+    @Inject
+    private DataManager dataManager;
+
+
     private final ActionFactory actionFactory;
 
     public Builder(ActionFactory actionFactory) {
-        this.dataManager = DataManager.getInstance();
+        //this.dataManager = DataManager.getInstance();
         this.actionFactory = actionFactory;
         buildMenu();
     }
