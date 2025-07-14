@@ -1,13 +1,8 @@
-import dependesies.context.ApplicationContext;
-import dependesies.factory.BeanFactory;
-import enums.OrderStatus;
-import enums.StatusBook;
-import model.Book;
-import model.Customer;
-import controller.DataManager;
-import ui.MenuController;
-
-import java.util.Date;
+import clientbookstore.dependesies.context.ApplicationContext;
+import clientbookstore.dependesies.factory.BeanFactory;
+import clientbookstore.controller.DataManager;
+import org.apache.log4j.BasicConfigurator;
+import clientbookstore.ui.MenuController;
 
 public class Main {
 
@@ -16,12 +11,17 @@ public class Main {
         BeanFactory beanFactory = new BeanFactory(applicationContext);
         applicationContext.setBeanFactory(beanFactory);
 
+        DataManager dataManager = applicationContext.getBean(DataManager.class);
+        MenuController menuController = new MenuController(dataManager);
+
+        applicationContext.getBeanMap().put(DataManager.class, dataManager);
+        applicationContext.getBeanMap().put(MenuController.class, menuController);
+
         return applicationContext;
     }
 
     public static void main(String[] args) {
-        //DataManager dataManager = BeanFactory.getInstance().getBean(DataManager.class);
-
+        BasicConfigurator.configure();
         Main main = new Main();
         ApplicationContext applicationContext = main.run();
 
@@ -33,7 +33,7 @@ public class Main {
             dataManager.saveStateToJson("state.json");
         }));
 
-        MenuController menuController = MenuController.getInstance();
+        MenuController menuController = applicationContext.getBean(MenuController.class);
         menuController.run();
     }
 }
