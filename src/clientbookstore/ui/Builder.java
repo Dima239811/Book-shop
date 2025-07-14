@@ -2,6 +2,7 @@ package clientbookstore.ui;
 
 import clientbookstore.controller.DataManager;
 import clientbookstore.dependesies.annotation.Inject;
+import clientbookstore.dependesies.annotation.PostConstruct;
 import clientbookstore.ui.action_factory.ActionFactory;
 import clientbookstore.ui.menu_items.MenuItem;
 
@@ -11,12 +12,11 @@ public class Builder {
     @Inject
     private DataManager dataManager;
 
+    @Inject
+    private ActionFactory actionFactory;
 
-    private final ActionFactory actionFactory;
-
-    public Builder(ActionFactory actionFactory) {
-        //this.dataManager = DataManager.getInstance();
-        this.actionFactory = actionFactory;
+    @PostConstruct
+    public void init() {
         buildMenu();
     }
 

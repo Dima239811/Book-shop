@@ -29,17 +29,8 @@ public class BeanFactory {
         this.configuration = new JavaConfiguration();
         this.beanConfigurator = new JavaBeanConfigurator(configuration.getPackageToScan(), configuration.getInterfaceToImplementation());
         this.applicationContext = applicationContext;
-        //initBeans();
     }
 
-//    private void initBeans() {
-//        DataManager dataManager = getBean(DataManager.class);;
-//        Map<Class, Object> beans = new HashMap<>();
-//        beans.put(DataManager.class, dataManager);
-//        MenuController menuController = new MenuController(dataManager);
-//        beans.put(MenuController.class, menuController);
-//        applicationContext.setBeanMap(beans);
-//    }
 
     @SneakyThrows
     public <T> T getBean(Class<T> clazz) {
@@ -47,15 +38,20 @@ public class BeanFactory {
 
         if (clazz.isInterface()) {
             implementationClass = beanConfigurator.getImplementationClass(clazz);
-        }
-        else {
+        } else {
             implementationClass = clazz;
         }
 
-        T bean =  implementationClass.getDeclaredConstructor().newInstance();
+        if (applicationContext.getBeanMap().containsKey(implementationClass)) {
+            return (T) applicationContext.getBeanMap().get(implementationClass);
+        }
+
+        T bean = implementationClass.getDeclaredConstructor().newInstance();
+
+        applicationContext.getBeanMap().put(implementationClass, bean);
 
         for (Field field : Arrays.stream(implementationClass.getDeclaredFields())
-                .filter(field -> field.isAnnotationPresent(Inject.class)).collect(Collectors.toList())) {
+                .filter(f -> f.isAnnotationPresent(Inject.class)).toList()) {
             field.setAccessible(true);
 
             Qualifier qualifier = field.getAnnotation(Qualifier.class);
@@ -64,13 +60,13 @@ public class BeanFactory {
 
             if (qualifier != null) {
                 Class<?> depImpl = beanConfigurator.getImplementationClass(dependencyType, qualifier.value());
-                dependency = getBean(depImpl);
+                dependency = applicationContext.getBean(depImpl);
             } else {
                 if (dependencyType.isInterface()) {
                     Class<?> depImpl = beanConfigurator.getImplementationClass(dependencyType);
-                    dependency = getBean(depImpl);
+                    dependency = applicationContext.getBean(depImpl);
                 } else {
-                    dependency = getBean(dependencyType);
+                    dependency = applicationContext.getBean(dependencyType);
                 }
             }
 
@@ -78,8 +74,8 @@ public class BeanFactory {
         }
 
         return bean;
-
     }
+
 
 
 }

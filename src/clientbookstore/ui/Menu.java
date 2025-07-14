@@ -12,7 +12,6 @@ public class Menu {
     public Menu(String name) {
         this.name = name;
         this.menuItems = new ArrayList<>();
-        //menuItems.add(new MenuItem("Добавление книги", new AddBookAction(), null));
     }
 
     public String getName() {

@@ -1,6 +1,7 @@
 import clientbookstore.dependesies.context.ApplicationContext;
 import clientbookstore.dependesies.factory.BeanFactory;
 import clientbookstore.controller.DataManager;
+import clientbookstore.ui.Builder;
 import org.apache.log4j.BasicConfigurator;
 import clientbookstore.ui.MenuController;
 
@@ -11,12 +12,6 @@ public class Main {
         BeanFactory beanFactory = new BeanFactory(applicationContext);
         applicationContext.setBeanFactory(beanFactory);
 
-        DataManager dataManager = applicationContext.getBean(DataManager.class);
-        MenuController menuController = new MenuController(dataManager);
-
-        applicationContext.getBeanMap().put(DataManager.class, dataManager);
-        applicationContext.getBeanMap().put(MenuController.class, menuController);
-
         return applicationContext;
     }
 
@@ -26,7 +21,12 @@ public class Main {
         ApplicationContext applicationContext = main.run();
 
         DataManager dataManager = applicationContext.getBean(DataManager.class);
+        //System.out.println("DataManager в Main: " + dataManager);
+
         dataManager.loadStateFromJson("state.json");
+
+        Builder builder = applicationContext.getBean(Builder.class);
+        builder.buildMenu();
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("Сохраняем состояние...");

@@ -1,6 +1,7 @@
 package clientbookstore.ui.action_factory;
 
 import clientbookstore.controller.DataManager;
+import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.ui.actions.IAction;
 
 
@@ -26,12 +27,11 @@ import clientbookstore.ui.actions.request.ShowAllBookRequestsAction;
 import clientbookstore.ui.actions.request.SortRequestsByCountAction;
 import clientbookstore.ui.actions.request.SortRequestsByTitleAction;
 
-public class DefaultActionFactory implements ActionFactory{
-    private final DataManager dataManager;
 
-    public DefaultActionFactory(DataManager dataManager) {
-        this.dataManager = dataManager;
-    }
+public class DefaultActionFactory implements ActionFactory{
+
+    @Inject
+    private DataManager dataManager;
 
     @Override
     public IAction createAddBookAction() {

@@ -2,6 +2,8 @@ package clientbookstore.ui;
 
 import clientbookstore.controller.DataManager;
 
+import clientbookstore.dependesies.annotation.Inject;
+import clientbookstore.dependesies.annotation.PostConstruct;
 import clientbookstore.ui.action_factory.ActionFactory;
 import clientbookstore.ui.action_factory.DefaultActionFactory;
 
@@ -9,14 +11,21 @@ import java.util.Scanner;
 
 public class MenuController {
 
+    @Inject
     private DataManager dataManager;
+
+    @Inject
+    private ActionFactory actionFactory;
+
+    @Inject
     private Builder builder;
+
     private Navigator navigator;
 
-    public MenuController(DataManager dataManager) {
-        ActionFactory actionFactory = new DefaultActionFactory(dataManager);
-
-        this.builder = new Builder(actionFactory);
+    @PostConstruct
+    public void init() {
+        System.out.println("DataManager в MenuController: " + dataManager);
+        System.out.println("вызвана инициализация навигатора в контроллре");
         this.navigator = new Navigator(builder.getRootMenu());
     }
 

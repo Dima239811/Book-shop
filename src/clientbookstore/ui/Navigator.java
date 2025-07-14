@@ -1,5 +1,6 @@
 package clientbookstore.ui;
 
+import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.ui.menu_items.MenuItem;
 
 import java.util.List;
@@ -9,6 +10,7 @@ public class Navigator {
     private Menu currentMenu;
     private final Stack<Menu> history = new Stack<>();
 
+    @Inject
     public Navigator(Menu currentMenu) {
         this.currentMenu = currentMenu;
     }

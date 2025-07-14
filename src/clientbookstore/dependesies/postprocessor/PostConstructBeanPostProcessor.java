@@ -9,7 +9,6 @@ public class PostConstructBeanPostProcessor implements BeanPostProcessor {
     @Override
     @SneakyThrows
     public void process(Object bean) {
-        System.out.println("[DEBUG] Processing bean: " + bean.getClass().getName());
         for(Method method: bean.getClass().getDeclaredMethods()) {
             if (method.isAnnotationPresent(PostConstruct.class)) {
                 method.invoke(bean);
