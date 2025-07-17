@@ -1,6 +1,7 @@
 package clientbookstore.ui.actions.book;
 
 import clientbookstore.controller.DataManager;
+import clientbookstore.enums.StatusBook;
 import clientbookstore.exception.DataValidationException;
 import clientbookstore.model.Book;
 import clientbookstore.ui.actions.IAction;
@@ -56,7 +57,7 @@ public class AddBookAction implements IAction {
                 scanner.nextLine(); // Очистка буфера
             }
 
-            Book book = new Book(name, author, year, price);
+            Book book = new Book(name, author, year, price, StatusBook.IN_STOCK);
             dataManager.addBookToWareHouse(book);
             System.out.println("Книга '" + name + "' автора '" + author + "' добавлена.");
 

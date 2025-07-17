@@ -1,6 +1,7 @@
 import clientbookstore.dependesies.context.ApplicationContext;
 import clientbookstore.dependesies.factory.BeanFactory;
 import clientbookstore.controller.DataManager;
+import clientbookstore.repo.util.DBConnection;
 import clientbookstore.ui.Builder;
 import org.apache.log4j.BasicConfigurator;
 import clientbookstore.ui.MenuController;
@@ -35,5 +36,10 @@ public class Main {
 
         MenuController menuController = applicationContext.getBean(MenuController.class);
         menuController.run();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("Закрываем соединение...");
+            DBConnection.getInstance().closeConnection();
+        }));
     }
 }

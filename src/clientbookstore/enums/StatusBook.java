@@ -13,4 +13,13 @@ public enum StatusBook {
     public String getValue() {
         return value;
     }
+
+    public static StatusBook fromValue(String value) {
+        for (StatusBook status : StatusBook.values()) {
+            if (status.getValue().equalsIgnoreCase(value)) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("Неизвестный статус книги: " + value);
+    }
 }

@@ -13,7 +13,7 @@ public class Order {
     private Date orderDate;
     private double finalPrice;
     private OrderStatus status;  // создан/ выполнен/ отменен
-    private static int orderCount = 0;
+    //private static int orderCount = 0;
 
     public Order(Book book, Customer customer, Date orderDate, double finalPrice) {
         this.book = book;
@@ -21,20 +21,16 @@ public class Order {
         this.orderDate = orderDate;
         this.finalPrice = finalPrice;
         this.status = OrderStatus.NEW;
-        this.orderId = orderCount;
-        orderCount++;
     }
 
     public Order() {}
 
-    public Order(int orderId, Book book, Customer customer, Date orderDate, double finalPrice) {
-        this.orderId = orderId;
+    public Order(Book book, Customer customer, Date orderDate, double finalPrice, OrderStatus status) {
         this.book = book;
         this.customer = customer;
         this.orderDate = orderDate;
         this.finalPrice = finalPrice;
-        this.status = OrderStatus.NEW;
-        orderCount++;
+        this.status = status;
     }
 
     public Order(int orderId, Book book, Customer customer, Date orderDate, double finalPrice, OrderStatus status) {
@@ -44,13 +40,7 @@ public class Order {
         this.orderDate = orderDate;
         this.finalPrice = finalPrice;
         this.status = status;
-        orderCount++;
     }
-
-    public static void setOrderCount(int value) {
-        orderCount = value;
-    }
-
 
     public int getOrderId() {
         return orderId;

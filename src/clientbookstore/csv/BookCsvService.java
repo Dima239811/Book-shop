@@ -115,12 +115,12 @@ public class BookCsvService implements ICsvService<Book> {
             }
 
             return new Book(
-                    Integer.parseInt(parts[0]),
                     parts[1].replace("\"\"", "\""),
                     parts[2].replace("\"\"", "\""),
                     Integer.parseInt(parts[3]),
                     Double.parseDouble(parts[4]),
-                    status
+                    status,
+                    Integer.parseInt(parts[0])
             );
         } catch (NumberFormatException e) {
             throw new DataValidationException("Некорректный числовой формат");

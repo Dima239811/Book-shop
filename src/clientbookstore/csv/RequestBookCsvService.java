@@ -90,7 +90,7 @@ public class RequestBookCsvService implements ICsvService<RequestBook> {
 
                     // Создание объектов
                     Customer customer = new Customer(customerName, 0, "", "", "", customerId);
-                    Book book = new Book(bookId, bookName, "", 0, 0.0, parseBookStatus(bookStatusValue));
+                    Book book = new Book(bookName, "", 0, 0.0, parseBookStatus(bookStatusValue), bookId);
 
                     RequestBook request = new RequestBook(
                             customer,

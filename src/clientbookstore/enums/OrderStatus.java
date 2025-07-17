@@ -15,5 +15,14 @@ public enum OrderStatus {
     public String getValue() {
         return value;
     }
+
+    public static OrderStatus fromValue(String value) {
+        for (OrderStatus status : OrderStatus.values()) {
+            if (status.getValue().equalsIgnoreCase(value)) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("Неизвестный статус заказа: " + value);
+    }
 }
 

@@ -10,30 +10,27 @@ public class Book {
     private double price;
     private StatusBook status;  // в наличии или отсутствует
     private int bookId;
-    private static int count = 0;
+    //private static int count = 0;
 
 
     public Book() {}
 
-    public Book(String name, String authtor, int year, double price) {
-        this.name = name;
-        this.authtor = authtor;
-        this.year = year;
-        this.price = price;
-        this.status = StatusBook.IN_STOCK;
-        this.bookId = count;
-        count++;
-    }
+//    public Book(String name, String authtor, int year, double price) {
+//        this.name = name;
+//        this.authtor = authtor;
+//        this.year = year;
+//        this.price = price;
+//        this.status = StatusBook.IN_STOCK;
+//        this.bookId = count;
+//        count++;
+//    }
 
-    public Book(int bookId, String name, String authtor, int year, double price, StatusBook status) {
+    public Book(String name, String authtor, int year, double price, StatusBook status) {
         this.name = name;
         this.authtor = authtor;
         this.year = year;
         this.price = price;
         this.status = status;
-        this.bookId = bookId;
-        this.count = bookId;
-        count++;
     }
 
     public Book(String name, String authtor, int year, double price, StatusBook status, int bookId) {
@@ -92,11 +89,6 @@ public class Book {
     public void setBookId(int bookId) {
         this.bookId = bookId;
     }
-
-    public static void setCount(int value) {
-        count = value;
-    }
-
 
     @Override
     public String toString() {

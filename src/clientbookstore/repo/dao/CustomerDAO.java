@@ -11,9 +11,9 @@ public class CustomerDAO implements GenericDAO<Customer> {
     @Override
     public void create(Customer object) throws SQLException {
         String sqlCreateCustomer = "INSERT INTO customer (fullname, phonenumber, age, email, address) VALUES (?, ?, ?, ?, ?)";
+        Connection connection = DBConnection.getInstance().getConnection();
 
-        try (Connection connection = DBConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlCreateCustomer)) {
+        try (PreparedStatement statement = connection.prepareStatement(sqlCreateCustomer)) {
 
             statement.setString(1, object.getFullName());
             statement.setString(2, object.getPhoneNumber());
@@ -35,9 +35,9 @@ public class CustomerDAO implements GenericDAO<Customer> {
     @Override
     public Customer findById(int id) throws SQLException {
         String sqlFindByIdCustomer = "select * from customer where id = ?";
+        Connection connection = DBConnection.getInstance().getConnection();
 
-        try (Connection connection = DBConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlFindByIdCustomer)) {
+        try (PreparedStatement statement = connection.prepareStatement(sqlFindByIdCustomer)) {
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
 
@@ -65,9 +65,9 @@ public class CustomerDAO implements GenericDAO<Customer> {
     public void update(Customer object) throws SQLException {
         String sqlUpdateCustomer = "UPDATE customer SET fullname = ?, phonenumber = ?, age = ?, email = ?, " +
                 "address = ? WHERE id = ?";
+        Connection connection = DBConnection.getInstance().getConnection();
 
-        try (Connection connection = DBConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlUpdateCustomer)) {
+        try (PreparedStatement statement = connection.prepareStatement(sqlUpdateCustomer)) {
 
             statement.setString(1, object.getFullName());
             statement.setString(2, object.getPhoneNumber());
@@ -91,9 +91,9 @@ public class CustomerDAO implements GenericDAO<Customer> {
     @Override
     public void delete(int id) throws SQLException {
         String sqlDeleteCustomer = "delete from customer where id = ?";
+        Connection connection = DBConnection.getInstance().getConnection();
 
-        try (Connection connection = DBConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlDeleteCustomer)) {
+        try (PreparedStatement statement = connection.prepareStatement(sqlDeleteCustomer)) {
 
             statement.setInt(1, id);
 
@@ -113,8 +113,9 @@ public class CustomerDAO implements GenericDAO<Customer> {
         String sqlFindAllCustomer = "select * from customer";
         List<Customer> customers = new ArrayList<>();
 
-        try (Connection connection = DBConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlFindAllCustomer)) {
+        Connection connection = DBConnection.getInstance().getConnection();
+
+        try (PreparedStatement statement = connection.prepareStatement(sqlFindAllCustomer)) {
 
             ResultSet rs = statement.executeQuery();
 

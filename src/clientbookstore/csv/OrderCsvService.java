@@ -146,7 +146,7 @@ public class OrderCsvService implements ICsvService<Order> {
                         throw new DataImportException("Ошибка: Некорректный статус книги: " + bookStatusValue);
                     }
 
-                    Book book = new Book(bookId, bookName, bookAuthor, bookYear, bookPrice, bookStatus);
+                    Book book = new Book(bookName, bookAuthor, bookYear, bookPrice, bookStatus, bookId);
 
                     // Customer
                     int customerId = Integer.parseInt(parts[10]);
