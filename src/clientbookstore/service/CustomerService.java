@@ -28,7 +28,7 @@ public class CustomerService implements IService<Customer>  {
             return customers == null ? Collections.emptyList() : customers;
 
         } catch (SQLException e) {
-            throw new RuntimeException("Failed to fetch all customers " + e.getMessage(), e);
+            throw new RuntimeException("Failed to fetch all customers in customer service" + e.getMessage(), e);
         }
     }
 
@@ -40,7 +40,7 @@ public class CustomerService implements IService<Customer>  {
             return customer;
 
         } catch (SQLException e) {
-            throw new RuntimeException("Failed to find customer with ID " + id, e);
+            throw new RuntimeException("in customer service: Failed to find customer with ID " + id, e);
         }
     }
 
@@ -49,12 +49,16 @@ public class CustomerService implements IService<Customer>  {
         try {
             customerDAO.create(item);
         } catch (SQLException e) {
-            throw new RuntimeException("Failed to fetch customer with ID " + item.getCustomerID(), e);
+            throw new RuntimeException("in customer service: Failed to fetch customer with ID " + item.getCustomerID(), e);
         }
     }
 
     @Override
     public void update(Customer item) {
-        //customerDAO.update(item);
+        try {
+            customerDAO.update(item);
+        } catch (SQLException e) {
+            throw new RuntimeException("in customer service: Failed to update customer with ID " + item.getCustomerID(), e);
+        }
     }
 }

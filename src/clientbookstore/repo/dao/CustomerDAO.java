@@ -63,12 +63,49 @@ public class CustomerDAO implements GenericDAO<Customer> {
 
     @Override
     public void update(Customer object) throws SQLException {
+        String sqlUpdateCustomer = "UPDATE customer SET fullname = ?, phonenumber = ?, age = ?, email = ?, " +
+                "address = ? WHERE id = ?";
 
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlUpdateCustomer)) {
+
+            statement.setString(1, object.getFullName());
+            statement.setString(2, object.getPhoneNumber());
+            statement.setInt(3, object.getAge());
+            statement.setString(4, object.getEmail());
+            statement.setString(5, object.getAddress());
+
+            statement.setInt(6, object.getCustomerID());
+
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Update failed, no rows affected.");
+            }
+
+        } catch (SQLException exception) {
+            throw new SQLException("Fail find Customer with id: " + object.getCustomerID() + exception);
+        }
     }
 
     @Override
     public void delete(int id) throws SQLException {
+        String sqlDeleteCustomer = "delete from customer where id = ?";
 
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlDeleteCustomer)) {
+
+            statement.setInt(1, id);
+
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Update failed, no rows affected.");
+            }
+
+        } catch (SQLException exception) {
+            throw new SQLException("Fail delete Customer with id: " + id + exception);
+        }
     }
 
     @Override
