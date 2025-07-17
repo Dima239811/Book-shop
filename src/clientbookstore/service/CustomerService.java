@@ -4,13 +4,17 @@ import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.dependesies.annotation.PostConstruct;
 import clientbookstore.model.Customer;
 import clientbookstore.collection.CustomerCol;
+import clientbookstore.repo.dao.CustomerDAO;
 
+import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public class CustomerService implements IService<Customer>  {
 
     @Inject
-    private CustomerCol customerCol;
+    private CustomerDAO customerDAO;
+    //private CustomerCol customerCol;
 
     @PostConstruct
     public void postConstruct() {
@@ -19,26 +23,38 @@ public class CustomerService implements IService<Customer>  {
 
     @Override
     public List<Customer> getAll() {
-        return customerCol.getAll();
+        try {
+            List<Customer> customers = customerDAO.getAll();
+            return customers == null ? Collections.emptyList() : customers;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to fetch all customers " + e.getMessage(), e);
+        }
     }
 
+    // вернет null если не найдет
     @Override
     public Customer getById(int id) {
-        return customerCol.findById(id);
+        try {
+            Customer customer = customerDAO.findById(id);
+            return customer;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to find customer with ID " + id, e);
+        }
     }
 
     @Override
     public void add(Customer item) {
-        Customer existing = customerCol.findById(item.getCustomerID());
-        if (existing != null) {
-            update(item);
-        } else {
-            customerCol.add(item);
+        try {
+            customerDAO.create(item);
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to fetch customer with ID " + item.getCustomerID(), e);
         }
     }
 
     @Override
     public void update(Customer item) {
-        customerCol.update(item);
+        //customerDAO.update(item);
     }
 }

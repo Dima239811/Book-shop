@@ -213,69 +213,69 @@ public class DataManager {
     }
 
 
-    public void saveStateToJson(String filePath) {
-        AppState state = new AppState(
-                getAllBooks(),
-                getAllOrder(),
-                getAllCustomers(),
-                getAllRequestBook()
-        );
-        JsonUtil.saveState(state, filePath);
-    }
-
-    public void loadStateFromJson(String filePath) {
-        AppState state = JsonUtil.loadState(filePath);
-        if (state == null) return;
-
-        // Загрузка книг
-        int booksLoaded = state.getBooks().size();
-        for (Book book : state.getBooks()) {
-            wareHouseService.add(book);
-        }
-        System.out.println("Загружено книг: " + booksLoaded);
-
-        // Загрузка клиентов
-        int customersLoaded = state.getCustomers().size();
-        for (Customer customer : state.getCustomers()) {
-            customerService.add(customer);
-        }
-        System.out.println("Загружено клиентов: " + customersLoaded);
-
-        // Загрузка запросов
-        int requestsLoaded = state.getRequests().size();
-        for (RequestBook request : state.getRequests()) {
-            requestService.add(request);
-        }
-        System.out.println("Загружено запросов: " + requestsLoaded);
-
-        // Загрузка заказов
-        int ordersLoaded = state.getOrders().size();
-        for (Order order : state.getOrders()) {
-            orderService.add(order);
-        }
-        System.out.println("Загружено заказов: " + ordersLoaded);
-
-
-        int maxBookId = state.getBooks().stream()
-                .mapToInt(Book::getBookId)
-                .max()
-                .orElse(0);
-        Book.setCount(maxBookId + 1);
-
-        int maxCustomerId = state.getCustomers().stream()
-                .mapToInt(Customer::getCustomerID)
-                .max().orElse(0);
-        Customer.setCountId(maxCustomerId + 1);
-
-        int maxOrderId = state.getOrders().stream()
-                .mapToInt(Order::getOrderId)
-                .max().orElse(0);
-        Order.setOrderCount(maxOrderId + 1);
-
-        int maxRequestId = state.getRequests().stream()
-                .mapToInt(RequestBook::getId)
-                .max().orElse(0);
-        RequestBook.setCountId(maxRequestId + 1);
-
-    }
+//    public void saveStateToJson(String filePath) {
+//        AppState state = new AppState(
+//                getAllBooks(),
+//                getAllOrder(),
+//                getAllCustomers(),
+//                getAllRequestBook()
+//        );
+//        JsonUtil.saveState(state, filePath);
+//    }
+//
+//    public void loadStateFromJson(String filePath) {
+//        AppState state = JsonUtil.loadState(filePath);
+//        if (state == null) return;
+//
+//        // Загрузка книг
+//        int booksLoaded = state.getBooks().size();
+//        for (Book book : state.getBooks()) {
+//            wareHouseService.add(book);
+//        }
+//        System.out.println("Загружено книг: " + booksLoaded);
+//
+//        // Загрузка клиентов
+//        int customersLoaded = state.getCustomers().size();
+//        for (Customer customer : state.getCustomers()) {
+//            customerService.add(customer);
+//        }
+//        System.out.println("Загружено клиентов: " + customersLoaded);
+//
+//        // Загрузка запросов
+//        int requestsLoaded = state.getRequests().size();
+//        for (RequestBook request : state.getRequests()) {
+//            requestService.add(request);
+//        }
+//        System.out.println("Загружено запросов: " + requestsLoaded);
+//
+//        // Загрузка заказов
+//        int ordersLoaded = state.getOrders().size();
+//        for (Order order : state.getOrders()) {
+//            orderService.add(order);
+//        }
+//        System.out.println("Загружено заказов: " + ordersLoaded);
+//
+//
+//        int maxBookId = state.getBooks().stream()
+//                .mapToInt(Book::getBookId)
+//                .max()
+//                .orElse(0);
+//        Book.setCount(maxBookId + 1);
+//
+//        int maxCustomerId = state.getCustomers().stream()
+//                .mapToInt(Customer::getCustomerID)
+//                .max().orElse(0);
+//        Customer.setCountId(maxCustomerId + 1);
+//
+//        int maxOrderId = state.getOrders().stream()
+//                .mapToInt(Order::getOrderId)
+//                .max().orElse(0);
+//        Order.setOrderCount(maxOrderId + 1);
+//
+//        int maxRequestId = state.getRequests().stream()
+//                .mapToInt(RequestBook::getId)
+//                .max().orElse(0);
+//        RequestBook.setCountId(maxRequestId + 1);
+//
+//    }
 }

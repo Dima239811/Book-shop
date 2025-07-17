@@ -23,15 +23,15 @@ public class Main {
         DataManager dataManager = applicationContext.getBean(DataManager.class);
         //System.out.println("DataManager в Main: " + dataManager);
 
-        dataManager.loadStateFromJson("state.json");
+        //dataManager.loadStateFromJson("state.json");
 
         Builder builder = applicationContext.getBean(Builder.class);
         builder.buildMenu();
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("Сохраняем состояние...");
-            dataManager.saveStateToJson("state.json");
-        }));
+//        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+//            System.out.println("Сохраняем состояние...");
+//            dataManager.saveStateToJson("state.json");
+//        }));
 
         MenuController menuController = applicationContext.getBean(MenuController.class);
         menuController.run();

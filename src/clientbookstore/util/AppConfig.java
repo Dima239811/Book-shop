@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class AppConfig {
-    private static final String PROPERTIES_FILE = "sources/config.properties";
+    private static final String PROPERTIES_FILE = "resources/config.properties";
     private static final Properties properties = new Properties();
 
     private static final int DEFAULT_STALE_MONTHS = 3;
