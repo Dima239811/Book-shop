@@ -5,6 +5,9 @@ import clientbookstore.model.exception.DataImportException;
 
 import clientbookstore.model.entity.Customer;
 import clientbookstore.ui.actions.IAction;
+import clientbookstore.ui.actions.csv.book.ExportBookAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +15,7 @@ import java.util.Scanner;
 public class ImportCustomerAction implements IAction {
     private final DataManager dataManager;
     private final Scanner scanner;
+    private static final Logger logger = LoggerFactory.getLogger(ImportCustomerAction.class);
 
     public ImportCustomerAction(DataManager dataManager) {
         this.dataManager = dataManager;
@@ -19,20 +23,21 @@ public class ImportCustomerAction implements IAction {
     }
     @Override
     public void execute() {
+        logger.info("Запуск действия: импорт клиентов в CSV.");
         try {
             System.out.println("\n=== Импорт клиентов из CSV ===");
             System.out.print("Введите путь к файлу: ");
             String path = scanner.nextLine().trim();
 
-//            System.out.print("Обновлять существующие записи? (y/n): ");
-//            boolean update = scanner.nextLine().equalsIgnoreCase("y");
-
             List<Customer> imported = dataManager.importCustomersFromCsv(path);
             System.out.printf("Успешно импортировано %d клиентов\n", imported.size());
+            logger.info("Импорт клиентов завершён успешно. Файл: {}", path);
 
         } catch (DataImportException e) {
+            logger.error("Ошибка при импорте клиентов: {}", e.getMessage());
             System.err.println("Ошибка импорта: " + e.getMessage());
         } catch (Exception e) {
+            logger.error("Неожиданная ошибка при импорте клиентов {}", e.getMessage());
             System.err.println("Неожиданная ошибка: " + e.getMessage());
         }
     }

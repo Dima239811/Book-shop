@@ -21,13 +21,16 @@ public class SortBooksByPriceAction implements IAction {
 
     @Override
     public void execute() {
+        logger.info("пользователь выбрал сортировку книг по цене");
         System.out.println("Сортировка по цене: ");
         List<Book> books = dataManager.sortBooks(TypeSortBooks.BY_PRICE.getValue());
 
         if (books.isEmpty()) {
+            logger.info("список книг пуст");
             System.out.println("Книги не найдены");
         } else {
             books.forEach(book -> System.out.println(book));
+            logger.info("выведено {} книг", books.size());
         }
 
         System.out.println("-----------------------------------------------");

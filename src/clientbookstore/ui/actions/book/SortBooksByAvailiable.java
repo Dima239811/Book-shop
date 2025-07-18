@@ -20,13 +20,16 @@ public class SortBooksByAvailiable implements IAction {
 
     @Override
     public void execute() {
+        logger.info("начало сортировки книг по наличию на складе");
         System.out.println("Сортировка книг по наличию на складе");
         List<Book> bookList = dataManager.sortBooks(TypeSortBooks.BY_STOCKS_IN_WAREHOUSE.getValue());
 
         if (bookList.isEmpty()) {
+            logger.info("список кнтг пуст");
             System.out.println("Книги не найдены");
         } else {
             bookList.forEach(book -> System.out.println(book));
+            logger.info("выведено {} книг", bookList.size());
         }
 
         System.out.println("-----------------------------------------------");

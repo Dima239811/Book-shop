@@ -3,6 +3,9 @@ package clientbookstore.ui.actions.completed_orders;
 import clientbookstore.controller.DataManager;
 
 import clientbookstore.ui.actions.IAction;
+import clientbookstore.ui.actions.book.AddBookAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,12 +14,14 @@ import java.util.Scanner;
 
 public class ShowCompletedOrdersCountAction implements IAction {
     private DataManager dataManager;
+    private static final Logger logger = LoggerFactory.getLogger(ShowCompletedOrdersCountAction.class);
 
     public ShowCompletedOrdersCountAction(DataManager dataManager) {
         this.dataManager = dataManager;
     }
 
     public void execute() {
+        logger.info("Выполнение действия: Подсчёт выполненных заказов за период.");
         Scanner scanner = new Scanner(System.in);
         try {
             // Запрос периода у пользователя
@@ -29,8 +34,10 @@ public class ShowCompletedOrdersCountAction implements IAction {
             int count = dataManager.getCountPerformedOrder(from, to);
 
             System.out.println("Количество выполненных заказов " + count + " за период с " + from + " по " + to);
+            logger.info("Количество выполненных заказов за период: {}", count);
 
         } catch (ParseException e) {
+            logger.error("Ошибка парсинга даты {}", e.getMessage());
             System.out.println("Неверный формат даты. Используйте дд.мм.гггг");
         }
     }
