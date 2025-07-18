@@ -4,11 +4,14 @@ import clientbookstore.controller.DataManager;
 import clientbookstore.model.enums.OrderStatus;
 import clientbookstore.model.exception.IncorrectNumberException;
 import clientbookstore.ui.actions.IAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
 public class ChangeOrderStatusAction implements IAction {
     private DataManager dataManager;
+    private static final Logger logger = LoggerFactory.getLogger(ChangeOrderStatusAction.class);
 
     public ChangeOrderStatusAction(DataManager dataManager) {
         this.dataManager = dataManager;
@@ -16,6 +19,7 @@ public class ChangeOrderStatusAction implements IAction {
 
     @Override
     public void execute() {
+        logger.info("Пользователь выбрал команду: изменение статуса заказа");
         Scanner scanner = new Scanner(System.in);
 
         try {
@@ -49,10 +53,13 @@ public class ChangeOrderStatusAction implements IAction {
 
             dataManager.changeStatusOrder(id, selectedStatus);
             System.out.println("Статус заказа успешно изменен.");
+            logger.info("Статус заказа с id {} успешно изменен", id);
 
         } catch (IncorrectNumberException e) {
+            logger.info("Некорректный ввод числа {}", e.getMessage());
             System.out.println(e.getMessage());
         } catch (Exception e) {
+            logger.info("Возникла ошибка " + e.getMessage());
             System.out.println("Ошибка: " + e.getMessage());
         }
     }

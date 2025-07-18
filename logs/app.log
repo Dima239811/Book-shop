@@ -1,0 +1,14 @@
+2025-07-18 16:56:07 INFO  [main] org.reflections.Reflections - Reflections took 66 ms to scan 1 urls, producing 17 keys and 80 values
+2025-07-18 16:56:15 INFO  [main] c.u.a.csv.book.ExportBookAction - Запуск действия: экспорт книг в CSV.
+2025-07-18 16:56:17 ERROR [main] c.u.a.csv.book.ExportBookAction - Ошибка при экспорте книг: Файл  не найден
+2025-07-18 16:56:30 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-18 16:56:35 ERROR [main] c.ui.actions.book.AddBookAction - Ошибка валидации при добавлении книги: Название книги не может быть пустым
+2025-07-18 16:56:38 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-18 16:56:43 ERROR [main] c.ui.actions.book.AddBookAction - Ошибка ввода года: ожидалось целое число (введено не число)
+2025-07-18 16:56:43 ERROR [main] c.ui.actions.book.AddBookAction - Ошибка валидации при добавлении книги: Некорректный формат года. Введите целое число
+2025-07-18 16:56:59 INFO  [main] c.u.a.c.ShowCompletedOrdersCountAction - Выполнение действия: Подсчёт выполненных заказов за период.
+2025-07-18 16:57:00 ERROR [main] c.u.a.c.ShowCompletedOrdersCountAction - Ошибка парсинга даты Unparseable date: "f"
+2025-07-18 16:57:11 INFO  [main] c.ui.actions.order.CreateOrderAction - Начало обработки команды: CreateOrderAction
+2025-07-18 16:57:13 ERROR [main] c.ui.actions.order.CreateOrderAction - Ошибка валидации: Книга с ID 999 не найдена
+2025-07-18 16:57:19 INFO  [main] c.ui.actions.order.CreateOrderAction - Начало обработки команды: CreateOrderAction
+2025-07-18 16:57:21 ERROR [main] c.ui.actions.order.CreateOrderAction - Ошибка ввода: null

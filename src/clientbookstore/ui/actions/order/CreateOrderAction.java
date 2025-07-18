@@ -23,6 +23,7 @@ public class CreateOrderAction implements IAction {
 
     @Override
     public void execute() {
+
         logger.info("Начало обработки команды: CreateOrderAction");
 
         // создание книги
@@ -69,8 +70,6 @@ public class CreateOrderAction implements IAction {
             System.out.println("Неожиданная ошибка: " + e.getMessage());
         }
     }
-
-
-    }
+}
 
 
