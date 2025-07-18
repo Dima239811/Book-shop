@@ -2,7 +2,7 @@ package clientbookstore.ui.actions.customer;
 
 import clientbookstore.controller.DataManager;
 
-import clientbookstore.model.Customer;
+import clientbookstore.model.entity.Customer;
 import clientbookstore.ui.actions.IAction;
 
 import java.util.List;

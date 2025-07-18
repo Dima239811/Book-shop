@@ -1,10 +1,8 @@
 package clientbookstore.repo.dao;
 
 import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.enums.OrderStatus;
-import clientbookstore.enums.StatusBook;
-import clientbookstore.model.Book;
-import clientbookstore.model.Order;
+import clientbookstore.model.enums.OrderStatus;
+import clientbookstore.model.entity.Order;
 import clientbookstore.repo.util.DBConnection;
 
 import java.sql.Connection;

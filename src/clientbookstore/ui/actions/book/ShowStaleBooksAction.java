@@ -1,7 +1,7 @@
 package clientbookstore.ui.actions.book;
 
 import clientbookstore.controller.DataManager;
-import clientbookstore.model.Book;
+import clientbookstore.model.entity.Book;
 import clientbookstore.ui.actions.IAction;
 import clientbookstore.util.AppConfig;
 

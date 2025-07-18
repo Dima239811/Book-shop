@@ -1,9 +1,9 @@
 package clientbookstore.ui.actions.csv.order;
 
 import clientbookstore.controller.DataManager;
-import clientbookstore.exception.DataImportException;
+import clientbookstore.model.exception.DataImportException;
 
-import clientbookstore.model.Order;
+import clientbookstore.model.entity.Order;
 import clientbookstore.ui.actions.IAction;
 
 import java.util.List;

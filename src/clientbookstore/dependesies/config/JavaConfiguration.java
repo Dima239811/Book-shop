@@ -1,14 +1,10 @@
 package clientbookstore.dependesies.config;
 
-import clientbookstore.csv.BookCsvService;
-import clientbookstore.csv.CustomerCsvService;
-import clientbookstore.csv.OrderCsvService;
-import clientbookstore.csv.RequestBookCsvService;
+import clientbookstore.service.csv.BookCsvService;
+import clientbookstore.service.csv.CustomerCsvService;
+import clientbookstore.service.csv.OrderCsvService;
+import clientbookstore.service.csv.RequestBookCsvService;
 
-import clientbookstore.csv.*;
-import clientbookstore.ui.Builder;
-import clientbookstore.ui.MenuController;
-import clientbookstore.ui.Navigator;
 import clientbookstore.ui.action_factory.DefaultActionFactory;
 
 import java.util.Map;

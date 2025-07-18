@@ -1,8 +1,7 @@
 package clientbookstore.repo.dao;
 
-import clientbookstore.enums.StatusBook;
-import clientbookstore.model.Book;
-import clientbookstore.model.Customer;
+import clientbookstore.model.enums.StatusBook;
+import clientbookstore.model.entity.Book;
 import clientbookstore.repo.util.DBConnection;
 
 import java.sql.Connection;

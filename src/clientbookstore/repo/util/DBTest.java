@@ -2,26 +2,9 @@ package clientbookstore.repo.util;
 
 import clientbookstore.dependesies.context.ApplicationContext;
 import clientbookstore.dependesies.factory.BeanFactory;
-import clientbookstore.enums.OrderStatus;
-import clientbookstore.enums.RequestStatus;
-import clientbookstore.enums.StatusBook;
-import clientbookstore.model.Book;
-import clientbookstore.model.Customer;
-import clientbookstore.model.Order;
-import clientbookstore.model.RequestBook;
 import clientbookstore.repo.dao.BookDAO;
-import clientbookstore.repo.dao.CustomerDAO;
-import clientbookstore.repo.dao.OrderDAO;
-import clientbookstore.repo.dao.RequestBookDAO;
-import clientbookstore.service.OrderService;
-import clientbookstore.service.RequestBookService;
-import clientbookstore.service.WareHouseService;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
+import clientbookstore.service.entityService.RequestBookService;
+import clientbookstore.service.entityService.WareHouseService;
 
 public class DBTest {
     public static void main(String[] args) {

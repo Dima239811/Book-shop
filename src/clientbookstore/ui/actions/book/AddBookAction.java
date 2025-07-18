@@ -1,9 +1,9 @@
 package clientbookstore.ui.actions.book;
 
 import clientbookstore.controller.DataManager;
-import clientbookstore.enums.StatusBook;
-import clientbookstore.exception.DataValidationException;
-import clientbookstore.model.Book;
+import clientbookstore.model.enums.StatusBook;
+import clientbookstore.model.exception.DataValidationException;
+import clientbookstore.model.entity.Book;
 import clientbookstore.ui.actions.IAction;
 
 import java.util.Scanner;

@@ -3,6 +3,7 @@ package clientbookstore.repo.util;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBConnection {
@@ -49,5 +50,24 @@ public class DBConnection {
             e.printStackTrace();
         }
     }
+
+    public void beginTransaction() throws SQLException {
+        connection.setAutoCommit(false);
+    }
+
+    public void commit() throws SQLException {
+        connection.commit();
+        connection.setAutoCommit(true);
+    }
+
+    public void rollback() {
+        try {
+            connection.rollback();
+            connection.setAutoCommit(true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

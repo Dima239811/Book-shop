@@ -1,8 +1,8 @@
 package clientbookstore.ui.actions.csv.book;
 
 import clientbookstore.controller.DataManager;
-import clientbookstore.exception.DataImportException;
-import clientbookstore.model.Book;
+import clientbookstore.model.exception.DataImportException;
+import clientbookstore.model.entity.Book;
 import clientbookstore.ui.actions.IAction;
 
 import java.util.List;

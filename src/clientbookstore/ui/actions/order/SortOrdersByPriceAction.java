@@ -1,7 +1,7 @@
 package clientbookstore.ui.actions.order;
 
 import clientbookstore.controller.DataManager;
-import clientbookstore.model.Order;
+import clientbookstore.model.entity.Order;
 import clientbookstore.ui.actions.IAction;
 
 import java.util.List;

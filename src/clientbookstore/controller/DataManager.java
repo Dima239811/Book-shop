@@ -1,20 +1,24 @@
 package clientbookstore.controller;
 
-import clientbookstore.csv.ICsvService;
+import clientbookstore.model.entity.Book;
+import clientbookstore.model.entity.Customer;
+import clientbookstore.model.entity.Order;
+import clientbookstore.model.entity.RequestBook;
+import clientbookstore.service.csv.ICsvService;
 import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.dependesies.annotation.PostConstruct;
 import clientbookstore.dependesies.annotation.Qualifier;
-import clientbookstore.enums.OrderStatus;
+import clientbookstore.model.enums.OrderStatus;
 
 
-import clientbookstore.model.*;
-import clientbookstore.service.CustomerService;
-import clientbookstore.service.OrderService;
-import clientbookstore.service.RequestBookService;
-import clientbookstore.service.WareHouseService;
+import clientbookstore.repo.util.DBConnection;
+import clientbookstore.service.entityService.CustomerService;
+import clientbookstore.service.entityService.OrderService;
+import clientbookstore.service.entityService.RequestBookService;
+import clientbookstore.service.entityService.WareHouseService;
 import clientbookstore.util.AppConfig;
-import clientbookstore.util.JsonUtil;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -70,17 +74,46 @@ public class DataManager {
     }
 
     public List<Book> importBooksFromCsv(String filePath) throws Exception {
-        List<Book> imported = bookCsvService.importFromCsv(filePath);
-        for (Book b : imported) {
-            wareHouseService.add(b);
+        try {
+            DBConnection.getInstance().beginTransaction();
+
+            List<Book> imported = bookCsvService.importFromCsv(filePath);
+            for (Book b : imported) {
+                wareHouseService.add(b);
+            }
+
+            DBConnection.getInstance().commit();
+            return imported;
+        } catch (Exception e) {
+            DBConnection.getInstance().rollback();
+            throw new RuntimeException("fail in data manager importBooksFromCsv " + e.getMessage());
         }
-        return imported;
+//        List<Book> imported = bookCsvService.importFromCsv(filePath);
+//        for (Book b : imported) {
+//            wareHouseService.add(b);
+//        }
+//        return imported;
     }
 
     public void createOrder(Order order) {
-        wareHouseService.add(order.getBook());
-        customerService.add(order.getCustomer());
-        orderService.add(order);
+        try {
+            DBConnection.getInstance().beginTransaction();
+
+            //не нужно так как мы всегда берем в заказ книги которые есть уже в базе
+            //wareHouseService.add(order.getBook());
+            customerService.add(order.getCustomer());
+
+            orderService.add(order);
+
+            DBConnection.getInstance().commit();
+
+        } catch (SQLException e) {
+            DBConnection.getInstance().rollback();
+            throw new RuntimeException("Ошибка при создании заказа: " + e.getMessage(), e);
+        }
+//        wareHouseService.add(order.getBook());
+//        customerService.add(order.getCustomer());
+//        orderService.add(order);
     }
 
     public void cancelOrder(int orderId) {
@@ -101,27 +134,71 @@ public class DataManager {
     }
 
     public List<Order> importOrdersFromCsv(String filePath) throws Exception {
-        List<Order> imported = orderCsvService.importFromCsv(filePath);
-        for (Order b : imported) {
-            orderService.add(b);
-            wareHouseService.add(b.getBook());
-            customerService.add(b.getCustomer());
+        try {
+            DBConnection.getInstance().beginTransaction();
+
+            List<Order> imported = orderCsvService.importFromCsv(filePath);
+            for (Order b : imported) {
+                orderService.add(b);
+                wareHouseService.add(b.getBook());
+                customerService.add(b.getCustomer());
+            }
+
+            DBConnection.getInstance().commit();
+            return imported;
+        } catch (Exception e) {
+            DBConnection.getInstance().rollback();
+            throw new RuntimeException("fail in data manager importOrdersFromCsv " + e.getMessage());
         }
-        return imported;
+//        List<Order> imported = orderCsvService.importFromCsv(filePath);
+//        for (Order b : imported) {
+//            orderService.add(b);
+//            wareHouseService.add(b.getBook());
+//            customerService.add(b.getCustomer());
+//        }
+//        return imported;
     }
 
     public void addBookToWareHouse(Book book) {
-        wareHouseService.add(book);
+        try {
+            DBConnection.getInstance().beginTransaction();
 
-        if (AppConfig.isAutoCloseRequestsEnabled()) {
-            requestService.closeRequest(book);
+            wareHouseService.add(book);
+
+            if (AppConfig.isAutoCloseRequestsEnabled()) {
+                requestService.closeRequest(book);
+            }
+
+            DBConnection.getInstance().commit();
+        } catch (Exception e) {
+            DBConnection.getInstance().rollback();
+            throw new RuntimeException("Ошибка при добавлении книги на склад: " + e.getMessage(), e);
         }
+//        wareHouseService.add(book);
+//
+//        if (AppConfig.isAutoCloseRequestsEnabled()) {
+//            requestService.closeRequest(book);
+//        }
     }
 
     public void addRequest(RequestBook requestBook) {
-        wareHouseService.add(requestBook.getBook());
-        customerService.add(requestBook.getCustomer());
-        requestService.add(requestBook);
+        try {
+            DBConnection.getInstance().beginTransaction();
+
+            //не нужно так как мы всегда берем в заказ книги которые есть уже в базе
+            //wareHouseService.add(requestBook.getBook());
+
+            customerService.add(requestBook.getCustomer());
+            requestService.add(requestBook);
+
+            DBConnection.getInstance().commit();
+        } catch (Exception e) {
+            DBConnection.getInstance().rollback();
+            throw new RuntimeException("Ошибка при добавлении заявки: " + e.getMessage(), e);
+        }
+//        wareHouseService.add(requestBook.getBook());
+//        customerService.add(requestBook.getCustomer());
+//        requestService.add(requestBook);
     }
 
     public void exportRequestToCsv(String filePath) throws Exception {
@@ -130,13 +207,29 @@ public class DataManager {
     }
 
     public List<RequestBook> importRequestFromCsv(String filePath) throws Exception {
-        List<RequestBook> imported = requestBookCsvService.importFromCsv(filePath);
-        for (RequestBook b : imported) {
-            requestService.add(b);
-            wareHouseService.add(b.getBook());
-            customerService.add(b.getCustomer());
+        try {
+            DBConnection.getInstance().beginTransaction();
+
+            List<RequestBook> imported = requestBookCsvService.importFromCsv(filePath);
+            for (RequestBook b : imported) {
+                requestService.add(b);
+                wareHouseService.add(b.getBook());
+                customerService.add(b.getCustomer());
+            }
+
+            DBConnection.getInstance().commit();
+            return imported;
+        } catch (Exception e) {
+            DBConnection.getInstance().rollback();
+            throw new RuntimeException("fail in data manager importRequestFromCsv " + e.getMessage());
         }
-        return imported;
+//        List<RequestBook> imported = requestBookCsvService.importFromCsv(filePath);
+//        for (RequestBook b : imported) {
+//            requestService.add(b);
+//            wareHouseService.add(b.getBook());
+//            customerService.add(b.getCustomer());
+//        }
+//        return imported;
     }
 
     public List<Book> sortBooks(String criteria) {

@@ -1,7 +1,7 @@
 package clientbookstore.ui.actions.request;
 
 import clientbookstore.controller.DataManager;
-import clientbookstore.model.RequestBook;
+import clientbookstore.model.entity.RequestBook;
 import clientbookstore.ui.actions.IAction;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package clientbookstore.ui.actions.csv.order;
 
 import clientbookstore.controller.DataManager;
-import clientbookstore.exception.DataExportException;
+import clientbookstore.model.exception.DataExportException;
 import clientbookstore.ui.actions.IAction;
 
 import java.util.Scanner;

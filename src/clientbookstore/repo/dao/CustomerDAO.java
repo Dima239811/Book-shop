@@ -1,6 +1,6 @@
 package clientbookstore.repo.dao;
 
-import clientbookstore.model.Customer;
+import clientbookstore.model.entity.Customer;
 import clientbookstore.repo.util.DBConnection;
 
 import java.sql.*;
@@ -13,7 +13,7 @@ public class CustomerDAO implements GenericDAO<Customer> {
         String sqlCreateCustomer = "INSERT INTO customer (fullname, phonenumber, age, email, address) VALUES (?, ?, ?, ?, ?)";
         Connection connection = DBConnection.getInstance().getConnection();
 
-        try (PreparedStatement statement = connection.prepareStatement(sqlCreateCustomer)) {
+        try (PreparedStatement statement = connection.prepareStatement(sqlCreateCustomer, Statement.RETURN_GENERATED_KEYS)) {
 
             statement.setString(1, object.getFullName());
             statement.setString(2, object.getPhoneNumber());
@@ -25,6 +25,17 @@ public class CustomerDAO implements GenericDAO<Customer> {
 
             if (affectedRows == 0) {
                 throw new SQLException("Creating customer failed, no rows affected.");
+            }
+
+            // Получаем сгенерированный ID
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int generatedId = generatedKeys.getInt(1);
+                    object.setCustomerID(generatedId);
+                   // System.out.println("установлен объекту айди " + generatedId);
+                } else {
+                    throw new SQLException("Creating customer failed, no ID obtained.");
+                }
             }
 
         } catch (SQLException exception) {
@@ -102,6 +113,7 @@ public class CustomerDAO implements GenericDAO<Customer> {
             if (affectedRows == 0) {
                 throw new SQLException("Update failed, no rows affected.");
             }
+
 
         } catch (SQLException exception) {
             throw new SQLException("Fail delete Customer with id: " + id + exception);

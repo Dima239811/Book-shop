@@ -1,9 +1,9 @@
 package clientbookstore.ui.actions.order;
 
 import clientbookstore.controller.DataManager;
-import clientbookstore.model.Book;
-import clientbookstore.model.Customer;
-import clientbookstore.model.Order;
+import clientbookstore.model.entity.Book;
+import clientbookstore.model.entity.Customer;
+import clientbookstore.model.entity.Order;
 import clientbookstore.ui.actions.IAction;
 
 import java.util.Date;
@@ -42,7 +42,9 @@ public class CreateOrderAction implements IAction {
             String email = scanner.nextLine();
             System.out.println("Введите адресс клиента");
             String address = scanner.nextLine();
-            Customer customer = new Customer(name, age, "+79855566", email, address);
+            System.out.println("Введите номер телефона клиента");
+            String number = scanner.nextLine();
+            Customer customer = new Customer(name, age, number, email, address);
 
             Order order = new Order(book, customer, new Date(), book.getPrice());
             dataManager.createOrder(order);

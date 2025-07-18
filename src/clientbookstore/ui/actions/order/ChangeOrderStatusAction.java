@@ -1,8 +1,8 @@
 package clientbookstore.ui.actions.order;
 
 import clientbookstore.controller.DataManager;
-import clientbookstore.enums.OrderStatus;
-import clientbookstore.exception.IncorrectNumberException;
+import clientbookstore.model.enums.OrderStatus;
+import clientbookstore.model.exception.IncorrectNumberException;
 import clientbookstore.ui.actions.IAction;
 
 import java.util.Scanner;

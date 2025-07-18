@@ -1,6 +1,6 @@
 package clientbookstore.util;
 
-import clientbookstore.model.AppState;
+import clientbookstore.model.entity.AppState;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

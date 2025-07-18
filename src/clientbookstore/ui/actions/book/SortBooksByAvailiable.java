@@ -1,8 +1,8 @@
 package clientbookstore.ui.actions.book;
 
 import clientbookstore.controller.DataManager;
-import clientbookstore.enums.TypeSortBooks;
-import clientbookstore.model.Book;
+import clientbookstore.model.enums.TypeSortBooks;
+import clientbookstore.model.entity.Book;
 import clientbookstore.ui.actions.IAction;
 
 import java.util.List;

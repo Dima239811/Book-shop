@@ -1,10 +1,8 @@
 package clientbookstore.repo.dao;
 
 import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.enums.OrderStatus;
-import clientbookstore.enums.RequestStatus;
-import clientbookstore.model.Order;
-import clientbookstore.model.RequestBook;
+import clientbookstore.model.enums.RequestStatus;
+import clientbookstore.model.entity.RequestBook;
 import clientbookstore.repo.util.DBConnection;
 import lombok.Getter;
 
