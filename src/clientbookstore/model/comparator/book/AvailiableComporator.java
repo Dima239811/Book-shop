@@ -1,6 +1,6 @@
-package clientbookstore.model.comparator.book;
+package model.comparator.book;
 
-import clientbookstore.model.entity.Book;
+import model.entity.Book;
 
 import java.util.Comparator;
 

@@ -1,4 +1,4 @@
-package clientbookstore.dependesies.configurator;
+package dependesies.configurator;
 
 import org.reflections.Reflections;
 

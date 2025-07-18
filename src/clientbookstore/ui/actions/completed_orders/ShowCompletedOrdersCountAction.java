@@ -1,9 +1,8 @@
-package clientbookstore.ui.actions.completed_orders;
+package ui.actions.completed_orders;
 
-import clientbookstore.controller.DataManager;
+import controller.DataManager;
 
-import clientbookstore.ui.actions.IAction;
-import clientbookstore.ui.actions.book.AddBookAction;
+import ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +34,6 @@ public class ShowCompletedOrdersCountAction implements IAction {
 
             System.out.println("Количество выполненных заказов " + count + " за период с " + from + " по " + to);
             logger.info("Количество выполненных заказов за период: {}", count);
-
         } catch (ParseException e) {
             logger.error("Ошибка парсинга даты {}", e.getMessage());
             System.out.println("Неверный формат даты. Используйте дд.мм.гггг");

@@ -1,8 +1,8 @@
-package clientbookstore.repo.dao;
+package repo.dao;
 
-import clientbookstore.model.enums.StatusBook;
-import clientbookstore.model.entity.Book;
-import clientbookstore.repo.util.DBConnection;
+import model.enums.StatusBook;
+import model.entity.Book;
+import repo.util.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +30,6 @@ public class BookDAO implements GenericDAO<Book> {
             if (affectedRows == 0) {
                 throw new SQLException("Creating book failed, no rows affected.");
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail create book " + exception);
         }
@@ -54,12 +53,9 @@ public class BookDAO implements GenericDAO<Book> {
                         StatusBook.fromValue(rs.getString("status")),
                         rs.getInt("id")
                 );
-            }
-
-            else {
+            } else {
                 return null;
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail find book with id: " + id + exception);
         }
@@ -85,7 +81,6 @@ public class BookDAO implements GenericDAO<Book> {
             if (affectedRows == 0) {
                 throw new SQLException("Update failed, no rows affected.");
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail find book with id: " + object.getBookId() + exception);
         }
@@ -105,7 +100,6 @@ public class BookDAO implements GenericDAO<Book> {
             if (affectedRows == 0) {
                 throw new SQLException("Update failed, no rows affected.");
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail delete book with id: " + id + exception);
         }
@@ -133,7 +127,6 @@ public class BookDAO implements GenericDAO<Book> {
                 );
                 books.add(book);
             }
-
         } catch (SQLException e) {
             throw new SQLException("Failed to fetch all books: " + e.getMessage(), e);
         }

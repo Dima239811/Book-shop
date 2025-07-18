@@ -1,4 +1,4 @@
-package clientbookstore.repo.util;
+package repo.util;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class DBConnection {
+public final class DBConnection {
     private static DBConnection instance;
     private Connection connection;
 
@@ -22,7 +22,6 @@ public class DBConnection {
 
             Class.forName(driver);
             this.connection = DriverManager.getConnection(url, user, password);
-
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Ошибка подключения к БД", e);
@@ -68,6 +67,4 @@ public class DBConnection {
             e.printStackTrace();
         }
     }
-
-
 }

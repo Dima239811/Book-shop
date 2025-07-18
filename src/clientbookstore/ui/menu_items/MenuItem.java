@@ -1,7 +1,7 @@
-package clientbookstore.ui.menu_items;
+package ui.menu_items;
 
-import clientbookstore.ui.Menu;
-import clientbookstore.ui.actions.IAction;
+import ui.Menu;
+import ui.actions.IAction;
 
 public class MenuItem {
     private String title;

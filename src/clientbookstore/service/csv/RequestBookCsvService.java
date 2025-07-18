@@ -1,12 +1,12 @@
-package clientbookstore.service.csv;
+package service.csv;
 
-import clientbookstore.model.enums.RequestStatus;
-import clientbookstore.model.enums.StatusBook;
-import clientbookstore.model.exception.DataExportException;
-import clientbookstore.model.exception.DataImportException;
-import clientbookstore.model.entity.Book;
-import clientbookstore.model.entity.Customer;
-import clientbookstore.model.entity.RequestBook;
+import model.enums.RequestStatus;
+import model.enums.StatusBook;
+import model.exception.DataExportException;
+import model.exception.DataImportException;
+import model.entity.Book;
+import model.entity.Customer;
+import model.entity.RequestBook;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -100,7 +100,6 @@ public class RequestBookCsvService implements ICsvService<RequestBook> {
                     );
 
                     requests.add(request);
-
                 } catch (Exception ex) {
                     throw new DataImportException(
                             String.format("Ошибка в строке %d: %s. Строка: %s",

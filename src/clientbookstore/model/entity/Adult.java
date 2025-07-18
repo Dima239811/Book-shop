@@ -1,6 +1,6 @@
-package clientbookstore.model.entity;
+package model.entity;
 
-public class Adult extends Customer{
+public class Adult extends Customer {
     private String numberPassword;
     private String workplace;
     private boolean newsletterOptIn;

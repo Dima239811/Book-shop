@@ -1,6 +1,6 @@
-package clientbookstore.model.comparator.order;
+package model.comparator.order;
 
-import clientbookstore.model.entity.Order;
+import model.entity.Order;
 
 import java.util.Comparator;
 

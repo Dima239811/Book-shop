@@ -1,10 +1,9 @@
-package clientbookstore.ui.actions.request;
+package ui.actions.request;
 
-import clientbookstore.controller.DataManager;
+import controller.DataManager;
 
-import clientbookstore.model.entity.RequestBook;
-import clientbookstore.ui.actions.IAction;
-import clientbookstore.ui.actions.order.SortOrdersByDateAction;
+import model.entity.RequestBook;
+import ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

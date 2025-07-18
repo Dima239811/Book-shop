@@ -1,4 +1,4 @@
-package clientbookstore.dependesies.config;
+package dependesies.config;
 
 import java.util.Map;
 

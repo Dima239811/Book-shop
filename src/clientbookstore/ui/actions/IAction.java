@@ -1,5 +1,5 @@
-package clientbookstore.ui.actions;
+package ui.actions;
 
 public interface IAction {
-    public void execute();
+    void execute();
 }

@@ -1,10 +1,10 @@
-package clientbookstore.ui.actions.order;
+package ui.actions.order;
 
-import clientbookstore.controller.DataManager;
-import clientbookstore.model.entity.Book;
-import clientbookstore.model.entity.Customer;
-import clientbookstore.model.entity.Order;
-import clientbookstore.ui.actions.IAction;
+import controller.DataManager;
+import model.entity.Book;
+import model.entity.Customer;
+import model.entity.Order;
+import ui.actions.IAction;
 
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -57,15 +57,13 @@ public class CreateOrderAction implements IAction {
             dataManager.createOrder(order);
 
             logger.info("Команда CreateOrderAction выполнена успешно");
-
         } catch (IllegalArgumentException e) {
             logger.error("Ошибка валидации: {}", e.getMessage());
             System.out.println("Ошибка: " + e.getMessage());
         } catch (InputMismatchException e) {
             logger.error("Ошибка ввода: {}", e.getMessage());
             System.out.println("Некорректно заполнено поле");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("Неожиданная ошибка при выполнении команды: ", e);
             System.out.println("Неожиданная ошибка: " + e.getMessage());
         }

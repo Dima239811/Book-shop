@@ -1,6 +1,6 @@
-package clientbookstore.ui;
+package ui;
 
-import clientbookstore.ui.menu_items.MenuItem;
+import ui.menu_items.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;

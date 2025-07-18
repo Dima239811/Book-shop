@@ -1,4 +1,4 @@
-package clientbookstore.model.enums;
+package model.enums;
 
 public enum RequestStatus {
     OPEN("Открыт"),
@@ -22,6 +22,5 @@ public enum RequestStatus {
         }
         throw new IllegalArgumentException("Неизвестный статус заказа: " + value);
     }
-
 }
 

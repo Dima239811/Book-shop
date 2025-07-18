@@ -1,10 +1,9 @@
-package clientbookstore.ui.actions.customer;
+package ui.actions.customer;
 
-import clientbookstore.controller.DataManager;
+import controller.DataManager;
 
-import clientbookstore.model.entity.Customer;
-import clientbookstore.ui.actions.IAction;
-import clientbookstore.ui.actions.book.AllBooksListAction;
+import model.entity.Customer;
+import ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

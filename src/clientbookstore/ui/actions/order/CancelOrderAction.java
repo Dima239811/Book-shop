@@ -1,9 +1,8 @@
-package clientbookstore.ui.actions.order;
+package ui.actions.order;
 
-import clientbookstore.controller.DataManager;
-import clientbookstore.model.exception.IncorrectNumberException;
-import clientbookstore.ui.actions.IAction;
-import clientbookstore.ui.actions.customer.ShowAllCustomer;
+import controller.DataManager;
+import model.exception.IncorrectNumberException;
+import ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +38,6 @@ public class CancelOrderAction implements IAction {
             dataManager.cancelOrder(id);
             System.out.println("Заказ отменен");
             logger.info("Заказа с id {} успешно отменен", id);
-
         } catch (IncorrectNumberException e) {
             logger.info("Некорректный ввод числа {}", e.getMessage());
             System.out.println(e.getMessage());

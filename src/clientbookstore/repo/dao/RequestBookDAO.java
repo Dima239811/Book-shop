@@ -1,9 +1,9 @@
-package clientbookstore.repo.dao;
+package repo.dao;
 
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.model.enums.RequestStatus;
-import clientbookstore.model.entity.RequestBook;
-import clientbookstore.repo.util.DBConnection;
+import dependesies.annotation.Inject;
+import model.enums.RequestStatus;
+import model.entity.RequestBook;
+import repo.util.DBConnection;
 import lombok.Getter;
 
 import java.sql.Connection;
@@ -38,7 +38,6 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
             if (affectedRows == 0) {
                 throw new SQLException("Creating request failed, no rows affected.");
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail create request " + exception);
         }
@@ -54,18 +53,15 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-                return new RequestBook (
+                return new RequestBook(
                         customerDAO.findById(rs.getInt("customerid")),
                         bookDAO.findById(rs.getInt("bookid")),
                         RequestStatus.fromValue(rs.getString("status")),
                         rs.getInt("id")
                 );
-            }
-
-            else {
+            } else {
                 return null;
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail find order with id: " + id + exception);
         }
@@ -90,7 +86,6 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
             if (affectedRows == 0) {
                 throw new SQLException("Update failed, no rows affected.");
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail find request with id: " + object.getId() + exception);
         }
@@ -110,7 +105,6 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
             if (affectedRows == 0) {
                 throw new SQLException("Update failed, no rows affected.");
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail delete request with id: " + id + exception);
         }
@@ -136,7 +130,6 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
                 );
                 requestBooks.add(requestBook);
             }
-
         } catch (SQLException e) {
             throw new SQLException("Failed to fetch all requests: " + e.getMessage(), e);
         }
@@ -152,18 +145,15 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-                return new RequestBook (
+                return new RequestBook(
                         customerDAO.findById(rs.getInt("customerid")),
                         bookDAO.findById(rs.getInt("bookid")),
                         RequestStatus.fromValue(rs.getString("status")),
                         rs.getInt("id")
                 );
-            }
-
-            else {
+            } else {
                 return null;
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail find order with id: " + id + exception);
         }

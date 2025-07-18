@@ -1,18 +1,18 @@
-package clientbookstore.service.entityService;
+package service.entityService;
 
-import clientbookstore.model.comparator.request.LetterRequestComporator;
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.model.enums.RequestStatus;
-import clientbookstore.model.entity.Book;
-import clientbookstore.model.entity.Customer;
-import clientbookstore.model.entity.RequestBook;
-import clientbookstore.repo.dao.RequestBookDAO;
+import model.comparator.request.LetterRequestComporator;
+import dependesies.annotation.Inject;
+import model.enums.RequestStatus;
+import model.entity.Book;
+import model.entity.Customer;
+import model.entity.RequestBook;
+import repo.dao.RequestBookDAO;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RequestBookService implements IService<RequestBook>{
+public class RequestBookService implements IService<RequestBook> {
 
     @Inject
     private RequestBookDAO requestBookDAO;
@@ -61,7 +61,6 @@ public class RequestBookService implements IService<RequestBook>{
         } catch (SQLException e) {
             throw new RuntimeException("Fail to create request in RequestBookService in sortRequest()" + e.getMessage());
         }
-
     }
 
     @Override

@@ -1,8 +1,8 @@
-package clientbookstore.model.entity;
+package model.entity;
 
 
-import clientbookstore.model.enums.RequestStatus;
-import clientbookstore.model.enums.StatusBook;
+import model.enums.RequestStatus;
+import model.enums.StatusBook;
 
 public class RequestBook {
     private Customer customer;
@@ -11,7 +11,7 @@ public class RequestBook {
     private int id;
     private static int countId = 0;
 
-    public RequestBook() {}
+    public RequestBook() { }
 
     public RequestBook(Customer customer, Book book) {
         this.customer = customer;

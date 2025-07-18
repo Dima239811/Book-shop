@@ -1,6 +1,6 @@
-package clientbookstore.model.entity;
+package model.entity;
 
-public class Child extends Customer{
+public class Child extends Customer {
     private String nameParent;
     private boolean parentConsent; // разрешение родителя на покупку
     private String schoolName;

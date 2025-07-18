@@ -1,11 +1,10 @@
-package clientbookstore.ui.actions.book;
+package ui.actions.book;
 
-import clientbookstore.controller.DataManager;
-import clientbookstore.model.enums.StatusBook;
-import clientbookstore.model.exception.DataValidationException;
-import clientbookstore.model.entity.Book;
-import clientbookstore.ui.actions.IAction;
-import clientbookstore.ui.actions.order.CreateOrderAction;
+import controller.DataManager;
+import model.enums.StatusBook;
+import model.exception.DataValidationException;
+import model.entity.Book;
+import ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,7 +67,6 @@ public class AddBookAction implements IAction {
             dataManager.addBookToWareHouse(book);
             logger.info("Книга '{}' успешно добавлена автором '{}'", name, author);
             System.out.println("Книга '" + name + "' автора '" + author + "' добавлена.");
-
         } catch (DataValidationException e) {
             logger.error("Ошибка валидации при добавлении книги: {}", e.getMessage());
             System.out.println("Ошибка валидации: " + e.getMessage());

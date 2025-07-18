@@ -1,9 +1,9 @@
-import clientbookstore.dependesies.context.ApplicationContext;
-import clientbookstore.dependesies.factory.BeanFactory;
-import clientbookstore.controller.DataManager;
-import clientbookstore.repo.util.DBConnection;
-import clientbookstore.ui.Builder;
-import clientbookstore.ui.MenuController;
+import dependesies.context.ApplicationContext;
+import dependesies.factory.BeanFactory;
+import controller.DataManager;
+import repo.util.DBConnection;
+import ui.Builder;
+import ui.MenuController;
 
 public class Main {
 

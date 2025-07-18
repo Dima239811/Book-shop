@@ -1,22 +1,19 @@
-package clientbookstore.dependesies.factory;
+package dependesies.factory;
 
-import clientbookstore.controller.DataManager;
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.dependesies.annotation.Qualifier;
-import clientbookstore.dependesies.config.Configuration;
-import clientbookstore.dependesies.config.JavaConfiguration;
-import clientbookstore.dependesies.configurator.BeanConfigurator;
-import clientbookstore.dependesies.configurator.JavaBeanConfigurator;
-import clientbookstore.dependesies.context.ApplicationContext;
+import dependesies.annotation.Inject;
+import dependesies.annotation.Qualifier;
+import dependesies.config.Configuration;
+import dependesies.config.JavaConfiguration;
+import dependesies.configurator.BeanConfigurator;
+import dependesies.configurator.JavaBeanConfigurator;
+import dependesies.context.ApplicationContext;
 import lombok.Getter;
 import lombok.SneakyThrows;
-import clientbookstore.ui.MenuController;
+
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+
 
 public class BeanFactory {
 
@@ -69,13 +66,8 @@ public class BeanFactory {
                     dependency = applicationContext.getBean(dependencyType);
                 }
             }
-
             field.set(bean, dependency);
         }
-
         return bean;
     }
-
-
-
 }

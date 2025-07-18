@@ -1,13 +1,13 @@
-package clientbookstore.dependesies.configurator;
+package dependesies.configurator;
 
-import clientbookstore.dependesies.annotation.Qualifier;
+import dependesies.annotation.Qualifier;
 import lombok.Getter;
 import org.reflections.Reflections;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class JavaBeanConfigurator implements BeanConfigurator{
+public class JavaBeanConfigurator implements BeanConfigurator {
     @Getter
     private final Reflections scanner;
     private final Map<Class<?>, Map<String, Class<?>>> interfaceToImplementation;

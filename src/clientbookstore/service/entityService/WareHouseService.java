@@ -1,13 +1,13 @@
-package clientbookstore.service.entityService;
+package service.entityService;
 
-import clientbookstore.model.comparator.book.AvailiableComporator;
-import clientbookstore.model.comparator.book.LetterComporator;
-import clientbookstore.model.comparator.book.PriceComporator;
-import clientbookstore.model.comparator.book.YearComporator;
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.model.enums.StatusBook;
-import clientbookstore.model.entity.Book;
-import clientbookstore.repo.dao.BookDAO;
+import model.comparator.book.AvailiableComporator;
+import model.comparator.book.LetterComporator;
+import model.comparator.book.PriceComporator;
+import model.comparator.book.YearComporator;
+import dependesies.annotation.Inject;
+import model.enums.StatusBook;
+import model.entity.Book;
+import repo.dao.BookDAO;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -31,8 +31,6 @@ public class WareHouseService implements IService<Book> {
             } catch (SQLException e) {
                 throw new RuntimeException("Fail in warehouseService updatebook book " + e);
             }
-
-
         } catch (SQLException e) {
             throw new RuntimeException("Fail in warehouseService find book " + e);
         }
@@ -106,5 +104,4 @@ public class WareHouseService implements IService<Book> {
             throw new RuntimeException("Fail to update book " + item.getBookId() + " in warehouseSevice in update()" + e.getMessage());
         }
     }
-
 }

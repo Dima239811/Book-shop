@@ -1,6 +1,6 @@
-package clientbookstore.model.exception;
+package model.exception;
 
-public class DataExportException extends Exception{
+public class DataExportException extends Exception {
     public DataExportException(String message) {
         super(message);
     }

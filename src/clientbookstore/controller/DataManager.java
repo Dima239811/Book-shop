@@ -1,22 +1,20 @@
-package clientbookstore.controller;
+package controller;
 
-import clientbookstore.model.entity.Book;
-import clientbookstore.model.entity.Customer;
-import clientbookstore.model.entity.Order;
-import clientbookstore.model.entity.RequestBook;
-import clientbookstore.service.csv.ICsvService;
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.dependesies.annotation.PostConstruct;
-import clientbookstore.dependesies.annotation.Qualifier;
-import clientbookstore.model.enums.OrderStatus;
-
-
-import clientbookstore.repo.util.DBConnection;
-import clientbookstore.service.entityService.CustomerService;
-import clientbookstore.service.entityService.OrderService;
-import clientbookstore.service.entityService.RequestBookService;
-import clientbookstore.service.entityService.WareHouseService;
-import clientbookstore.util.AppConfig;
+import dependesies.annotation.Inject;
+import dependesies.annotation.PostConstruct;
+import dependesies.annotation.Qualifier;
+import model.entity.Book;
+import model.entity.Customer;
+import model.entity.Order;
+import model.entity.RequestBook;
+import model.enums.OrderStatus;
+import repo.util.DBConnection;
+import service.csv.ICsvService;
+import service.entityService.CustomerService;
+import service.entityService.OrderService;
+import service.entityService.RequestBookService;
+import service.entityService.WareHouseService;
+import util.AppConfig;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -106,14 +104,10 @@ public class DataManager {
             orderService.add(order);
 
             DBConnection.getInstance().commit();
-
         } catch (SQLException e) {
             DBConnection.getInstance().rollback();
             throw new RuntimeException("Ошибка при создании заказа: " + e.getMessage(), e);
         }
-//        wareHouseService.add(order.getBook());
-//        customerService.add(order.getCustomer());
-//        orderService.add(order);
     }
 
     public void cancelOrder(int orderId) {

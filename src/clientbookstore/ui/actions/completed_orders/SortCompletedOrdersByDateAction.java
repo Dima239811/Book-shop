@@ -1,8 +1,8 @@
-package clientbookstore.ui.actions.completed_orders;
+package ui.actions.completed_orders;
 
-import clientbookstore.controller.DataManager;
-import clientbookstore.model.entity.Order;
-import clientbookstore.ui.actions.IAction;
+import controller.DataManager;
+import model.entity.Order;
+import ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,9 +1,9 @@
-package clientbookstore.ui.actions.order;
+package ui.actions.order;
 
-import clientbookstore.controller.DataManager;
-import clientbookstore.model.enums.OrderStatus;
-import clientbookstore.model.exception.IncorrectNumberException;
-import clientbookstore.ui.actions.IAction;
+import controller.DataManager;
+import model.enums.OrderStatus;
+import model.exception.IncorrectNumberException;
+import ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,7 +54,6 @@ public class ChangeOrderStatusAction implements IAction {
             dataManager.changeStatusOrder(id, selectedStatus);
             System.out.println("Статус заказа успешно изменен.");
             logger.info("Статус заказа с id {} успешно изменен", id);
-
         } catch (IncorrectNumberException e) {
             logger.info("Некорректный ввод числа {}", e.getMessage());
             System.out.println(e.getMessage());

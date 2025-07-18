@@ -1,7 +1,7 @@
-package clientbookstore.model.entity;
+package model.entity;
 
 
-import clientbookstore.model.enums.StatusBook;
+import model.enums.StatusBook;
 
 public class Book {
     private String name;
@@ -13,7 +13,7 @@ public class Book {
     //private static int count = 0;
 
 
-    public Book() {}
+    public Book() { }
 
 //    public Book(String name, String authtor, int year, double price) {
 //        this.name = name;

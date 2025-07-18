@@ -1,6 +1,6 @@
-package clientbookstore.ui.action_factory;
+package ui.action_factory;
 
-import clientbookstore.ui.actions.IAction;
+import ui.actions.IAction;
 
 public interface ActionFactory {
     IAction createAddBookAction();
@@ -66,5 +66,4 @@ public interface ActionFactory {
     IAction exportRequestAction();
 
     IAction showStaleBooksAction();
-
 }

@@ -1,9 +1,9 @@
-package clientbookstore.service.csv;
+package service.csv;
 
-import clientbookstore.model.exception.DataExportException;
-import clientbookstore.model.exception.DataImportException;
+import model.exception.DataExportException;
+import model.exception.DataImportException;
 
-import clientbookstore.model.entity.Customer;
+import model.entity.Customer;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -42,7 +42,6 @@ public class CustomerCsvService implements ICsvService<Customer> {
             }
 
             printWriter.flush();
-
         } catch (IOException exception) {
             throw new DataExportException("Файл " + filePath + " не найден");
         }
@@ -95,7 +94,6 @@ public class CustomerCsvService implements ICsvService<Customer> {
                     String address = unescapeCsv(parts[5]);
 
                     customers.add(new Customer(fullName, age, phone, email, address, customerId));
-
                 } catch (Exception ex) {
                     throw new DataImportException(
                             String.format("Ошибка в строке %d: %s. Строка: %s",

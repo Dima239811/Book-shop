@@ -1,10 +1,10 @@
-package clientbookstore.service.csv;
+package service.csv;
 
-import clientbookstore.model.enums.StatusBook;
-import clientbookstore.model.exception.DataExportException;
-import clientbookstore.model.exception.DataImportException;
-import clientbookstore.model.exception.DataValidationException;
-import clientbookstore.model.entity.Book;
+import model.enums.StatusBook;
+import model.exception.DataExportException;
+import model.exception.DataImportException;
+import model.exception.DataValidationException;
+import model.entity.Book;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -54,7 +54,6 @@ public class BookCsvService implements ICsvService<Book> {
             }
 
             printWriter.flush();
-
         } catch (IOException exception) {
             throw new DataExportException("Файл " + filePath + " не найден");
         }
@@ -76,17 +75,14 @@ public class BookCsvService implements ICsvService<Book> {
                     Book book = parseBookFromCsvLine(line);
                     validateBook(book);
                     books.add(book);
-
                 } catch (Exception ex) {
                     String s = "\"Ошибка в строке \" " + lineNum + " " +  ex.getMessage();
                     throw new DataImportException(s);
                 }
             }
-
         } catch (Exception exception) {
             throw new DataImportException("Ошибка чтения файла " + filePath + " " + exception.getMessage());
         }
-
         return books;
     }
 

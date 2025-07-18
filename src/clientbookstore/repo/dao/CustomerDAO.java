@@ -1,7 +1,7 @@
-package clientbookstore.repo.dao;
+package repo.dao;
 
-import clientbookstore.model.entity.Customer;
-import clientbookstore.repo.util.DBConnection;
+import model.entity.Customer;
+import repo.util.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,7 +37,6 @@ public class CustomerDAO implements GenericDAO<Customer> {
                     throw new SQLException("Creating customer failed, no ID obtained.");
                 }
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail create Customer " + exception);
         }
@@ -61,12 +60,9 @@ public class CustomerDAO implements GenericDAO<Customer> {
                         rs.getString("address"),
                         rs.getInt("id")
                 );
-            }
-
-            else {
+            } else {
                 return null;
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail find Customer with id: " + id + exception);
         }
@@ -93,7 +89,6 @@ public class CustomerDAO implements GenericDAO<Customer> {
             if (affectedRows == 0) {
                 throw new SQLException("Update failed, no rows affected.");
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail find Customer with id: " + object.getCustomerID() + exception);
         }
@@ -113,8 +108,6 @@ public class CustomerDAO implements GenericDAO<Customer> {
             if (affectedRows == 0) {
                 throw new SQLException("Update failed, no rows affected.");
             }
-
-
         } catch (SQLException exception) {
             throw new SQLException("Fail delete Customer with id: " + id + exception);
         }
@@ -142,7 +135,6 @@ public class CustomerDAO implements GenericDAO<Customer> {
                 );
                 customers.add(customer);
             }
-
         } catch (SQLException e) {
             throw new SQLException("Failed to fetch all customers: " + e.getMessage(), e);
         }

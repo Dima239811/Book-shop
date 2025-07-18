@@ -1,7 +1,7 @@
-package clientbookstore.dependesies.context;
+package dependesies.context;
 
-import clientbookstore.dependesies.factory.BeanFactory;
-import clientbookstore.dependesies.postprocessor.BeanPostProcessor;
+import dependesies.factory.BeanFactory;
+import dependesies.postprocessor.BeanPostProcessor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;

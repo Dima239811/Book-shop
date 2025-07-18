@@ -1,7 +1,7 @@
-package clientbookstore.ui;
+package ui;
 
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.ui.menu_items.MenuItem;
+import dependesies.annotation.Inject;
+import ui.menu_items.MenuItem;
 
 import java.util.List;
 import java.util.Stack;

@@ -1,8 +1,8 @@
-package clientbookstore.ui.actions.completed_orders;
+package ui.actions.completed_orders;
 
-import clientbookstore.controller.DataManager;
+import controller.DataManager;
 
-import clientbookstore.ui.actions.IAction;
+import ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +37,6 @@ public class ShowTotalRevenueAction implements IAction {
 
             System.out.println("за период заработано " + price);
             logger.info("Количество заработанных средств за период: {}", price);
-
         } catch (ParseException e) {
             logger.error("Ошибка парсинга даты {}", e.getMessage());
             System.out.println("Неверный формат даты. Используйте дд.мм.гггг");

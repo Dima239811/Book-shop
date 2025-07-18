@@ -1,4 +1,4 @@
-package clientbookstore.model.enums;
+package model.enums;
 
 public enum TypeSortBooks {
     BY_LETTER("по алфавиту"),

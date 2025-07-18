@@ -1,4 +1,4 @@
-package clientbookstore.model.exception;
+package model.exception;
 
 public class IncorrectNumberException extends RuntimeException {
     public IncorrectNumberException(String message) {

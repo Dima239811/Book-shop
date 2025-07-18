@@ -1,4 +1,4 @@
-package clientbookstore.model.entity;
+package model.entity;
 
 public class Customer {
     private String fullName;
@@ -8,7 +8,7 @@ public class Customer {
     private String address;
     private int customerID;
 
-    public Customer() {}
+    public Customer() { }
 
     public Customer(String fullName, int age, String phoneNumber, String email, String address) {
         this.fullName = fullName;

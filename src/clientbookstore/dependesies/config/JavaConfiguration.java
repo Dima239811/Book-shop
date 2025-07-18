@@ -1,4 +1,4 @@
-package clientbookstore.dependesies.config;
+package dependesies.config;
 
 import clientbookstore.service.csv.BookCsvService;
 import clientbookstore.service.csv.CustomerCsvService;
@@ -9,7 +9,7 @@ import clientbookstore.ui.action_factory.DefaultActionFactory;
 
 import java.util.Map;
 
-public class JavaConfiguration implements Configuration{
+public class JavaConfiguration implements Configuration {
     @Override
     public String getPackageToScan() {
         return "clientbookstore";

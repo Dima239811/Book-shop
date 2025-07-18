@@ -1,8 +1,6 @@
-package clientbookstore.model.entity;
+package model.entity;
 
-
-
-import clientbookstore.model.enums.OrderStatus;
+import model.enums.OrderStatus;
 
 import java.util.Date;
 
@@ -23,7 +21,7 @@ public class Order {
         this.status = OrderStatus.NEW;
     }
 
-    public Order() {}
+    public Order() { }
 
     public Order(Book book, Customer customer, Date orderDate, double finalPrice, OrderStatus status) {
         this.book = book;

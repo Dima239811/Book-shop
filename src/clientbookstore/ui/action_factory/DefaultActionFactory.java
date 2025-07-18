@@ -1,34 +1,26 @@
-package clientbookstore.ui.action_factory;
+package ui.action_factory;
 
-import clientbookstore.controller.DataManager;
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.ui.actions.IAction;
-
-
-import clientbookstore.ui.actions.book.*;
-import clientbookstore.ui.actions.completed_orders.ShowCompletedOrdersCountAction;
-import clientbookstore.ui.actions.completed_orders.ShowTotalRevenueAction;
-import clientbookstore.ui.actions.completed_orders.SortCompletedOrdersByDateAction;
-import clientbookstore.ui.actions.completed_orders.SortCompletedOrdersByPriceAction;
-import clientbookstore.ui.actions.csv.book.ExportBookAction;
-import clientbookstore.ui.actions.csv.book.ImportBooksAction;
-import clientbookstore.ui.actions.csv.customer.ExportCustomerAction;
-import clientbookstore.ui.actions.csv.customer.ImportCustomerAction;
-import clientbookstore.ui.actions.csv.order.ExportOrderAction;
-import clientbookstore.ui.actions.csv.order.ImportOrderAction;
-import clientbookstore.ui.actions.csv.request.ExportRequestAction;
-import clientbookstore.ui.actions.csv.request.ImportRequestAction;
-import clientbookstore.ui.actions.customer.ShowAllCustomer;
+import controller.DataManager;
+import dependesies.annotation.Inject;
+import ui.actions.IAction;
 
 
-import clientbookstore.ui.actions.order.*;
-import clientbookstore.ui.actions.request.CreateBookRequestAction;
-import clientbookstore.ui.actions.request.ShowAllBookRequestsAction;
-import clientbookstore.ui.actions.request.SortRequestsByCountAction;
-import clientbookstore.ui.actions.request.SortRequestsByTitleAction;
+import ui.actions.book.*;
+import ui.actions.completed_orders.*;
+import ui.actions.csv.book.ExportBookAction;
+import ui.actions.csv.book.ImportBooksAction;
+import ui.actions.csv.customer.ExportCustomerAction;
+import ui.actions.csv.customer.ImportCustomerAction;
+import ui.actions.csv.order.ExportOrderAction;
+import ui.actions.csv.order.ImportOrderAction;
+import ui.actions.csv.request.ExportRequestAction;
+import ui.actions.csv.request.ImportRequestAction;
+import ui.actions.customer.ShowAllCustomer;
+import ui.actions.request.*;
 
 
-public class DefaultActionFactory implements ActionFactory{
+
+public class DefaultActionFactory implements ActionFactory {
 
     @Inject
     private DataManager dataManager;
@@ -192,5 +184,4 @@ public class DefaultActionFactory implements ActionFactory{
     public IAction showStaleBooksAction() {
         return new ShowStaleBooksAction(dataManager);
     }
-
 }

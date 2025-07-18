@@ -1,11 +1,10 @@
-package clientbookstore.ui;
+package ui;
 
-import clientbookstore.controller.DataManager;
+import controller.DataManager;
 
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.dependesies.annotation.PostConstruct;
-import clientbookstore.ui.action_factory.ActionFactory;
-import clientbookstore.ui.action_factory.DefaultActionFactory;
+import dependesies.annotation.Inject;
+import dependesies.annotation.PostConstruct;
+import ui.action_factory.ActionFactory;
 
 import java.util.Scanner;
 
@@ -39,8 +38,7 @@ public class MenuController {
             try {
                 choice = scanner.nextInt();
                 scanner.nextLine();
-            }
-            catch(Exception exception) {
+            } catch (Exception exception) {
                 System.out.println("Некорректный ввод, попробуйте снова");
                 scanner.nextLine();
                 continue;
@@ -58,7 +56,4 @@ public class MenuController {
             }
         }
     }
-
-
-
 }

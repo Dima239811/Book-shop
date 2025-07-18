@@ -1,20 +1,20 @@
-package clientbookstore.service.entityService;
+package service.entityService;
 
-import clientbookstore.model.comparator.order.DateOrderComporator;
-import clientbookstore.model.comparator.order.PriceOrderComporator;
-import clientbookstore.model.comparator.order.StatusOrderComporator;
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.model.enums.OrderStatus;
+import model.comparator.order.DateOrderComporator;
+import model.comparator.order.PriceOrderComporator;
+import model.comparator.order.StatusOrderComporator;
+import dependesies.annotation.Inject;
+import model.enums.OrderStatus;
 
-import clientbookstore.model.entity.Order;
-import clientbookstore.repo.dao.OrderDAO;
+import model.entity.Order;
+import repo.dao.OrderDAO;
 
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OrderService implements IService<Order>{
+public class OrderService implements IService<Order> {
 
     @Inject
     private OrderDAO orderDAO;

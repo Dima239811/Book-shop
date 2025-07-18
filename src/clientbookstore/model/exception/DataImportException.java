@@ -1,4 +1,4 @@
-package clientbookstore.model.exception;
+package model.exception;
 
 public class DataImportException extends Exception {
     public DataImportException(String message) {

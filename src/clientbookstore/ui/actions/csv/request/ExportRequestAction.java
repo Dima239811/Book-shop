@@ -1,9 +1,8 @@
-package clientbookstore.ui.actions.csv.request;
+package ui.actions.csv.request;
 
-import clientbookstore.controller.DataManager;
-import clientbookstore.model.exception.DataExportException;
-import clientbookstore.ui.actions.IAction;
-import clientbookstore.ui.actions.csv.order.ExportOrderAction;
+import controller.DataManager;
+import model.exception.DataExportException;
+import ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +28,6 @@ public class ExportRequestAction implements IAction {
             dataManager.exportRequestToCsv(path);
             System.out.println("Экспорт успешно завершен");
             logger.info("Экспорт запросов завершён успешно. Файл: {}", path);
-
         } catch (DataExportException e) {
             logger.error("Ошибка при экспорте запросов: {}", e.getMessage());
             System.err.println("Ошибка экспорта: " + e.getMessage());

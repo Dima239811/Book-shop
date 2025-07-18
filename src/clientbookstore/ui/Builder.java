@@ -1,10 +1,10 @@
-package clientbookstore.ui;
+package ui;
 
-import clientbookstore.controller.DataManager;
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.dependesies.annotation.PostConstruct;
-import clientbookstore.ui.action_factory.ActionFactory;
-import clientbookstore.ui.menu_items.MenuItem;
+import controller.DataManager;
+import dependesies.annotation.Inject;
+import dependesies.annotation.PostConstruct;
+import ui.action_factory.ActionFactory;
+import ui.menu_items.MenuItem;
 
 public class Builder {
     private Menu rootMenu;

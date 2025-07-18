@@ -1,9 +1,9 @@
-package clientbookstore.repo.dao;
+package repo.dao;
 
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.model.enums.OrderStatus;
-import clientbookstore.model.entity.Order;
-import clientbookstore.repo.util.DBConnection;
+import dependesies.annotation.Inject;
+import model.enums.OrderStatus;
+import model.entity.Order;
+import repo.util.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,7 +37,6 @@ public class OrderDAO implements GenericDAO<Order> {
             if (affectedRows == 0) {
                 throw new SQLException("Creating order failed, no rows affected.");
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail create order " + exception);
         }
@@ -61,12 +60,9 @@ public class OrderDAO implements GenericDAO<Order> {
                         rs.getDouble("price"),
                         OrderStatus.fromValue(rs.getString("status"))
                 );
-            }
-
-            else {
+            } else {
                 return null;
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail find order with id: " + id + exception);
         }
@@ -94,7 +90,6 @@ public class OrderDAO implements GenericDAO<Order> {
             if (affectedRows == 0) {
                 throw new SQLException("Update failed, no rows affected.");
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail find order with id: " + object.getOrderId() + exception);
         }
@@ -115,7 +110,6 @@ public class OrderDAO implements GenericDAO<Order> {
             if (affectedRows == 0) {
                 throw new SQLException("Update failed, no rows affected.");
             }
-
         } catch (SQLException exception) {
             throw new SQLException("Fail delete order with id: " + id + exception);
         }
@@ -143,7 +137,6 @@ public class OrderDAO implements GenericDAO<Order> {
                 );
                 orders.add(order);
             }
-
         } catch (SQLException e) {
             throw new SQLException("Failed to fetch all orders: " + e.getMessage(), e);
         }

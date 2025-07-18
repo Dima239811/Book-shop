@@ -1,9 +1,9 @@
-package clientbookstore.ui.actions.csv.book;
+package ui.actions.csv.book;
 
-import clientbookstore.controller.DataManager;
-import clientbookstore.model.exception.DataImportException;
-import clientbookstore.model.entity.Book;
-import clientbookstore.ui.actions.IAction;
+import controller.DataManager;
+import model.exception.DataImportException;
+import model.entity.Book;
+import ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +30,6 @@ public class ImportBooksAction implements IAction {
             List<Book> importedBooks = dataManager.importBooksFromCsv(path);
             System.out.printf("Успешно импортировано %d книг\n", importedBooks.size());
             logger.info("Импорт книг завершён успешно. Файл: {}", path);
-
         } catch (DataImportException e) {
             logger.error("Ошибка при импорте книг: {}", e.getMessage());
             System.err.println("Ошибка импорта: " + e.getMessage());

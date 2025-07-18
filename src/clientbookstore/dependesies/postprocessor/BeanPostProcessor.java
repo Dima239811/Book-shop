@@ -1,5 +1,5 @@
-package clientbookstore.dependesies.postprocessor;
+package dependesies.postprocessor;
 
 public interface BeanPostProcessor {
-    public void process(Object bean);
+    void process(Object bean);
 }

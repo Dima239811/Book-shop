@@ -1,8 +1,7 @@
-package clientbookstore.ui.actions.book;
+package ui.actions.book;
 
-import clientbookstore.controller.DataManager;
-import clientbookstore.ui.actions.IAction;
-import clientbookstore.ui.actions.order.CreateOrderAction;
+import controller.DataManager;
+import ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +29,5 @@ public class WriteOffBookAction implements IAction {
             logger.error("Некоректный ввод id, не введено целое число");
             System.out.println("Некорректный ввод, введите целое число");
         }
-
-
     }
 }

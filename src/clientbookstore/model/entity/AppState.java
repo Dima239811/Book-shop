@@ -1,4 +1,4 @@
-package clientbookstore.model.entity;
+package model.entity;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class AppState {
     private List<Customer> customers;
     private List<RequestBook> requests;
 
-    public AppState() {}
+    public AppState() { }
 
     public AppState(List<Book> books, List<Order> orders, List<Customer> customers, List<RequestBook> requests) {
         this.books = books;
@@ -17,15 +17,35 @@ public class AppState {
         this.requests = requests;
     }
 
-    public List<Book> getBooks() { return books; }
-    public void setBooks(List<Book> books) { this.books = books; }
+    public List<Book> getBooks() {
+        return books;
+    }
 
-    public List<Order> getOrders() { return orders; }
-    public void setOrders(List<Order> orders) { this.orders = orders; }
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 
-    public List<Customer> getCustomers() { return customers; }
-    public void setCustomers(List<Customer> customers) { this.customers = customers; }
+    public List<Order> getOrders() {
+        return orders;
+    }
 
-    public List<RequestBook> getRequests() { return requests; }
-    public void setRequests(List<RequestBook> requests) { this.requests = requests; }
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public List<RequestBook> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<RequestBook> requests) {
+        this.requests = requests;
+    }
 }

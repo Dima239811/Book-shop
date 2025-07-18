@@ -1,4 +1,4 @@
-package clientbookstore.dependesies.postprocessor;
+package dependesies.postprocessor;
 
 public class LoggingBeanPostProcessor implements BeanPostProcessor {
     @Override

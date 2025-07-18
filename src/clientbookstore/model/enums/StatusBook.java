@@ -1,4 +1,4 @@
-package clientbookstore.model.enums;
+package model.enums;
 
 public enum StatusBook {
     IN_STOCK("в наличии"),

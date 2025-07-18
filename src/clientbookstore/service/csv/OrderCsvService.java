@@ -1,12 +1,12 @@
-package clientbookstore.service.csv;
+package service.csv;
 
-import clientbookstore.model.enums.OrderStatus;
-import clientbookstore.model.enums.StatusBook;
-import clientbookstore.model.exception.DataExportException;
-import clientbookstore.model.exception.DataImportException;
-import clientbookstore.model.entity.Book;
-import clientbookstore.model.entity.Customer;
-import clientbookstore.model.entity.Order;
+import model.enums.OrderStatus;
+import model.enums.StatusBook;
+import model.exception.DataExportException;
+import model.exception.DataImportException;
+import model.entity.Book;
+import model.entity.Customer;
+import model.entity.Order;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -68,7 +68,6 @@ public class OrderCsvService implements ICsvService<Order> {
             }
 
             printWriter.flush();
-
         } catch (IOException exception) {
             throw new DataExportException("Файл " + filePath + " не найден");
         }
@@ -160,7 +159,6 @@ public class OrderCsvService implements ICsvService<Order> {
 
                     Order order = new Order(orderId, book, customer, orderDate, finalPrice, orderStatus);
                     orders.add(order);
-
                 } catch (Exception ex) {
                     throw new DataImportException(
                             String.format("Ошибка в строке %d: %s. Строка: %s",
@@ -168,11 +166,9 @@ public class OrderCsvService implements ICsvService<Order> {
                     );
                 }
             }
-
         } catch (Exception exception) {
             throw new DataImportException("Ошибка чтения файла " + filePath + ": " + exception.getMessage());
         }
-
         return orders;
     }
 
@@ -211,5 +207,4 @@ public class OrderCsvService implements ICsvService<Order> {
         result.add(sb.toString());
         return result.toArray(new String[0]);
     }
-
 }

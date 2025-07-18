@@ -1,9 +1,9 @@
-package clientbookstore.service.entityService;
+package service.entityService;
 
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.dependesies.annotation.PostConstruct;
-import clientbookstore.model.entity.Customer;
-import clientbookstore.repo.dao.CustomerDAO;
+import dependesies.annotation.Inject;
+import dependesies.annotation.PostConstruct;
+import model.entity.Customer;
+import repo.dao.CustomerDAO;
 
 import java.sql.SQLException;
 import java.util.Collections;
@@ -25,7 +25,6 @@ public class CustomerService implements IService<Customer>  {
         try {
             List<Customer> customers = customerDAO.getAll();
             return customers == null ? Collections.emptyList() : customers;
-
         } catch (SQLException e) {
             throw new RuntimeException("Failed to fetch all customers in customer service" + e.getMessage(), e);
         }
@@ -37,7 +36,6 @@ public class CustomerService implements IService<Customer>  {
         try {
             Customer customer = customerDAO.findById(id);
             return customer;
-
         } catch (SQLException e) {
             throw new RuntimeException("in customer service: Failed to find customer with ID " + id, e);
         }

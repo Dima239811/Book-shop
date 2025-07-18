@@ -1,4 +1,4 @@
-package clientbookstore.service.entityService;
+package service.entityService;
 
 import java.util.List;
 
