@@ -4,11 +4,15 @@ import clientbookstore.controller.DataManager;
 import clientbookstore.model.enums.TypeSortBooks;
 import clientbookstore.model.entity.Book;
 import clientbookstore.ui.actions.IAction;
+import clientbookstore.ui.actions.order.CreateOrderAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class SortBooksByYearDescAction implements IAction {
     private DataManager dataManager;
+    private static final Logger logger = LoggerFactory.getLogger(SortBooksByYearDescAction.class);
 
     public SortBooksByYearDescAction(DataManager dataManager) {
         this.dataManager = dataManager;

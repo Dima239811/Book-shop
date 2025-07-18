@@ -3,7 +3,6 @@ import clientbookstore.dependesies.factory.BeanFactory;
 import clientbookstore.controller.DataManager;
 import clientbookstore.repo.util.DBConnection;
 import clientbookstore.ui.Builder;
-import org.apache.log4j.BasicConfigurator;
 import clientbookstore.ui.MenuController;
 
 public class Main {
@@ -17,7 +16,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        BasicConfigurator.configure();
+        //BasicConfigurator.configure();
         Main main = new Main();
         ApplicationContext applicationContext = main.run();
 

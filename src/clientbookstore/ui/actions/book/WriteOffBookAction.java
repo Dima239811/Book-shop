@@ -2,11 +2,15 @@ package clientbookstore.ui.actions.book;
 
 import clientbookstore.controller.DataManager;
 import clientbookstore.ui.actions.IAction;
+import clientbookstore.ui.actions.order.CreateOrderAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
 public class WriteOffBookAction implements IAction {
     private DataManager dataManager;
+    private static final Logger logger = LoggerFactory.getLogger(WriteOffBookAction.class);
 
     public WriteOffBookAction(DataManager dataManager) {
         this.dataManager = dataManager;

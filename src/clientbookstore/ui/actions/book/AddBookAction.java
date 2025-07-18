@@ -5,12 +5,16 @@ import clientbookstore.model.enums.StatusBook;
 import clientbookstore.model.exception.DataValidationException;
 import clientbookstore.model.entity.Book;
 import clientbookstore.ui.actions.IAction;
+import clientbookstore.ui.actions.order.CreateOrderAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
 public class AddBookAction implements IAction {
 
     private DataManager dataManager;
+    private static final Logger logger = LoggerFactory.getLogger(AddBookAction.class);
 
     public AddBookAction(DataManager dataManager) {
         this.dataManager = dataManager;
@@ -18,6 +22,7 @@ public class AddBookAction implements IAction {
 
     @Override
     public void execute() {
+        logger.info("Пользователь начал выполнение команды: AddBookAction");
         Scanner scanner = new Scanner(System.in);
         try {
             System.out.print("Введите название книги: ");
@@ -42,6 +47,7 @@ public class AddBookAction implements IAction {
                     throw new DataValidationException("Год издания не может быть отрицательным");
                 }
             } catch (java.util.InputMismatchException e) {
+                logger.error("Ошибка ввода года: ожидалось целое число (введено не число)");
                 throw new DataValidationException("Некорректный формат года. Введите целое число");
             }
 
@@ -52,18 +58,22 @@ public class AddBookAction implements IAction {
                     throw new DataValidationException("Стоимость книги должна быть положительной");
                 }
             } catch (java.util.InputMismatchException e) {
+                logger.error("Ошибка ввода цены: некорректный формат, не введено число");
                 throw new DataValidationException("Некорректный формат стоимости. Используйте точку как разделитель");
             } finally {
-                scanner.nextLine(); // Очистка буфера
+                scanner.nextLine();
             }
 
             Book book = new Book(name, author, year, price, StatusBook.IN_STOCK);
             dataManager.addBookToWareHouse(book);
+            logger.info("Книга '{}' успешно добавлена автором '{}'", name, author);
             System.out.println("Книга '" + name + "' автора '" + author + "' добавлена.");
 
         } catch (DataValidationException e) {
+            logger.error("Ошибка валидации при добавлении книги: {}", e.getMessage());
             System.out.println("Ошибка валидации: " + e.getMessage());
         } catch (Exception e) {
+            logger.error("Неожиданная ошибка при добавлении книги", e);
             System.out.println("Неожиданная ошибка: " + e.getMessage());
         }
     }
