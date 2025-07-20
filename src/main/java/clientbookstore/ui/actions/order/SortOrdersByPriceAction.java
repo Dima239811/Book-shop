@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.order;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.model.entity.Order;
 import clientbookstore.ui.actions.IAction;
 import org.slf4j.Logger;
@@ -9,10 +9,10 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 public class SortOrdersByPriceAction implements IAction {
-    private DataManager dataManager;
+    private MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(SortOrdersByPriceAction.class);
 
-    public SortOrdersByPriceAction(DataManager dataManager) {
+    public SortOrdersByPriceAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
 

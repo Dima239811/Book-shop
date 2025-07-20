@@ -1,8 +1,8 @@
 package clientbookstore;
 
+import clientbookstore.controller.MainContr;
 import clientbookstore.dependesies.context.ApplicationContext;
 import clientbookstore.dependesies.factory.BeanFactory;
-import clientbookstore.controller.DataManager;
 import clientbookstore.repo.util.DBConnection;
 import clientbookstore.ui.Builder;
 import clientbookstore.ui.MenuController;
@@ -22,7 +22,7 @@ public class Main {
         Main main = new Main();
         ApplicationContext applicationContext = main.run();
 
-        DataManager dataManager = applicationContext.getBean(DataManager.class);
+        MainContr dataManager = applicationContext.getBean(MainContr.class);
         //System.out.println("DataManager в Main: " + dataManager);
 
         //dataManager.loadStateFromJson("state.json");

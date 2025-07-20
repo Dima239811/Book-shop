@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.book;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 import java.util.Scanner;
 
 public class WriteOffBookAction implements IAction {
-    private DataManager dataManager;
+    private MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(WriteOffBookAction.class);
 
-    public WriteOffBookAction(DataManager dataManager) {
+    public WriteOffBookAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
 

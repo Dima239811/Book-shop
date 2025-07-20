@@ -3,6 +3,7 @@ package clientbookstore.model.entity;
 
 import clientbookstore.model.enums.StatusBook;
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnTransformer;
 
 @Entity
 @Table(name = "book")
@@ -21,6 +22,10 @@ public class Book {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "status")
+    @ColumnTransformer(
+            write = "(CASE ? WHEN 'IN_STOCK' THEN 'в наличии'::statusbook " +
+                    "WHEN 'OUT_OF_STOCK' THEN 'отсутствует'::statusbook END)"
+    )
     private StatusBook status;  // в наличии или отсутствует
 
     @Id
@@ -102,7 +107,7 @@ public class Book {
                 author,
                 year,
                 price,
-                status.getValue(), // Используем локализованное значение статуса
+                status.getValue(),
                 bookId);
     }
 }

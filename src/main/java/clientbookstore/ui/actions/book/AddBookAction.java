@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.book;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.model.enums.StatusBook;
 import clientbookstore.model.exception.DataValidationException;
 import clientbookstore.model.entity.Book;
@@ -12,10 +12,10 @@ import java.util.Scanner;
 
 public class AddBookAction implements IAction {
 
-    private DataManager dataManager;
+    private MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(AddBookAction.class);
 
-    public AddBookAction(DataManager dataManager) {
+    public AddBookAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
 

@@ -8,15 +8,21 @@ import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.model.enums.StatusBook;
 import clientbookstore.model.entity.Book;
 import clientbookstore.repo.dao.BookDAO;
+import clientbookstore.util.HibernateUtil;
+import org.hibernate.Transaction;
+import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.List;
+
 
 public class BookService implements IService<Book> {
 
     @Inject
     private BookDAO bookDAO;
-    //private WareHouse wareHouse;
+    private static final Logger logger = LoggerFactory.getLogger(BookService.class);
 
     public void writeOffBook(int bookId) {
         try {
@@ -83,16 +89,29 @@ public class BookService implements IService<Book> {
 
     @Override
     public void add(Book item) {
+        Session session = HibernateUtil.getSession();
+        Transaction tx = null;
+
         try {
-            Book book = bookDAO.findById(item.getBookId());
-            if (book != null) {
-                System.out.println("Книга с таким id же существует, ее данные будут обновлены");
-                bookDAO.update(item);
-            } else {
-                bookDAO.create(item);
+            if (bookDAO.existsByNameAndAuthor(item.getName(), item.getAuthor())) {
+                logger.warn("Книга '{}' автора '{}' уже существует",
+                        item.getName(), item.getAuthor());
+                throw new RuntimeException("Книга уже существует");
             }
-        } catch (SQLException e) {
-            throw new RuntimeException("Fail to add book " + item.getBookId() + " in warehouseSevice in add()" + e.getMessage());
+
+            tx = session.beginTransaction();
+            bookDAO.create(item);
+            tx.commit();
+            logger.info("Книга '{}' успешно добавлена", item.getName());
+
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            logger.error("Ошибка при добавлении книги", e);
+            throw new RuntimeException("Ошибка при добавлении книги", e);
+        } finally {
+            session.close();
         }
     }
 

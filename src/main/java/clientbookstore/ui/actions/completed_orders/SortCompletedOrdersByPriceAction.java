@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.completed_orders;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.model.entity.Order;
 import clientbookstore.ui.actions.IAction;
 import org.slf4j.Logger;
@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SortCompletedOrdersByPriceAction implements IAction {
-    private DataManager dataManager;
+    private MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(SortCompletedOrdersByPriceAction.class);
 
-    public SortCompletedOrdersByPriceAction(DataManager dataManager) {
+    public SortCompletedOrdersByPriceAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
 

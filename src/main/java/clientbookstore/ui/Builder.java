@@ -1,6 +1,6 @@
 package clientbookstore.ui;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.dependesies.annotation.PostConstruct;
 import clientbookstore.ui.action_factory.ActionFactory;
@@ -10,7 +10,7 @@ public class Builder {
     private Menu rootMenu;
 
     @Inject
-    private DataManager dataManager;
+    private MainContr dataManager;
 
     @Inject
     private ActionFactory actionFactory;

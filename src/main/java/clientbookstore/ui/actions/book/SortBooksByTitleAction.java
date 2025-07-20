@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.book;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.model.enums.TypeSortBooks;
 import clientbookstore.model.entity.Book;
 import clientbookstore.ui.actions.IAction;
@@ -11,10 +11,10 @@ import java.util.List;
 
 public class SortBooksByTitleAction implements IAction {
 
-    private DataManager dataManager;
+    private MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(SortBooksByTitleAction.class);
 
-    public SortBooksByTitleAction(DataManager dataManager) {
+    public SortBooksByTitleAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
     @Override

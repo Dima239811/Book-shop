@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.order;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.model.enums.OrderStatus;
 import clientbookstore.model.exception.IncorrectNumberException;
 import clientbookstore.ui.actions.IAction;
@@ -10,10 +10,10 @@ import org.slf4j.LoggerFactory;
 import java.util.Scanner;
 
 public class ChangeOrderStatusAction implements IAction {
-    private DataManager dataManager;
+    private MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(ChangeOrderStatusAction.class);
 
-    public ChangeOrderStatusAction(DataManager dataManager) {
+    public ChangeOrderStatusAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
 

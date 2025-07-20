@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.csv.customer;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.model.exception.DataExportException;
 import clientbookstore.ui.actions.IAction;
 import org.slf4j.Logger;
@@ -9,11 +9,11 @@ import org.slf4j.LoggerFactory;
 import java.util.Scanner;
 
 public class ExportCustomerAction implements IAction {
-    private final DataManager dataManager;
+    private final MainContr dataManager;
     private final Scanner scanner;
     private static final Logger logger = LoggerFactory.getLogger(ExportCustomerAction.class);
 
-    public ExportCustomerAction(DataManager dataManager) {
+    public ExportCustomerAction(MainContr dataManager) {
         this.dataManager = dataManager;
         this.scanner = new Scanner(System.in);
     }

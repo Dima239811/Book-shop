@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DataManager {
+public class MainContr {
     @Inject
     private BookService wareHouseService;
 

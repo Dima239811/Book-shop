@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.book;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.model.entity.Book;
 import clientbookstore.ui.actions.IAction;
 import clientbookstore.util.AppConfig;
@@ -10,10 +10,10 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 public class ShowStaleBooksAction implements IAction {
-    private final DataManager dataManager;
+    private final MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(ShowStaleBooksAction.class);
 
-    public ShowStaleBooksAction(DataManager dataManager) {
+    public ShowStaleBooksAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
 

@@ -1,6 +1,6 @@
 package clientbookstore.ui.action_factory;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.ui.actions.IAction;
 
@@ -24,7 +24,7 @@ import clientbookstore.ui.actions.order.*;
 public class DefaultActionFactory implements ActionFactory {
 
     @Inject
-    private DataManager dataManager;
+    private MainContr dataManager;
 
     @Override
     public IAction createAddBookAction() {

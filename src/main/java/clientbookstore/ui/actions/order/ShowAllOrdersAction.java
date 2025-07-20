@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.order;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 
 import clientbookstore.model.entity.Order;
 import clientbookstore.ui.actions.IAction;
@@ -10,11 +10,11 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 public class ShowAllOrdersAction implements IAction {
-    private DataManager dataManager;
+    private MainContr dataManager;
 
     private static final Logger logger = LoggerFactory.getLogger(ShowAllOrdersAction.class);
 
-    public ShowAllOrdersAction(DataManager dataManager) {
+    public ShowAllOrdersAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
 

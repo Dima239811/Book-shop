@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.request;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 
 import clientbookstore.model.entity.RequestBook;
 import clientbookstore.ui.actions.IAction;
@@ -11,9 +11,9 @@ import java.util.List;
 
 public class SortRequestsByCountAction implements IAction {
 
-    private DataManager dataManager;
+    private MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(SortRequestsByCountAction.class);
-    public SortRequestsByCountAction(DataManager dataManager) {
+    public SortRequestsByCountAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
 

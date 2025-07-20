@@ -1,6 +1,9 @@
 package clientbookstore.util;
 
+import clientbookstore.model.entity.Book;
 import clientbookstore.model.entity.Customer;
+import clientbookstore.model.entity.Order;
+import clientbookstore.model.entity.RequestBook;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -19,7 +22,7 @@ public class HibernateUtil {
                     .build();
 
             sessionFactory = new MetadataSources(registry)
-                    .addAnnotatedClass(Customer.class)
+                    .addAnnotatedClass(Book.class)
                     .buildMetadata()
                     .buildSessionFactory();
 

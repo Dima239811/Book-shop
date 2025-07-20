@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.csv.request;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.model.exception.DataImportException;
 
 import clientbookstore.model.entity.RequestBook;
@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ImportRequestAction implements IAction {
-    private final DataManager dataManager;
+    private final MainContr dataManager;
     private final Scanner scanner;
     private static final Logger logger = LoggerFactory.getLogger(ImportRequestAction.class);
 
-    public ImportRequestAction(DataManager dataManager) {
+    public ImportRequestAction(MainContr dataManager) {
         this.dataManager = dataManager;
         this.scanner = new Scanner(System.in);
     }

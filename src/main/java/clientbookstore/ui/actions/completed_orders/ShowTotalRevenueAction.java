@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.completed_orders;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 
 import clientbookstore.ui.actions.IAction;
 import org.slf4j.Logger;
@@ -12,10 +12,10 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class ShowTotalRevenueAction implements IAction {
-    private DataManager dataManager;
+    private MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(ShowTotalRevenueAction.class);
 
-    public ShowTotalRevenueAction(DataManager dataManager) {
+    public ShowTotalRevenueAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
 

@@ -1,6 +1,6 @@
 package clientbookstore.ui;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 
 import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.dependesies.annotation.PostConstruct;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class MenuController {
 
     @Inject
-    private DataManager dataManager;
+    private MainContr dataManager;
 
     @Inject
     private ActionFactory actionFactory;

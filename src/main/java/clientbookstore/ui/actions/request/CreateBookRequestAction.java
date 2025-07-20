@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.request;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.model.entity.Book;
 import clientbookstore.model.entity.Customer;
 import clientbookstore.model.entity.RequestBook;
@@ -12,10 +12,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CreateBookRequestAction implements IAction {
-    private DataManager dataManager;
+    private MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(CreateBookRequestAction.class);
 
-    public CreateBookRequestAction(DataManager dataManager) {
+    public CreateBookRequestAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
 

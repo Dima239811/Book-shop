@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.customer;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 
 import clientbookstore.model.entity.Customer;
 import clientbookstore.ui.actions.IAction;
@@ -11,9 +11,9 @@ import java.util.List;
 
 public class ShowAllCustomer implements IAction {
     private static final Logger logger = LoggerFactory.getLogger(ShowAllCustomer.class);
-    private DataManager dataManager;
+    private MainContr dataManager;
 
-    public ShowAllCustomer(DataManager dataManager) {
+    public ShowAllCustomer(MainContr dataManager) {
         this.dataManager = dataManager;
     }
     @Override

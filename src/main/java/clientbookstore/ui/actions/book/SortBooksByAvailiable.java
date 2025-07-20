@@ -1,6 +1,6 @@
 package clientbookstore.ui.actions.book;
 
-import clientbookstore.controller.DataManager;
+import clientbookstore.controller.MainContr;
 import clientbookstore.model.enums.TypeSortBooks;
 import clientbookstore.model.entity.Book;
 import clientbookstore.ui.actions.IAction;
@@ -10,10 +10,10 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 public class SortBooksByAvailiable implements IAction {
-    private DataManager dataManager;
+    private MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(SortBooksByAvailiable.class);
 
-    public SortBooksByAvailiable(DataManager dataManager) {
+    public SortBooksByAvailiable(MainContr dataManager) {
         this.dataManager = dataManager;
     }
 
