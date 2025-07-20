@@ -1501,3 +1501,38 @@ Caused by: org.postgresql.util.PSQLException: ОШИБКА: неверное з�
 2025-07-20 13:23:10 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'опопооп' успешно добавлена автором 'плплплп'
 2025-07-20 13:24:16 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
 2025-07-20 13:24:16 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 1 книг
+2025-07-20 14:23:38 INFO  [main] org.reflections.Reflections - Reflections took 311 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-20 14:23:45 INFO  [main] c.u.a.customer.AddCustomerAction - Пользователь выбрал команду: добавление клиента
+2025-07-20 14:24:04 ERROR [main] c.u.a.customer.AddCustomerAction - Ошибка валидации при добавлении клиента: Некорректный формат email
+2025-07-20 14:24:35 INFO  [main] c.u.a.customer.AddCustomerAction - Пользователь выбрал команду: добавление клиента
+2025-07-20 14:24:51 INFO  [main] c.u.a.customer.AddCustomerAction - Успешно добавлен клиент: дима
+2025-07-20 14:28:40 INFO  [main] org.reflections.Reflections - Reflections took 151 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-20 14:28:47 INFO  [main] c.ui.actions.order.CreateOrderAction - Начало обработки команды: CreateOrderAction
+2025-07-20 14:28:50 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-20 14:28:50 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-20 14:28:51 WARN  [main] o.h.e.j.c.i.ConnectionProviderInitiator - HHH000022: c3p0 properties were encountered, but the c3p0 provider class was not found on the classpath; these properties are going to be ignored.
+2025-07-20 14:28:51 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-20 14:28:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-20 14:28:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-20 14:28:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-20 14:28:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-20 14:28:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-20 14:28:51 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-20 14:28:53 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-20 14:28:53 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@418f0534] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-20 14:28:53 ERROR [main] c.ui.actions.order.CreateOrderAction - Ошибка валидации: Книга с ID 1 не найдена
+2025-07-20 14:30:28 INFO  [main] org.reflections.Reflections - Reflections took 169 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-20 14:30:45 INFO  [main] c.ui.actions.order.CreateOrderAction - Начало обработки команды: CreateOrderAction
+2025-07-20 14:30:46 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-20 14:30:46 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-20 14:30:46 WARN  [main] o.h.e.j.c.i.ConnectionProviderInitiator - HHH000022: c3p0 properties were encountered, but the c3p0 provider class was not found on the classpath; these properties are going to be ignored.
+2025-07-20 14:30:46 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-20 14:30:46 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-20 14:30:46 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-20 14:30:46 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-20 14:30:46 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-20 14:30:46 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-20 14:30:46 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-20 14:30:48 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-20 14:30:48 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4db0ba1c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-20 14:30:48 ERROR [main] c.ui.actions.order.CreateOrderAction - Ошибка валидации: No enum constant clientbookstore.model.enums.StatusBook.в наличии

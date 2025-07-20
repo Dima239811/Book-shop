@@ -48,10 +48,11 @@ public class Builder {
 
         rootMenu.addMenuItem(new MenuItem("Операции с книгами", null, booksMenu));
 
-        // клиенть
+        // клиенты
         Menu customersMenu = new Menu("Работа с клиентами");
         customersMenu.addMenuItem(new MenuItem("Просмотр всех клиентов",
                 actionFactory.showAllCustomer(), null));
+        customersMenu.addMenuItem(new MenuItem("Добавить клиента", actionFactory.addCustomerAction(), null));
 
         rootMenu.addMenuItem(new MenuItem("Клиенты", null, customersMenu));
 

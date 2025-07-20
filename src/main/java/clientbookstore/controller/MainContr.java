@@ -299,6 +299,14 @@ public class MainContr {
                 .collect(Collectors.toList());
     }
 
+    public void addCustomer(Customer customer) {
+        customerService.add(customer);
+    }
+
+    public Customer getCustomerById(int id) {
+        return customerService.getById(id);
+    }
+
 
 //    public void saveStateToJson(String filePath) {
 //        AppState state = new AppState(

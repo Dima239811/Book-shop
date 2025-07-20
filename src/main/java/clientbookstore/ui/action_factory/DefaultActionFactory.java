@@ -15,6 +15,7 @@ import clientbookstore.ui.actions.csv.order.ExportOrderAction;
 import clientbookstore.ui.actions.csv.order.ImportOrderAction;
 import clientbookstore.ui.actions.csv.request.ExportRequestAction;
 import clientbookstore.ui.actions.csv.request.ImportRequestAction;
+import clientbookstore.ui.actions.customer.AddCustomerAction;
 import clientbookstore.ui.actions.customer.ShowAllCustomer;
 import clientbookstore.ui.actions.request.*;
 import clientbookstore.ui.actions.order.*;
@@ -184,5 +185,10 @@ public class DefaultActionFactory implements ActionFactory {
     @Override
     public IAction showStaleBooksAction() {
         return new ShowStaleBooksAction(dataManager);
+    }
+
+    @Override
+    public IAction addCustomerAction() {
+        return new AddCustomerAction(dataManager);
     }
 }
