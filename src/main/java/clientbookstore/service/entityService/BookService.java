@@ -12,7 +12,7 @@ import clientbookstore.repo.dao.BookDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-public class WareHouseService implements IService<Book> {
+public class BookService implements IService<Book> {
 
     @Inject
     private BookDAO bookDAO;

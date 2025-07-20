@@ -2,32 +2,37 @@ package clientbookstore.model.entity;
 
 
 import clientbookstore.model.enums.StatusBook;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "book")
 public class Book {
+    @Column(nullable = false)
     private String name;
-    private String authtor;
-    private int year;
-    private double price;
-    private StatusBook status;  // в наличии или отсутствует
-    private int bookId;
-    //private static int count = 0;
 
+    @Column(nullable = false)
+    private String author;
+
+    @Column(nullable = false)
+    private int year;
+
+    @Column(nullable = false)
+    private double price;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, name = "status")
+    private StatusBook status;  // в наличии или отсутствует
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int bookId;
 
     public Book() { }
 
-//    public Book(String name, String authtor, int year, double price) {
-//        this.name = name;
-//        this.authtor = authtor;
-//        this.year = year;
-//        this.price = price;
-//        this.status = StatusBook.IN_STOCK;
-//        this.bookId = count;
-//        count++;
-//    }
-
     public Book(String name, String authtor, int year, double price, StatusBook status) {
         this.name = name;
-        this.authtor = authtor;
+        this.author = authtor;
         this.year = year;
         this.price = price;
         this.status = status;
@@ -35,7 +40,7 @@ public class Book {
 
     public Book(String name, String authtor, int year, double price, StatusBook status, int bookId) {
         this.name = name;
-        this.authtor = authtor;
+        this.author = authtor;
         this.year = year;
         this.price = price;
         this.status = status;
@@ -50,12 +55,12 @@ public class Book {
         this.name = name;
     }
 
-    public String getAuthtor() {
-        return authtor;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthtor(String authtor) {
-        this.authtor = authtor;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public int getYear() {
@@ -94,7 +99,7 @@ public class Book {
     public String toString() {
         return String.format("Книга: %s | Автор: %s | Год: %d | Цена: %.2f | %s | ID: %d",
                 name,
-                authtor,
+                author,
                 year,
                 price,
                 status.getValue(), // Используем локализованное значение статуса

@@ -53,7 +53,7 @@ public class OrderCsvService implements ICsvService<Order> {
 
                         b.getBookId(),
                         quote(b.getName()),
-                        quote(b.getAuthtor()),
+                        quote(b.getAuthor()),
                         b.getYear(),
                         b.getPrice(),
                         b.getStatus().getValue(),

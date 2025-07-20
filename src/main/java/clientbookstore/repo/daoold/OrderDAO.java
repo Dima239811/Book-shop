@@ -1,4 +1,4 @@
-package clientbookstore.repo.dao;
+package clientbookstore.repo.daoold;
 
 import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.model.enums.OrderStatus;

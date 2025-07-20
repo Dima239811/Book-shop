@@ -3,7 +3,7 @@ package clientbookstore.service.entityService;
 import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.dependesies.annotation.PostConstruct;
 import clientbookstore.model.entity.Customer;
-import clientbookstore.repo.dao.CustomerDAO;
+import clientbookstore.repo.daoold.CustomerDAO;
 
 import java.sql.SQLException;
 import java.util.Collections;

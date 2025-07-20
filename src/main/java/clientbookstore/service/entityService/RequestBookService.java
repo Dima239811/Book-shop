@@ -6,7 +6,7 @@ import clientbookstore.model.enums.RequestStatus;
 import clientbookstore.model.entity.Book;
 import clientbookstore.model.entity.Customer;
 import clientbookstore.model.entity.RequestBook;
-import clientbookstore.repo.dao.RequestBookDAO;
+import clientbookstore.repo.daoold.RequestBookDAO;
 
 import java.sql.SQLException;
 import java.util.List;

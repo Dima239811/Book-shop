@@ -15,6 +15,7 @@ public enum StatusBook {
     }
 
     public static StatusBook fromValue(String value) {
+        System.out.println("Попытка преобразования: " + value);
         for (StatusBook status : StatusBook.values()) {
             if (status.getValue().equalsIgnoreCase(value)) {
                 return status;

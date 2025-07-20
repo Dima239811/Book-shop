@@ -50,6 +50,18 @@
             <version>42.7.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.4.4.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -81,13 +93,10 @@
                 <configuration>
                     <configLocation>config/checkstyle.xml</configLocation>
                     <suppressionsLocation>config/suppressions.xml</suppressionsLocation>
-                    <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
                     <failOnViolation>true</failOnViolation>
                     <linkXRef>false</linkXRef>
-                    <properties>
-                        <checkstyle.config.path>config/</checkstyle.config.path>
-                    </properties>
+
                 </configuration>
             </plugin>
 

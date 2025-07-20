@@ -1,4 +1,4 @@
-package clientbookstore.repo.dao;
+package clientbookstore.repo.daoold;
 
 import clientbookstore.model.entity.Customer;
 import clientbookstore.repo.util.DBConnection;

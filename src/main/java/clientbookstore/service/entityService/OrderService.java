@@ -7,7 +7,7 @@ import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.model.enums.OrderStatus;
 
 import clientbookstore.model.entity.Order;
-import clientbookstore.repo.dao.OrderDAO;
+import clientbookstore.repo.daoold.OrderDAO;
 
 import java.sql.SQLException;
 import java.util.Date;

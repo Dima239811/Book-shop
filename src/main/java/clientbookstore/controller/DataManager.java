@@ -13,7 +13,7 @@ import clientbookstore.service.csv.ICsvService;
 import clientbookstore.service.entityService.CustomerService;
 import clientbookstore.service.entityService.OrderService;
 import clientbookstore.service.entityService.RequestBookService;
-import clientbookstore.service.entityService.WareHouseService;
+import clientbookstore.service.entityService.BookService;
 import clientbookstore.util.AppConfig;
 
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 
 public class DataManager {
     @Inject
-    private WareHouseService wareHouseService;
+    private BookService wareHouseService;
 
     @Inject
     private OrderService orderService;
