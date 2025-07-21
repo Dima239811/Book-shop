@@ -1,17 +1,17 @@
 package clientbookstore.repo.dao;
 
-import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
-public interface GenericDao<T, PK extends Serializable> {
+public interface GenericDao<T> {
 
-    PK save(T entity);
+    void create(T entity) throws SQLException;
 
-    void update(T entity);
+    void update(T entity) throws SQLException;
 
-    void delete(PK id);
+    void delete(int id) throws SQLException;
 
-    List<T> findAll();
+    List<T> getAll() throws SQLException;
 
-    T find(PK id);
+    T findById(int id) throws SQLException;
 }

@@ -6,7 +6,7 @@ import org.hibernate.Session;
 
 import java.sql.SQLException;
 
-public class BookDAO extends HibernateAbstractDao<Book, Integer> {
+public class BookDAO extends HibernateAbstractDao<Book> {
 
     public BookDAO() {
         super(Book.class);

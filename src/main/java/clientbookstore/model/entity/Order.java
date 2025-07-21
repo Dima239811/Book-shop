@@ -1,17 +1,36 @@
 package clientbookstore.model.entity;
 
+import clientbookstore.model.converters.OrderStatusConverter;
 import clientbookstore.model.enums.OrderStatus;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
+@Entity
+@Table(name = "orders")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int orderId;
+
+    @ManyToOne
+    @JoinColumn(name = "bookid", nullable = false)
     private Book book;
+
+    @ManyToOne
+    @JoinColumn(name = "customerid", nullable = false)
     private Customer customer;
+
+    @Column(name = "dateorder", nullable = false)
     private Date orderDate;
+
+    @Column(name = "price", nullable = false)
     private double finalPrice;
+
+    @Convert(converter = OrderStatusConverter.class)
+    @Column(nullable = false)
     private OrderStatus status;  // создан/ выполнен/ отменен
-    //private static int orderCount = 0;
 
     public Order(Book book, Customer customer, Date orderDate, double finalPrice) {
         this.book = book;

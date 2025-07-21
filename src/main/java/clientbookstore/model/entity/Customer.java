@@ -1,11 +1,28 @@
 package clientbookstore.model.entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "customer")
 public class Customer {
+    @Column(name = "fullName", nullable = false)
     private String fullName;
+
+    @Column(name = "age", nullable = false)
     private int age;
+
+    @Column(name = "phoneNumber", nullable = false, unique = true)
     private String phoneNumber;
+
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @Column(name = "address", nullable = true)
     private String address;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int customerID;
 
     public Customer() { }

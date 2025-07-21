@@ -6,7 +6,7 @@ import clientbookstore.model.enums.RequestStatus;
 import clientbookstore.model.entity.Book;
 import clientbookstore.model.entity.Customer;
 import clientbookstore.model.entity.RequestBook;
-import clientbookstore.repo.daoold.RequestBookDAO;
+import clientbookstore.repo.dao.RequestBookDAO;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -39,7 +39,7 @@ public class RequestBookService implements IService<RequestBook> {
 
     public List<RequestBook> sortRequest(String criteria) {
         try {
-            List<RequestBook> requestBooks = requestBookDAO.getAll();
+            List<RequestBook> requestBooks = requestBookDAO.getAllWithBooksAndCustomers();
             if (criteria.equals("по алфавиту")) {
                 requestBooks.sort(new LetterRequestComporator());
                 return requestBooks;
@@ -66,7 +66,7 @@ public class RequestBookService implements IService<RequestBook> {
     @Override
     public List<RequestBook> getAll() {
         try {
-            return requestBookDAO.getAll();
+            return requestBookDAO.getAllWithBooksAndCustomers();
         } catch (SQLException e) {
             throw new RuntimeException("Fail to get all requests in RequestBookService in getAll()" + e.getMessage());
         }

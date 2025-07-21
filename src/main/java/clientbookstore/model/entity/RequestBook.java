@@ -1,15 +1,29 @@
 package clientbookstore.model.entity;
 
 
+import clientbookstore.model.converters.RequestStatusConverter;
 import clientbookstore.model.enums.RequestStatus;
 import clientbookstore.model.enums.StatusBook;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "request")
 public class RequestBook {
+    @ManyToOne
+    @JoinColumn(name = "customerId", nullable = false)
     private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "bookId", nullable = false)
     private Book book;
+
+    @Convert(converter = RequestStatusConverter.class)
+    @Column(name = "status", nullable = false)
     private RequestStatus status;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private static int countId = 0;
 
     public RequestBook() { }
 
@@ -17,8 +31,6 @@ public class RequestBook {
         this.customer = customer;
         this.book = book;
         this.status = RequestStatus.OPEN;
-        this.id = countId;
-        countId++;
     }
 
     public RequestBook(Customer customer, Book book, RequestStatus status, int id) {
@@ -26,10 +38,6 @@ public class RequestBook {
         this.book = book;
         this.status = status;
         this.id = id;
-        countId++;
-    }
-    public static void setCountId(int value) {
-        countId = value;
     }
 
     public Customer getCustomer() {

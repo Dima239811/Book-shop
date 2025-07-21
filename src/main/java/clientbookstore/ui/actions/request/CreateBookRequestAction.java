@@ -38,18 +38,18 @@ public class CreateBookRequestAction implements IAction {
             }
 
             System.out.println("Ваша книга найдена!");
-            System.out.println("Введите имя клиента");
-            String name = scanner.nextLine();
-            System.out.println("Введите возраст клиента");
-            int age = scanner.nextInt();
+
+            // Поиск клиента
+            System.out.println("\nКлиент должен быть в базе!");
+            System.out.print("Введите ID клиента: ");
+            int customerId = scanner.nextInt();
             scanner.nextLine();
-            System.out.println("Введите email клиента");
-            String email = scanner.nextLine();
-            System.out.println("Введите адресс клиента");
-            String address = scanner.nextLine();
-            System.out.println("Введите номер телефона клиента");
-            String phone = scanner.nextLine();
-            Customer customer = new Customer(name, age, phone, email, address);
+
+            Customer customer = dataManager.getCustomerById(customerId);
+            if (customer == null) {
+                throw new IllegalArgumentException("Клиент с ID " + customerId + " не найден");
+            }
+            System.out.println("Найден клиент: " + customer.getFullName());
 
             RequestBook requestBook = new RequestBook(customer, book);
 

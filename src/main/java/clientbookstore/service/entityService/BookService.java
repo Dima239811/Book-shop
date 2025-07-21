@@ -98,7 +98,6 @@ public class BookService implements IService<Book> {
 
             bookDAO.create(item);
             logger.info("Книга '{}' успешно добавлена", item.getName());
-
         } catch (Exception e) {
             logger.error("Ошибка при добавлении книги", e);
             throw new RuntimeException("Ошибка при добавлении книги", e);

@@ -55,7 +55,7 @@ public class OrderService implements IService<Order> {
 
     public List<Order> sortOrders(String criteria) {
         try {
-            List<Order> orders = orderDAO.getAll();
+            List<Order> orders = orderDAO.getAllWithBooksAndCustomers();
             return switch (criteria.toLowerCase()) {
                 case "по дате" -> {
                     orders.sort(new DateOrderComporator());
@@ -80,7 +80,7 @@ public class OrderService implements IService<Order> {
     }
 
     private List<Order> filterOrdersByDateAndStatus(Date from, Date to, OrderStatus status) throws SQLException {
-        return orderDAO.getAll().stream()
+        return orderDAO.getAllWithBooksAndCustomers().stream()
                 .filter(order -> order.getStatus() == status)
                 .filter(order -> !order.getOrderDate().before(from) && !order.getOrderDate().after(to))
                 .collect(Collectors.toList());
@@ -127,7 +127,7 @@ public class OrderService implements IService<Order> {
     @Override
     public List<Order> getAll() {
         try {
-            return orderDAO.getAll();
+            return orderDAO.getAllWithBooksAndCustomers();
         } catch (SQLException e) {
             throw new RuntimeException("Fail getAll " +  " in orderSevice in getAll()" + e.getMessage());
         }

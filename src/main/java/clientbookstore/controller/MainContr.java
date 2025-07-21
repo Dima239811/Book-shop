@@ -111,9 +111,7 @@ public class MainContr {
         bookService.add(book);
     }
 
-    // ИСПРАВИТЬ НЕ ДОБАВЛЯТЬ ПОЛЬЗОВАТЕЛЯ
     public void addRequest(RequestBook requestBook) {
-            //customerService.add(requestBook.getCustomer());
             requestService.add(requestBook);
     }
 

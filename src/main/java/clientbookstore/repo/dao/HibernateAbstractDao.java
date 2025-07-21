@@ -1,18 +1,15 @@
 package clientbookstore.repo.dao;
 
-import clientbookstore.repo.daoold.GenericDAO;
 import clientbookstore.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class HibernateAbstractDao <T, PK extends Serializable> implements GenericDAO<T> {
+public class HibernateAbstractDao <T> implements GenericDao<T> {
     private static final Logger logger = LoggerFactory.getLogger(HibernateAbstractDao.class);
     private final Class<T> type;
 
@@ -86,9 +83,7 @@ public class HibernateAbstractDao <T, PK extends Serializable> implements Generi
                     .getResultList();
         } catch (Exception e) {
             logger.error("Error getting all " + type.getName(), e);
-            return new ArrayList<>();
-        } finally {
-
+            throw new SQLException("Error fetching all " + type.getName(), e);
         }
     }
 }
