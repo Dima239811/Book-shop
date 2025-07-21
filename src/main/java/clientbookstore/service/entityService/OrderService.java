@@ -7,7 +7,7 @@ import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.model.enums.OrderStatus;
 
 import clientbookstore.model.entity.Order;
-import clientbookstore.repo.daoold.OrderDAO;
+import clientbookstore.repo.dao.OrderDAO;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -23,8 +23,7 @@ public class OrderService implements IService<Order> {
         try {
             Order order = orderDAO.findById(orderId);
             if (order == null) {
-                System.out.println("Заказ с id: " + orderId + " не существует");
-                return;
+                throw new RuntimeException("Заказ с id: " + orderId + " не существует");
             }
             order.setStatus(OrderStatus.CANCELLED);
             try {
@@ -41,8 +40,7 @@ public class OrderService implements IService<Order> {
         try {
             Order order = orderDAO.findById(orderId);
             if (order == null) {
-                System.out.println("Заказ с id: " + orderId + " не существует");
-                return;
+                throw new RuntimeException("Заказ с id: " + orderId + " не существует");
             }
             order.setStatus(status);
             try {
@@ -58,20 +56,24 @@ public class OrderService implements IService<Order> {
     public List<Order> sortOrders(String criteria) {
         try {
             List<Order> orders = orderDAO.getAll();
-            switch (criteria.toLowerCase()) {
-                case "по дате":
+            return switch (criteria.toLowerCase()) {
+                case "по дате" -> {
                     orders.sort(new DateOrderComporator());
-                    return orders;
-                case "по цене":
+                    yield orders;
+                }
+                case "по цене" -> {
                     orders.sort(new PriceOrderComporator());
-                    return orders;
-                case "по статусу":
+                    yield orders;
+                }
+                case "по статусу" -> {
                     orders.sort(new StatusOrderComporator());
-                    return orders;
-                default:
+                    yield orders;
+                }
+                default -> {
                     System.out.println("Ошибка: неопознанный критерий сортировки.");
-                    return orders;
-            }
+                    yield orders;
+                }
+            };
         } catch (SQLException e) {
             throw new RuntimeException("Fail to get all order " +  " in orderSevice in sortOrders()" + e.getMessage());
         }
@@ -87,17 +89,17 @@ public class OrderService implements IService<Order> {
     public List<Order> sortPerformOrders(String criteria, Date from, Date to) {
         try {
             List<Order> completedOrders = filterOrdersByDateAndStatus(from, to, OrderStatus.COMPLETED);
-            //System.out.println("выполненные заказы в методе " + completedOrders);
-            switch (criteria.toLowerCase()) {
-                case "по дате":
+            return switch (criteria.toLowerCase()) {
+                case "по дате" -> {
                     completedOrders.sort(new DateOrderComporator());
-                    return completedOrders;
-                case "по цене":
+                    yield completedOrders;
+                }
+                case "по цене" -> {
                     completedOrders.sort(new PriceOrderComporator());
-                    return completedOrders;
-                default:
-                    return completedOrders;
-            }
+                    yield completedOrders;
+                }
+                default -> completedOrders;
+            };
         } catch (SQLException e) {
             throw new RuntimeException("Fail sortPerformOrders " +  " in orderSevice in sortPerformOrders()" + e.getMessage());
         }

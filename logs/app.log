@@ -1536,3 +1536,553 @@ Caused by: org.postgresql.util.PSQLException: ОШИБКА: неверное з�
 2025-07-20 14:30:48 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 2025-07-20 14:30:48 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4db0ba1c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2025-07-20 14:30:48 ERROR [main] c.ui.actions.order.CreateOrderAction - Ошибка валидации: No enum constant clientbookstore.model.enums.StatusBook.в наличии
+2025-07-21 17:30:09 INFO  [main] org.reflections.Reflections - Reflections took 87 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-21 17:30:13 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 17:30:24 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 17:30:24 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 17:30:24 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 17:30:24 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 17:30:24 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 17:30:24 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 17:30:24 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 17:30:24 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 17:30:24 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 17:30:25 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 17:30:25 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3e6748ae] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 17:30:26 ERROR [main] c.service.entityService.BookService - Ошибка при добавлении книги
+java.lang.IllegalStateException: Session/EntityManager is closed
+	at org.hibernate.internal.AbstractSharedSessionContract.checkOpen(AbstractSharedSessionContract.java:475)
+	at org.hibernate.engine.spi.SharedSessionContractImplementor.checkOpen(SharedSessionContractImplementor.java:187)
+	at org.hibernate.internal.AbstractSharedSessionContract.beginTransaction(AbstractSharedSessionContract.java:564)
+	at clientbookstore.service.entityService.BookService.add(BookService.java:102)
+	at clientbookstore.controller.MainContr.addBookToWareHouse(MainContr.java:160)
+	at clientbookstore.ui.actions.book.AddBookAction.execute(AddBookAction.java:67)
+	at clientbookstore.ui.Navigator.navigate(Navigator.java:51)
+	at clientbookstore.ui.MenuController.run(MenuController.java:55)
+	at clientbookstore.Main.main(Main.java:39)
+2025-07-21 17:30:26 ERROR [main] c.ui.actions.book.AddBookAction - Неожиданная ошибка при добавлении книги
+java.lang.RuntimeException: Ошибка при добавлении книги на склад: Ошибка при добавлении книги
+	at clientbookstore.controller.MainContr.addBookToWareHouse(MainContr.java:169)
+	at clientbookstore.ui.actions.book.AddBookAction.execute(AddBookAction.java:67)
+	at clientbookstore.ui.Navigator.navigate(Navigator.java:51)
+	at clientbookstore.ui.MenuController.run(MenuController.java:55)
+	at clientbookstore.Main.main(Main.java:39)
+Caused by: java.lang.RuntimeException: Ошибка при добавлении книги
+	at clientbookstore.service.entityService.BookService.add(BookService.java:112)
+	at clientbookstore.controller.MainContr.addBookToWareHouse(MainContr.java:160)
+	... 4 common frames omitted
+Caused by: java.lang.IllegalStateException: Session/EntityManager is closed
+	at org.hibernate.internal.AbstractSharedSessionContract.checkOpen(AbstractSharedSessionContract.java:475)
+	at org.hibernate.engine.spi.SharedSessionContractImplementor.checkOpen(SharedSessionContractImplementor.java:187)
+	at org.hibernate.internal.AbstractSharedSessionContract.beginTransaction(AbstractSharedSessionContract.java:564)
+	at clientbookstore.service.entityService.BookService.add(BookService.java:102)
+	... 5 common frames omitted
+2025-07-21 17:35:57 INFO  [main] org.reflections.Reflections - Reflections took 70 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-21 17:36:01 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 17:36:05 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 17:36:05 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 17:36:05 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 17:36:05 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 17:36:05 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 17:36:05 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 17:36:05 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 17:36:05 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 17:36:06 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 17:36:06 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 17:36:06 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@44fd7ba4] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 17:36:07 ERROR [main] c.ui.actions.book.AddBookAction - Неожиданная ошибка при добавлении книги
+java.lang.RuntimeException: Ошибка при добавлении книги на склад: org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@2f3a8166 is closed
+	at clientbookstore.controller.MainContr.addBookToWareHouse(MainContr.java:169)
+	at clientbookstore.ui.actions.book.AddBookAction.execute(AddBookAction.java:67)
+	at clientbookstore.ui.Navigator.navigate(Navigator.java:51)
+	at clientbookstore.ui.MenuController.run(MenuController.java:55)
+	at clientbookstore.Main.main(Main.java:39)
+Caused by: java.lang.IllegalStateException: org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@2f3a8166 is closed
+	at org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.errorIfClosed(AbstractLogicalConnectionImplementor.java:37)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:142)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:273)
+	at org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.rollback(AbstractLogicalConnectionImplementor.java:121)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.rollback(JdbcResourceLocalTransactionCoordinatorImpl.java:290)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.rollback(TransactionImpl.java:142)
+	at clientbookstore.service.entityService.BookService.add(BookService.java:110)
+	at clientbookstore.controller.MainContr.addBookToWareHouse(MainContr.java:160)
+	... 4 common frames omitted
+2025-07-21 17:39:46 INFO  [main] org.reflections.Reflections - Reflections took 71 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-21 17:39:50 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 17:39:54 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 17:39:54 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 17:39:55 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 17:39:55 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 17:39:55 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 17:39:55 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 17:39:55 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 17:39:55 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 17:39:55 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 17:39:55 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 17:39:55 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@722531ab] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 17:39:56 INFO  [main] c.service.entityService.BookService - Книга 'вовоов' успешно добавлена
+2025-07-21 17:39:56 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'вовоов' успешно добавлена автором 'ашалалк'
+2025-07-21 17:40:04 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 17:40:04 ERROR [main] c.repo.dao.HibernateAbstractDao - Error getting all clientbookstore.model.entity.Book
+java.lang.IllegalArgumentException: No enum constant clientbookstore.model.enums.StatusBook.отсутствует
+	at java.base/java.lang.Enum.valueOf(Enum.java:273)
+	at org.hibernate.type.descriptor.java.EnumJavaType.fromName(EnumJavaType.java:239)
+	at org.hibernate.type.descriptor.java.EnumJavaType.wrap(EnumJavaType.java:107)
+	at org.hibernate.type.descriptor.java.EnumJavaType.wrap(EnumJavaType.java:33)
+	at org.hibernate.type.descriptor.jdbc.VarcharJdbcType$2.doExtract(VarcharJdbcType.java:118)
+	at org.hibernate.type.descriptor.jdbc.BasicExtractor.extract(BasicExtractor.java:44)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.getCurrentRowValue(JdbcValuesResultSetImpl.java:302)
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.getJdbcValue(RowProcessingStateStandardImpl.java:119)
+	at org.hibernate.sql.results.graph.basic.BasicResultAssembler.extractRawValue(BasicResultAssembler.java:52)
+	at org.hibernate.sql.results.graph.basic.BasicResultAssembler.assemble(BasicResultAssembler.java:59)
+	at org.hibernate.sql.results.graph.DomainResultAssembler.assemble(DomainResultAssembler.java:33)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.extractConcreteTypeStateValues(AbstractEntityInitializer.java:1081)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.initializeEntityInstance(AbstractEntityInitializer.java:838)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.initializeEntity(AbstractEntityInitializer.java:813)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.initializeInstance(AbstractEntityInitializer.java:799)
+	at org.hibernate.sql.results.internal.InitializersList.initializeInstance(InitializersList.java:70)
+	at org.hibernate.sql.results.internal.StandardRowReader.coordinateInitializers(StandardRowReader.java:109)
+	at org.hibernate.sql.results.internal.StandardRowReader.readRow(StandardRowReader.java:86)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:203)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:209)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:83)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:76)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:65)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$2(ConcreteSqmSelectQueryPlan.java:137)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:362)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:303)
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.doList(QuerySqmImpl.java:509)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:427)
+	at org.hibernate.query.Query.getResultList(Query.java:120)
+	at clientbookstore.repo.dao.HibernateAbstractDao.getAll(HibernateAbstractDao.java:86)
+	at clientbookstore.service.entityService.BookService.getAll(BookService.java:73)
+	at clientbookstore.controller.MainContr.getAllBooks(MainContr.java:234)
+	at clientbookstore.ui.actions.book.AllBooksListAction.execute(AllBooksListAction.java:27)
+	at clientbookstore.ui.Navigator.navigate(Navigator.java:51)
+	at clientbookstore.ui.MenuController.run(MenuController.java:55)
+	at clientbookstore.Main.main(Main.java:39)
+2025-07-21 17:40:04 INFO  [main] c.ui.actions.book.AllBooksListAction - Список книг пуст
+2025-07-21 17:42:21 INFO  [main] org.reflections.Reflections - Reflections took 73 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-21 17:42:25 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 17:42:25 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 17:42:25 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 17:42:25 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 17:42:25 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 17:42:25 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 17:42:25 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 17:42:25 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 17:42:25 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 17:42:26 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 17:42:26 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 17:42:26 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@427308f8] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 17:42:27 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 17:42:47 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 17:42:58 INFO  [main] c.service.entityService.BookService - Книга 'том сойер' успешно добавлена
+2025-07-21 17:42:58 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том сойер' успешно добавлена автором 'марк твен'
+2025-07-21 17:43:03 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 17:43:03 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 17:49:29 INFO  [main] org.reflections.Reflections - Reflections took 75 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-21 17:53:19 INFO  [main] org.reflections.Reflections - Reflections took 73 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-21 17:53:25 INFO  [main] c.ui.actions.book.WriteOffBookAction - пользователь выбрал списание книги
+2025-07-21 17:53:51 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 17:53:51 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 17:53:51 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 17:53:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 17:53:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 17:53:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 17:53:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 17:53:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 17:53:52 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 17:53:52 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 17:53:52 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6aff97d6] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 17:53:53 INFO  [main] c.service.entityService.BookService - Книга с id: 3 успешно списана
+2025-07-21 17:53:53 INFO  [main] c.ui.actions.book.WriteOffBookAction - книга с id = 3 успешно списана со склада
+2025-07-21 17:55:37 INFO  [main] org.reflections.Reflections - Reflections took 70 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-21 17:55:42 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 17:55:43 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 17:55:43 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 17:55:43 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 17:55:43 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 17:55:43 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 17:55:43 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 17:55:43 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 17:55:43 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 17:55:43 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 17:55:44 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 17:55:44 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@133aacbe] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 17:55:44 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 17:55:56 INFO  [main] c.ui.actions.book.WriteOffBookAction - пользователь выбрал списание книги
+2025-07-21 17:55:59 INFO  [main] c.service.entityService.BookService - Книга с id: 3 успешно списана
+2025-07-21 17:55:59 INFO  [main] c.ui.actions.book.WriteOffBookAction - книга с id = 3 успешно списана со склада
+2025-07-21 17:56:16 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 17:56:16 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 17:57:27 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 17:57:27 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 17:57:27 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 17:57:27 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 17:57:27 INFO  [main] c.ui.actions.book.WriteOffBookAction - пользователь выбрал списание книги
+2025-07-21 17:57:32 INFO  [main] c.service.entityService.BookService - Книга с id: 3 успешно списана
+2025-07-21 17:57:32 INFO  [main] c.ui.actions.book.WriteOffBookAction - книга с id = 3 успешно списана со склада
+2025-07-21 17:57:32 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 17:57:32 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 17:57:32 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 17:57:32 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 17:57:41 INFO  [main] c.ui.actions.book.WriteOffBookAction - пользователь выбрал списание книги
+2025-07-21 17:57:42 INFO  [main] c.service.entityService.BookService - Книга с id: 3 успешно списана
+2025-07-21 17:57:42 INFO  [main] c.ui.actions.book.WriteOffBookAction - книга с id = 3 успешно списана со склада
+2025-07-21 17:57:47 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 17:57:47 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 18:03:36 INFO  [main] org.reflections.Reflections - Reflections took 70 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-21 18:03:39 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:03:52 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:03:52 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:03:52 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:03:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:03:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:03:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:03:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:03:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:03:52 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:03:53 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:03:53 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4c24f3a2] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:03:53 INFO  [main] c.service.entityService.BookService - Книга 'история жизн' успешно добавлена
+2025-07-21 18:03:54 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'история жизн' успешно добавлена автором 'дима'
+2025-07-21 18:04:11 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 18:04:11 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 18:07:00 INFO  [main] org.reflections.Reflections - Reflections took 69 ms to scan 1 urls, producing 19 keys and 81 values
+2025-07-21 18:07:04 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:07:15 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:07:15 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:07:15 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:07:15 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:07:15 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:07:15 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:07:15 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:07:15 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:07:16 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:07:16 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:07:16 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@207dd1b7] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:07:17 INFO  [main] c.service.entityService.BookService - Книга 'дима ' успешно добавлена
+2025-07-21 18:07:17 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'дима ' успешно добавлена автором 'дима'
+2025-07-21 18:07:25 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 18:07:25 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 18:14:14 INFO  [main] org.reflections.Reflections - Reflections took 84 ms to scan 1 urls, producing 21 keys and 83 values
+2025-07-21 18:14:23 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:14:35 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:14:35 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:14:35 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:14:35 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:14:35 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:14:35 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:14:35 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:14:35 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:14:36 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:14:36 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:14:36 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5ac044ef] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:14:37 INFO  [main] c.service.entityService.BookService - Книга 'том сойер' успешно добавлена
+2025-07-21 18:14:37 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том сойер' успешно добавлена автором 'марк твен'
+2025-07-21 18:14:42 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 18:14:42 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 18:17:12 INFO  [main] org.reflections.Reflections - Reflections took 95 ms to scan 1 urls, producing 21 keys and 83 values
+2025-07-21 18:17:15 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:17:25 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:17:25 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:17:25 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:17:25 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:17:25 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:17:25 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:17:25 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:17:25 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:17:25 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:17:26 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:17:26 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5ac044ef] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:17:27 INFO  [main] c.service.entityService.BookService - Книга 'том сойер' успешно добавлена
+2025-07-21 18:17:27 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том сойер' успешно добавлена автором 'марк твен'
+2025-07-21 18:17:33 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 18:17:33 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 5 книг
+2025-07-21 18:30:20 INFO  [main] org.reflections.Reflections - Reflections took 71 ms to scan 1 urls, producing 21 keys and 83 values
+2025-07-21 18:30:34 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:30:52 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:30:52 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:30:52 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:30:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:30:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:30:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:30:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:30:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:30:52 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:30:53 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:30:53 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2776fd8f] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:30:53 INFO  [main] c.service.entityService.BookService - Книга 'том сойер' успешно добавлена
+2025-07-21 18:30:53 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том сойер' успешно добавлена автором 'марк твен'
+2025-07-21 18:30:59 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 18:30:59 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 6 книг
+2025-07-21 18:33:22 INFO  [main] org.reflections.Reflections - Reflections took 70 ms to scan 1 urls, producing 21 keys and 83 values
+2025-07-21 18:33:25 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:33:35 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:33:35 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:33:35 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:33:35 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:33:35 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:33:35 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:33:35 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:33:35 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:33:35 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:33:36 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:33:36 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@734ce281] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:33:37 INFO  [main] c.service.entityService.BookService - Книга 'том сойер' успешно добавлена
+2025-07-21 18:33:37 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том сойер' успешно добавлена автором 'марк твен'
+2025-07-21 18:33:47 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 18:33:47 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 6 книг
+2025-07-21 18:39:00 INFO  [main] org.reflections.Reflections - Reflections took 73 ms to scan 1 urls, producing 21 keys and 83 values
+2025-07-21 18:39:03 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:39:11 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:39:12 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:39:12 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:39:12 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:39:12 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:39:12 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:39:12 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:39:12 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:39:12 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:39:13 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:39:13 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2776fd8f] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:39:13 INFO  [main] c.service.entityService.BookService - Книга 'том сойе' успешно добавлена
+2025-07-21 18:39:13 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том сойе' успешно добавлена автором 'марк твен'
+2025-07-21 18:42:51 INFO  [main] org.reflections.Reflections - Reflections took 71 ms to scan 1 urls, producing 21 keys and 83 values
+2025-07-21 18:42:56 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:43:07 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:43:07 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:43:07 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:43:07 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:43:07 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:43:07 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:43:07 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:43:07 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:43:07 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:43:08 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:43:08 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76ac68b0] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:43:08 INFO  [main] c.service.entityService.BookService - Книга 'том сойер' успешно добавлена
+2025-07-21 18:43:08 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том сойер' успешно добавлена автором 'марк твен'
+2025-07-21 18:46:45 INFO  [main] org.reflections.Reflections - Reflections took 70 ms to scan 1 urls, producing 20 keys and 82 values
+2025-07-21 18:46:48 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:46:51 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:46:52 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:46:52 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:46:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:46:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:46:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:46:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:46:52 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:46:52 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:46:53 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:46:53 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@f559c74] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:46:53 INFO  [main] c.service.entityService.BookService - Книга 'дадпп' успешно добавлена
+2025-07-21 18:46:53 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'дадпп' успешно добавлена автором 'плплпл'
+2025-07-21 18:47:04 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 18:47:04 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 6 книг
+2025-07-21 18:52:38 INFO  [main] org.reflections.Reflections - Reflections took 76 ms to scan 1 urls, producing 20 keys and 82 values
+2025-07-21 18:52:41 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:52:50 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:52:51 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:52:51 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:52:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:52:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:52:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:52:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:52:51 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:52:51 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:52:52 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:52:52 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@59918c8f] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:52:52 INFO  [main] c.service.entityService.BookService - Книга 'том сойер' успешно добавлена
+2025-07-21 18:52:52 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том сойер' успешно добавлена автором 'марк твен'
+2025-07-21 18:53:00 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 18:53:00 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 6 книг
+2025-07-21 18:54:29 INFO  [main] org.reflections.Reflections - Reflections took 81 ms to scan 1 urls, producing 20 keys and 82 values
+2025-07-21 18:54:33 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:54:42 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:54:43 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:54:43 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:54:43 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:54:43 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:54:43 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:54:43 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:54:43 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:54:43 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:54:43 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:54:43 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1c74d19] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:54:44 INFO  [main] c.service.entityService.BookService - Книга 'том сойер' успешно добавлена
+2025-07-21 18:54:44 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том сойер' успешно добавлена автором 'марк твен'
+2025-07-21 18:57:06 INFO  [main] org.reflections.Reflections - Reflections took 70 ms to scan 1 urls, producing 20 keys and 82 values
+2025-07-21 18:57:09 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 18:57:21 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 18:57:21 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 18:57:21 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 18:57:21 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 18:57:21 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 18:57:21 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 18:57:21 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 18:57:21 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 18:57:21 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 18:57:22 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 18:57:22 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@65f3e805] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 18:57:22 INFO  [main] c.service.entityService.BookService - Книга 'том сойер' успешно добавлена
+2025-07-21 18:57:22 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том сойер' успешно добавлена автором 'марк твен'
+2025-07-21 18:57:31 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 18:57:31 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 6 книг
+2025-07-21 19:05:32 INFO  [main] org.reflections.Reflections - Reflections took 67 ms to scan 1 urls, producing 20 keys and 81 values
+2025-07-21 19:05:35 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 19:05:49 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 19:05:49 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 19:05:49 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 19:05:49 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 19:05:49 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 19:05:49 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 19:05:49 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 19:05:49 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 19:05:49 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 19:05:50 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 19:05:50 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1c62c3fd] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 19:05:50 ERROR [main] c.service.entityService.BookService - Ошибка при добавлении книги
+jakarta.persistence.TransactionRequiredException: no transaction is in progress
+	at org.hibernate.internal.AbstractSharedSessionContract.checkTransactionNeededForUpdateOperation(AbstractSharedSessionContract.java:517)
+	at org.hibernate.internal.SessionImpl.checkTransactionNeededForUpdateOperation(SessionImpl.java:2522)
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1394)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1389)
+	at clientbookstore.service.entityService.BookService.add(BookService.java:125)
+	at clientbookstore.controller.MainContr.addBookToWareHouse(MainContr.java:113)
+	at clientbookstore.ui.actions.book.AddBookAction.execute(AddBookAction.java:67)
+	at clientbookstore.ui.Navigator.navigate(Navigator.java:51)
+	at clientbookstore.ui.MenuController.run(MenuController.java:55)
+	at clientbookstore.Main.main(Main.java:30)
+2025-07-21 19:05:50 ERROR [main] c.ui.actions.book.AddBookAction - Неожиданная ошибка при добавлении книги
+java.lang.RuntimeException: Ошибка при добавлении книги
+	at clientbookstore.service.entityService.BookService.add(BookService.java:133)
+	at clientbookstore.controller.MainContr.addBookToWareHouse(MainContr.java:113)
+	at clientbookstore.ui.actions.book.AddBookAction.execute(AddBookAction.java:67)
+	at clientbookstore.ui.Navigator.navigate(Navigator.java:51)
+	at clientbookstore.ui.MenuController.run(MenuController.java:55)
+	at clientbookstore.Main.main(Main.java:30)
+Caused by: jakarta.persistence.TransactionRequiredException: no transaction is in progress
+	at org.hibernate.internal.AbstractSharedSessionContract.checkTransactionNeededForUpdateOperation(AbstractSharedSessionContract.java:517)
+	at org.hibernate.internal.SessionImpl.checkTransactionNeededForUpdateOperation(SessionImpl.java:2522)
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1394)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1389)
+	at clientbookstore.service.entityService.BookService.add(BookService.java:125)
+	... 5 common frames omitted
+2025-07-21 19:09:31 INFO  [main] org.reflections.Reflections - Reflections took 67 ms to scan 1 urls, producing 20 keys and 81 values
+2025-07-21 19:09:47 INFO  [main] org.reflections.Reflections - Reflections took 77 ms to scan 1 urls, producing 20 keys and 81 values
+2025-07-21 19:09:54 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 19:10:04 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 19:10:04 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 19:10:05 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 19:10:05 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 19:10:05 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 19:10:05 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 19:10:05 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 19:10:05 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 19:10:05 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 19:10:05 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 19:10:05 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2c60ce47] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 19:10:06 INFO  [main] c.service.entityService.BookService - Книга 'том сойер' успешно добавлена
+2025-07-21 19:10:06 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том сойер' успешно добавлена автором 'марк твен'
+2025-07-21 19:10:28 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 19:10:28 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 6 книг
+2025-07-21 19:26:02 INFO  [main] org.reflections.Reflections - Reflections took 69 ms to scan 1 urls, producing 20 keys and 81 values
+2025-07-21 19:26:06 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 19:26:18 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 19:26:18 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 19:26:18 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 19:26:18 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 19:26:18 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 19:26:18 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 19:26:18 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 19:26:18 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 19:26:18 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 19:26:19 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 19:26:19 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5e99e2cb] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 19:26:19 INFO  [main] c.service.entityService.BookService - Книга 'том соейр' успешно добавлена
+2025-07-21 19:26:19 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'том соейр' успешно добавлена автором 'марк твен'
+2025-07-21 19:26:24 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 19:26:24 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 7 книг
+2025-07-21 19:27:31 INFO  [main] org.reflections.Reflections - Reflections took 79 ms to scan 1 urls, producing 20 keys and 81 values
+2025-07-21 19:27:36 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-21 19:27:56 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 19:27:56 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 19:27:56 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 19:27:56 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 19:27:56 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 19:27:56 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 19:27:56 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 19:27:56 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 19:27:56 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 19:27:57 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 19:27:57 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1c62c3fd] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 19:27:57 INFO  [main] c.service.entityService.BookService - Книга 'граф монте кристо' успешно добавлена
+2025-07-21 19:27:57 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'граф монте кристо' успешно добавлена автором 'неизвестно'
+2025-07-21 19:27:59 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 19:27:59 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 8 книг
+2025-07-21 19:28:10 INFO  [main] c.ui.actions.book.WriteOffBookAction - пользователь выбрал списание книги
+2025-07-21 19:28:11 INFO  [main] c.service.entityService.BookService - Книга с id: 13 успешно списана
+2025-07-21 19:28:11 INFO  [main] c.ui.actions.book.WriteOffBookAction - книга с id = 13 успешно списана со склада
+2025-07-21 19:28:17 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-21 19:28:17 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 8 книг
+2025-07-21 19:40:48 INFO  [main] org.reflections.Reflections - Reflections took 67 ms to scan 1 urls, producing 20 keys and 82 values
+2025-07-21 19:41:25 INFO  [main] org.reflections.Reflections - Reflections took 65 ms to scan 1 urls, producing 20 keys and 82 values
+2025-07-21 19:42:40 INFO  [main] org.reflections.Reflections - Reflections took 63 ms to scan 1 urls, producing 20 keys and 82 values
+2025-07-21 19:44:16 INFO  [main] org.reflections.Reflections - Reflections took 70 ms to scan 1 urls, producing 20 keys and 82 values
+2025-07-21 19:44:23 INFO  [main] c.u.a.order.ShowAllOrdersAction - Пользователь выбрал команду: просмотр  всех заказов
+2025-07-21 19:44:23 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-21 19:44:23 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-21 19:44:23 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-21 19:44:23 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-21 19:44:23 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-21 19:44:23 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-21 19:44:23 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-21 19:44:23 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-21 19:44:23 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21 19:44:24 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21 19:44:24 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76ac68b0] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-21 19:44:24 ERROR [main] c.repo.dao.HibernateAbstractDao - Error getting all clientbookstore.model.entity.Order
+java.lang.IllegalArgumentException: org.hibernate.query.sqm.UnknownEntityException: Could not resolve entity class 'clientbookstore.model.entity.Order'
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:143)
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:167)
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:173)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:848)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:136)
+	at clientbookstore.repo.dao.HibernateAbstractDao.getAll(HibernateAbstractDao.java:85)
+	at clientbookstore.service.entityService.OrderService.getAll(OrderService.java:130)
+	at clientbookstore.controller.MainContr.getAllOrder(MainContr.java:174)
+	at clientbookstore.ui.actions.order.ShowAllOrdersAction.execute(ShowAllOrdersAction.java:26)
+	at clientbookstore.ui.Navigator.navigate(Navigator.java:51)
+	at clientbookstore.ui.MenuController.run(MenuController.java:55)
+	at clientbookstore.Main.main(Main.java:30)
+Caused by: org.hibernate.query.sqm.UnknownEntityException: Could not resolve entity class 'clientbookstore.model.entity.Order'
+	at org.hibernate.query.hql.internal.StandardHqlTranslator.translate(StandardHqlTranslator.java:90)
+	at org.hibernate.query.internal.QueryInterpretationCacheStandardImpl.createHqlInterpretation(QueryInterpretationCacheStandardImpl.java:165)
+	at org.hibernate.query.internal.QueryInterpretationCacheStandardImpl.resolveHqlInterpretation(QueryInterpretationCacheStandardImpl.java:147)
+	at org.hibernate.internal.AbstractSharedSessionContract.interpretHql(AbstractSharedSessionContract.java:790)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:840)
+	... 8 common frames omitted
+Caused by: org.hibernate.query.sqm.EntityTypeException: Could not resolve entity class 'clientbookstore.model.entity.Order'
+	at org.hibernate.metamodel.model.domain.internal.JpaMetamodelImpl.resolveEntityReference(JpaMetamodelImpl.java:490)
+	at org.hibernate.metamodel.model.domain.internal.JpaMetamodelImpl.getHqlEntityReference(JpaMetamodelImpl.java:158)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitRootEntity(SemanticQueryBuilder.java:1937)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitRootEntity(SemanticQueryBuilder.java:269)
+	at org.hibernate.grammars.hql.HqlParser$RootEntityContext.accept(HqlParser.java:2549)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitEntityWithJoins(SemanticQueryBuilder.java:1914)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitFromClause(SemanticQueryBuilder.java:1901)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitQuery(SemanticQueryBuilder.java:1148)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitQuerySpecExpression(SemanticQueryBuilder.java:941)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitQuerySpecExpression(SemanticQueryBuilder.java:269)
+	at org.hibernate.grammars.hql.HqlParser$QuerySpecExpressionContext.accept(HqlParser.java:1869)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitSimpleQueryGroup(SemanticQueryBuilder.java:926)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitSimpleQueryGroup(SemanticQueryBuilder.java:269)
+	at org.hibernate.grammars.hql.HqlParser$SimpleQueryGroupContext.accept(HqlParser.java:1740)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitSelectStatement(SemanticQueryBuilder.java:443)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitStatement(SemanticQueryBuilder.java:402)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.buildSemanticModel(SemanticQueryBuilder.java:311)
+	at org.hibernate.query.hql.internal.StandardHqlTranslator.translate(StandardHqlTranslator.java:71)
+	... 12 common frames omitted
+2025-07-21 19:44:24 INFO  [main] c.u.a.order.ShowAllOrdersAction - список заказов пуст

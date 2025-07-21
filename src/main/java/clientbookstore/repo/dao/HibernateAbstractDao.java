@@ -23,12 +23,12 @@ public class HibernateAbstractDao <T, PK extends Serializable> implements Generi
     @Override
     public void create(T object) throws SQLException {
         Session session = HibernateUtil.getSession();
-        //Transaction tx = session.beginTransaction();
+        Transaction tx = session.beginTransaction();
         try {
             session.persist(object);
-            //tx.commit();
+            tx.commit();
         } catch (Exception e) {
-            //tx.rollback();
+            tx.rollback();
             logger.error("Error creating " + type.getName(), e);
             throw e;
         } finally {
@@ -46,12 +46,12 @@ public class HibernateAbstractDao <T, PK extends Serializable> implements Generi
     @Override
     public void update(T object) throws SQLException {
         Session session = HibernateUtil.getSession();
-        //Transaction tx = session.beginTransaction();
+        Transaction tx = session.beginTransaction();
         try {
             session.merge(object);
-            //tx.commit();
+            tx.commit();
         } catch (Exception e) {
-            //tx.rollback();
+            tx.rollback();
             logger.error("Error updating " + type.getName(), e);
             throw e;
         } finally {
@@ -62,16 +62,16 @@ public class HibernateAbstractDao <T, PK extends Serializable> implements Generi
     @Override
     public void delete(int id) throws SQLException {
         Session session = HibernateUtil.getSession();
-        //Transaction tx = session.beginTransaction();
+        Transaction tx = session.beginTransaction();
         try {
             T entity = session.get(type, id);
             if (entity != null) {
                 session.remove(entity);
-                //tx.commit();
+                tx.commit();
             }
         } catch (Exception e) {
-            //tx.rollback();
-            logger.error("Error deleting " + type.getName(), e);
+            tx.rollback();
+            logger.error("Error deleting {}", type.getName(), e);
             throw e;
         } finally {
             session.close();

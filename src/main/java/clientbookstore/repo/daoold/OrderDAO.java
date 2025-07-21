@@ -3,7 +3,8 @@ package clientbookstore.repo.daoold;
 import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.model.enums.OrderStatus;
 import clientbookstore.model.entity.Order;
-import clientbookstore.repo.util.DBConnection;
+import clientbookstore.repo.dao.BookDAO;
+import clientbookstore.repo.dao.CustomerDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ public class OrderDAO implements GenericDAO<Order> {
     @Override
     public void create(Order object) throws SQLException {
         String sqlCreateOrder = "INSERT INTO orders (customerid, bookid, dateorder, price, status) VALUES (?, ?, ?, ?, ?::statusorder)";
-        Connection connection = DBConnection.getInstance().getConnection();
+        Connection connection = null;
 
         try (PreparedStatement statement = connection.prepareStatement(sqlCreateOrder)) {
 
@@ -45,7 +46,7 @@ public class OrderDAO implements GenericDAO<Order> {
     @Override
     public Order findById(int id) throws SQLException {
         String sqlFindByIdOrder = "select * from orders where id = ?";
-        Connection connection = DBConnection.getInstance().getConnection();
+        Connection connection = null;
 
         try (PreparedStatement statement = connection.prepareStatement(sqlFindByIdOrder)) {
             statement.setInt(1, id);
@@ -72,7 +73,7 @@ public class OrderDAO implements GenericDAO<Order> {
     public void update(Order object) throws SQLException {
         String sqlUpdateBook = "UPDATE orders SET customerid = ?, bookid = ?, dateorder = ?, price = ?, " +
                 "status = ? WHERE id = ?";
-        Connection connection = DBConnection.getInstance().getConnection();
+        Connection connection = null;
 
         try (PreparedStatement statement = connection.prepareStatement(sqlUpdateBook)) {
 
@@ -99,7 +100,7 @@ public class OrderDAO implements GenericDAO<Order> {
     @Override
     public void delete(int id) throws SQLException {
         String sqlDeleteOrder = "delete from orders where id = ?";
-        Connection connection = DBConnection.getInstance().getConnection();
+        Connection connection = null;
 
         try (PreparedStatement statement = connection.prepareStatement(sqlDeleteOrder)) {
 
@@ -120,7 +121,7 @@ public class OrderDAO implements GenericDAO<Order> {
         String sqlFindAllOrder = "select * from orders";
         List<Order> orders = new ArrayList<>();
 
-        Connection connection = DBConnection.getInstance().getConnection();
+        Connection connection = null;
 
         try (PreparedStatement statement = connection.prepareStatement(sqlFindAllOrder)) {
 

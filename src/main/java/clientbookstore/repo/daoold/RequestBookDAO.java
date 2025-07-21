@@ -3,7 +3,8 @@ package clientbookstore.repo.daoold;
 import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.model.enums.RequestStatus;
 import clientbookstore.model.entity.RequestBook;
-import clientbookstore.repo.util.DBConnection;
+import clientbookstore.repo.dao.BookDAO;
+import clientbookstore.repo.dao.CustomerDAO;
 import lombok.Getter;
 
 import java.sql.Connection;
@@ -25,7 +26,7 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
     @Override
     public void create(RequestBook object) throws SQLException {
         String sqlCreateOrder = "INSERT INTO request (customerid, bookid, status) VALUES (?, ?, ?::statusrequest)";
-        Connection connection = DBConnection.getInstance().getConnection();
+        Connection connection = null;
 
         try (PreparedStatement statement = connection.prepareStatement(sqlCreateOrder)) {
 
@@ -46,7 +47,7 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
     @Override
     public RequestBook findById(int id) throws SQLException {
         String sqlFindByIdRequest = "select * from request where id = ?";
-        Connection connection = DBConnection.getInstance().getConnection();
+        Connection connection = null;
 
         try (PreparedStatement statement = connection.prepareStatement(sqlFindByIdRequest)) {
             statement.setInt(1, id);
@@ -70,7 +71,7 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
     @Override
     public void update(RequestBook object) throws SQLException {
         String sqlUpdateBook = "UPDATE request SET customerid = ?, bookid = ?,  status = ? WHERE id = ?";
-        Connection connection = DBConnection.getInstance().getConnection();
+        Connection connection = null;
 
         try (PreparedStatement statement = connection.prepareStatement(sqlUpdateBook)) {
 
@@ -94,7 +95,7 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
     @Override
     public void delete(int id) throws SQLException {
         String sqlDeleteRequest = "delete from request where id = ?";
-        Connection connection = DBConnection.getInstance().getConnection();
+        Connection connection = null;
 
         try (PreparedStatement statement = connection.prepareStatement(sqlDeleteRequest)) {
 
@@ -115,7 +116,7 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
         String sqlFindAllRequest = "select * from request";
         List<RequestBook> requestBooks = new ArrayList<>();
 
-        Connection connection = DBConnection.getInstance().getConnection();
+        Connection connection = null;
 
         try (PreparedStatement statement = connection.prepareStatement(sqlFindAllRequest)) {
 
@@ -138,7 +139,7 @@ public class RequestBookDAO implements GenericDAO<RequestBook> {
 
     public RequestBook findByBookId(int id) throws SQLException {
         String sqlFindByIdRequest = "select * from request where bookid = ?";
-        Connection connection = DBConnection.getInstance().getConnection();
+        Connection connection = null;
 
         try (PreparedStatement statement = connection.prepareStatement(sqlFindByIdRequest)) {
             statement.setInt(1, id);

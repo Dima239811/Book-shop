@@ -13,8 +13,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
 
-    private static Session session;
-
     static {
         try {
             final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -23,10 +21,11 @@ public class HibernateUtil {
 
             sessionFactory = new MetadataSources(registry)
                     .addAnnotatedClass(Book.class)
+                    .addAnnotatedClass(Customer.class)
+                    .addAnnotatedClass(Order.class)
+                    .addAnnotatedClass(RequestBook.class)
                     .buildMetadata()
                     .buildSessionFactory();
-
-            session = sessionFactory.openSession();
         } catch (Throwable ex) {
             System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
@@ -34,18 +33,12 @@ public class HibernateUtil {
     }
 
     public static Session getSession() {
-        if (session == null || !session.isOpen()) {
-            session = sessionFactory.openSession();
-        }
-        return session;
+        return sessionFactory.openSession();
     }
 
     public static void shutdown() {
-        if (session != null && session.isOpen()) {
-            session.close();
-        }
         if (sessionFactory != null && !sessionFactory.isClosed()) {
             sessionFactory.close();
         }
     }
-    }
+}

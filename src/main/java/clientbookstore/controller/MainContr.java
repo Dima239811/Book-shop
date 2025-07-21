@@ -8,15 +8,12 @@ import clientbookstore.model.entity.Customer;
 import clientbookstore.model.entity.Order;
 import clientbookstore.model.entity.RequestBook;
 import clientbookstore.model.enums.OrderStatus;
-import clientbookstore.repo.util.DBConnection;
 import clientbookstore.service.csv.ICsvService;
 import clientbookstore.service.entityService.CustomerService;
 import clientbookstore.service.entityService.OrderService;
 import clientbookstore.service.entityService.RequestBookService;
 import clientbookstore.service.entityService.BookService;
-import clientbookstore.util.AppConfig;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -25,7 +22,7 @@ import java.util.stream.Collectors;
 
 public class MainContr {
     @Inject
-    private BookService wareHouseService;
+    private BookService bookService;
 
     @Inject
     private OrderService orderService;
@@ -58,11 +55,11 @@ public class MainContr {
     }
 
     public void writeOffBook(int bookId) {
-        wareHouseService.writeOffBook(bookId);
+        bookService.writeOffBook(bookId);
     }
 
     public Book findBook(int id) {
-        return wareHouseService.getById(id);
+        return bookService.getById(id);
     }
 
     public void exportBooksToCsv(String filePath) throws Exception {
@@ -72,42 +69,15 @@ public class MainContr {
     }
 
     public List<Book> importBooksFromCsv(String filePath) throws Exception {
-        try {
-            DBConnection.getInstance().beginTransaction();
-
-            List<Book> imported = bookCsvService.importFromCsv(filePath);
-            for (Book b : imported) {
-                wareHouseService.add(b);
-            }
-
-            DBConnection.getInstance().commit();
-            return imported;
-        } catch (Exception e) {
-            DBConnection.getInstance().rollback();
-            throw new RuntimeException("fail in data manager importBooksFromCsv " + e.getMessage());
+        List<Book> imported = bookCsvService.importFromCsv(filePath);
+        for (Book b : imported) {
+            bookService.add(b);
         }
-//        List<Book> imported = bookCsvService.importFromCsv(filePath);
-//        for (Book b : imported) {
-//            wareHouseService.add(b);
-//        }
-//        return imported;
+        return imported;
     }
 
     public void createOrder(Order order) {
-        try {
-            DBConnection.getInstance().beginTransaction();
-
-            //не нужно так как мы всегда берем в заказ книги которые есть уже в базе
-            //wareHouseService.add(order.getBook());
-            customerService.add(order.getCustomer());
-
             orderService.add(order);
-
-            DBConnection.getInstance().commit();
-        } catch (SQLException e) {
-            DBConnection.getInstance().rollback();
-            throw new RuntimeException("Ошибка при создании заказа: " + e.getMessage(), e);
-        }
     }
 
     public void cancelOrder(int orderId) {
@@ -128,71 +98,23 @@ public class MainContr {
     }
 
     public List<Order> importOrdersFromCsv(String filePath) throws Exception {
-        try {
-            DBConnection.getInstance().beginTransaction();
-
-            List<Order> imported = orderCsvService.importFromCsv(filePath);
-            for (Order b : imported) {
-                orderService.add(b);
-                wareHouseService.add(b.getBook());
-                customerService.add(b.getCustomer());
-            }
-
-            DBConnection.getInstance().commit();
-            return imported;
-        } catch (Exception e) {
-            DBConnection.getInstance().rollback();
-            throw new RuntimeException("fail in data manager importOrdersFromCsv " + e.getMessage());
+        List<Order> imported = orderCsvService.importFromCsv(filePath);
+        for (Order b : imported) {
+            orderService.add(b);
+            bookService.add(b.getBook());
+            customerService.add(b.getCustomer());
         }
-//        List<Order> imported = orderCsvService.importFromCsv(filePath);
-//        for (Order b : imported) {
-//            orderService.add(b);
-//            wareHouseService.add(b.getBook());
-//            customerService.add(b.getCustomer());
-//        }
-//        return imported;
+        return imported;
     }
 
     public void addBookToWareHouse(Book book) {
-        try {
-            DBConnection.getInstance().beginTransaction();
-
-            wareHouseService.add(book);
-
-            if (AppConfig.isAutoCloseRequestsEnabled()) {
-                requestService.closeRequest(book);
-            }
-
-            DBConnection.getInstance().commit();
-        } catch (Exception e) {
-            DBConnection.getInstance().rollback();
-            throw new RuntimeException("Ошибка при добавлении книги на склад: " + e.getMessage(), e);
-        }
-//        wareHouseService.add(book);
-//
-//        if (AppConfig.isAutoCloseRequestsEnabled()) {
-//            requestService.closeRequest(book);
-//        }
+        bookService.add(book);
     }
 
+    // ИСПРАВИТЬ НЕ ДОБАВЛЯТЬ ПОЛЬЗОВАТЕЛЯ
     public void addRequest(RequestBook requestBook) {
-        try {
-            DBConnection.getInstance().beginTransaction();
-
-            //не нужно так как мы всегда берем в заказ книги которые есть уже в базе
-            //wareHouseService.add(requestBook.getBook());
-
-            customerService.add(requestBook.getCustomer());
+            //customerService.add(requestBook.getCustomer());
             requestService.add(requestBook);
-
-            DBConnection.getInstance().commit();
-        } catch (Exception e) {
-            DBConnection.getInstance().rollback();
-            throw new RuntimeException("Ошибка при добавлении заявки: " + e.getMessage(), e);
-        }
-//        wareHouseService.add(requestBook.getBook());
-//        customerService.add(requestBook.getCustomer());
-//        requestService.add(requestBook);
     }
 
     public void exportRequestToCsv(String filePath) throws Exception {
@@ -201,37 +123,21 @@ public class MainContr {
     }
 
     public List<RequestBook> importRequestFromCsv(String filePath) throws Exception {
-        try {
-            DBConnection.getInstance().beginTransaction();
-
-            List<RequestBook> imported = requestBookCsvService.importFromCsv(filePath);
-            for (RequestBook b : imported) {
-                requestService.add(b);
-                wareHouseService.add(b.getBook());
-                customerService.add(b.getCustomer());
-            }
-
-            DBConnection.getInstance().commit();
-            return imported;
-        } catch (Exception e) {
-            DBConnection.getInstance().rollback();
-            throw new RuntimeException("fail in data manager importRequestFromCsv " + e.getMessage());
+        List<RequestBook> imported = requestBookCsvService.importFromCsv(filePath);
+        for (RequestBook b : imported) {
+            requestService.add(b);
+            bookService.add(b.getBook());
+            customerService.add(b.getCustomer());
         }
-//        List<RequestBook> imported = requestBookCsvService.importFromCsv(filePath);
-//        for (RequestBook b : imported) {
-//            requestService.add(b);
-//            wareHouseService.add(b.getBook());
-//            customerService.add(b.getCustomer());
-//        }
-//        return imported;
+        return imported;
     }
 
     public List<Book> sortBooks(String criteria) {
-        return wareHouseService.sortBooks(criteria);
+        return bookService.sortBooks(criteria);
     }
 
     public List<Book> getAllBooks() {
-        return wareHouseService.getAll();
+        return bookService.getAll();
     }
 
     public List<Customer> getAllCustomers() {
@@ -306,71 +212,4 @@ public class MainContr {
     public Customer getCustomerById(int id) {
         return customerService.getById(id);
     }
-
-
-//    public void saveStateToJson(String filePath) {
-//        AppState state = new AppState(
-//                getAllBooks(),
-//                getAllOrder(),
-//                getAllCustomers(),
-//                getAllRequestBook()
-//        );
-//        JsonUtil.saveState(state, filePath);
-//    }
-//
-//    public void loadStateFromJson(String filePath) {
-//        AppState state = JsonUtil.loadState(filePath);
-//        if (state == null) return;
-//
-//        // Загрузка книг
-//        int booksLoaded = state.getBooks().size();
-//        for (Book book : state.getBooks()) {
-//            wareHouseService.add(book);
-//        }
-//        System.out.println("Загружено книг: " + booksLoaded);
-//
-//        // Загрузка клиентов
-//        int customersLoaded = state.getCustomers().size();
-//        for (Customer customer : state.getCustomers()) {
-//            customerService.add(customer);
-//        }
-//        System.out.println("Загружено клиентов: " + customersLoaded);
-//
-//        // Загрузка запросов
-//        int requestsLoaded = state.getRequests().size();
-//        for (RequestBook request : state.getRequests()) {
-//            requestService.add(request);
-//        }
-//        System.out.println("Загружено запросов: " + requestsLoaded);
-//
-//        // Загрузка заказов
-//        int ordersLoaded = state.getOrders().size();
-//        for (Order order : state.getOrders()) {
-//            orderService.add(order);
-//        }
-//        System.out.println("Загружено заказов: " + ordersLoaded);
-//
-//
-//        int maxBookId = state.getBooks().stream()
-//                .mapToInt(Book::getBookId)
-//                .max()
-//                .orElse(0);
-//        Book.setCount(maxBookId + 1);
-//
-//        int maxCustomerId = state.getCustomers().stream()
-//                .mapToInt(Customer::getCustomerID)
-//                .max().orElse(0);
-//        Customer.setCountId(maxCustomerId + 1);
-//
-//        int maxOrderId = state.getOrders().stream()
-//                .mapToInt(Order::getOrderId)
-//                .max().orElse(0);
-//        Order.setOrderCount(maxOrderId + 1);
-//
-//        int maxRequestId = state.getRequests().stream()
-//                .mapToInt(RequestBook::getId)
-//                .max().orElse(0);
-//        RequestBook.setCountId(maxRequestId + 1);
-//
-//    }
 }

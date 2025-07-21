@@ -3,7 +3,7 @@ package clientbookstore.service.entityService;
 import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.dependesies.annotation.PostConstruct;
 import clientbookstore.model.entity.Customer;
-import clientbookstore.repo.daoold.CustomerDAO;
+import clientbookstore.repo.dao.CustomerDAO;
 
 import java.sql.SQLException;
 import java.util.Collections;
@@ -34,8 +34,7 @@ public class CustomerService implements IService<Customer>  {
     @Override
     public Customer getById(int id) {
         try {
-            Customer customer = customerDAO.findById(id);
-            return customer;
+            return customerDAO.findById(id);
         } catch (SQLException e) {
             throw new RuntimeException("in customer service: Failed to find customer with ID " + id, e);
         }

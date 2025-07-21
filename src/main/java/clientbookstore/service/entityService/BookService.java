@@ -8,9 +8,6 @@ import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.model.enums.StatusBook;
 import clientbookstore.model.entity.Book;
 import clientbookstore.repo.dao.BookDAO;
-import clientbookstore.util.HibernateUtil;
-import org.hibernate.Transaction;
-import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,40 +25,45 @@ public class BookService implements IService<Book> {
         try {
             Book book = bookDAO.findById(bookId);
             if (book == null) {
-                System.out.println("Книги с id: " + bookId + " на складе нет");
-                return;
+                logger.warn("Книги с id: {} на складе нет", bookId);
+                throw new RuntimeException("Книги с id: " + bookId + " на складе нет");
             }
             book.setStatus(StatusBook.OUT_OF_STOCK);
-            try {
-                bookDAO.update(book);
-            } catch (SQLException e) {
-                throw new RuntimeException("Fail in warehouseService updatebook book " + e);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Fail in warehouseService find book " + e);
+
+            bookDAO.update(book);
+
+            logger.info("Книга с id: {} успешно списана", bookId);
+        } catch (Exception e) {
+            logger.error("Ошибка при списании книги с id: {}", bookId, e);
+            throw new RuntimeException("Ошибка при списании книги", e);
         }
     }
 
     public List<Book> sortBooks(String criteria) {
         try {
             List<Book> books = bookDAO.getAll();
-            switch (criteria.toLowerCase()) {
-                case "по алфавиту":
+            return switch (criteria.toLowerCase()) {
+                case "по алфавиту" -> {
                     books.sort(new LetterComporator());
-                    return books;
-                case "по цене":
+                    yield books;
+                }
+                case "по цене" -> {
                     books.sort(new PriceComporator());
-                    return books;
-                case "по году издания":
+                    yield books;
+                }
+                case "по году издания" -> {
                     books.sort(new YearComporator());
-                    return books;
-                case "по наличию на складе":
+                    yield books;
+                }
+                case "по наличию на складе" -> {
                     books.sort(new AvailiableComporator());
-                    return books;
-                default:
+                    yield books;
+                }
+                default -> {
                     System.out.println("Ошибка: неопознанный критерий сортировки.");
-                    return books;
-            }
+                    yield books;
+                }
+            };
         } catch (SQLException e) {
             throw new RuntimeException("Fail to get all book in warehouseSevice in sortBooks" + e.getMessage());
         }
@@ -70,8 +72,7 @@ public class BookService implements IService<Book> {
     @Override
     public List<Book> getAll() {
         try {
-            List<Book> books = bookDAO.getAll();
-            return books;
+            return bookDAO.getAll();
         } catch (SQLException e) {
             throw new RuntimeException("Fail to get all book in warehouseSevice in getAll()" + e.getMessage());
         }
@@ -80,8 +81,7 @@ public class BookService implements IService<Book> {
     @Override
     public Book getById(int id) {
         try {
-            Book book = bookDAO.findById(id);
-            return book;
+            return bookDAO.findById(id);
         } catch (SQLException e) {
             throw new RuntimeException("Fail to get book by id " + id + " in warehouseSevice in getById()" + e.getMessage());
         }
@@ -89,9 +89,6 @@ public class BookService implements IService<Book> {
 
     @Override
     public void add(Book item) {
-        Session session = HibernateUtil.getSession();
-        Transaction tx = null;
-
         try {
             if (bookDAO.existsByNameAndAuthor(item.getName(), item.getAuthor())) {
                 logger.warn("Книга '{}' автора '{}' уже существует",
@@ -99,27 +96,28 @@ public class BookService implements IService<Book> {
                 throw new RuntimeException("Книга уже существует");
             }
 
-            tx = session.beginTransaction();
             bookDAO.create(item);
-            tx.commit();
             logger.info("Книга '{}' успешно добавлена", item.getName());
 
         } catch (Exception e) {
-            if (tx != null && tx.isActive()) {
-                tx.rollback();
-            }
             logger.error("Ошибка при добавлении книги", e);
             throw new RuntimeException("Ошибка при добавлении книги", e);
-        } finally {
-            session.close();
         }
     }
 
     @Override
     public void update(Book item) {
         try {
+            Book book = bookDAO.findById(item.getBookId());
+            if (book == null) {
+                logger.warn("Книга с id: {} не найдена", item.getBookId());
+                throw new RuntimeException("Книга не найдена");
+            }
+
             bookDAO.update(item);
+            logger.info("Книга с id: {} успешно обновлена", item.getBookId());
         } catch (SQLException e) {
+            logger.error("Ошибка при обновлении книги с id: {}", item.getBookId(), e);
             throw new RuntimeException("Fail to update book " + item.getBookId() + " in warehouseSevice in update()" + e.getMessage());
         }
     }

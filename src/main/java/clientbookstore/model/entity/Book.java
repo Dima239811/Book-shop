@@ -1,9 +1,9 @@
 package clientbookstore.model.entity;
 
 
+import clientbookstore.model.converters.StatusBookConverter;
 import clientbookstore.model.enums.StatusBook;
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnTransformer;
 
 @Entity
 @Table(name = "book")
@@ -20,12 +20,8 @@ public class Book {
     @Column(nullable = false)
     private double price;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = StatusBookConverter.class)
     @Column(nullable = false, name = "status")
-    @ColumnTransformer(
-            write = "(CASE ? WHEN 'IN_STOCK' THEN 'в наличии'::statusbook " +
-                    "WHEN 'OUT_OF_STOCK' THEN 'отсутствует'::statusbook END)"
-    )
     private StatusBook status;  // в наличии или отсутствует
 
     @Id
@@ -35,17 +31,17 @@ public class Book {
 
     public Book() { }
 
-    public Book(String name, String authtor, int year, double price, StatusBook status) {
+    public Book(String name, String author, int year, double price, StatusBook status) {
         this.name = name;
-        this.author = authtor;
+        this.author = author;
         this.year = year;
         this.price = price;
         this.status = status;
     }
 
-    public Book(String name, String authtor, int year, double price, StatusBook status, int bookId) {
+    public Book(String name, String author, int year, double price, StatusBook status, int bookId) {
         this.name = name;
-        this.author = authtor;
+        this.author = author;
         this.year = year;
         this.price = price;
         this.status = status;

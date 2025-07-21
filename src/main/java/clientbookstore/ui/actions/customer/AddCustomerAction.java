@@ -67,7 +67,6 @@ public class AddCustomerAction implements IAction {
 
             logger.info("Успешно добавлен клиент: {}", fullName);
             System.out.println("\nКлиент '" + fullName + "' успешно добавлен!");
-
         } catch (DataValidationException e) {
             logger.error("Ошибка валидации при добавлении клиента: {}", e.getMessage());
             System.out.println("Ошибка: " + e.getMessage());
