@@ -1,6 +1,5 @@
 package clientbookstore.controller;
 
-import clientbookstore.dependesies.annotation.Qualifier;
 import clientbookstore.model.entity.Book;
 import clientbookstore.model.entity.Customer;
 import clientbookstore.model.entity.Order;
@@ -12,6 +11,7 @@ import clientbookstore.service.entityService.OrderService;
 import clientbookstore.service.entityService.RequestBookService;
 import clientbookstore.service.entityService.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
