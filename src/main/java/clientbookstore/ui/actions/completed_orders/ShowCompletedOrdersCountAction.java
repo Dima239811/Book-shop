@@ -5,16 +5,20 @@ import clientbookstore.controller.MainContr;
 import clientbookstore.ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+@Component
 public class ShowCompletedOrdersCountAction implements IAction {
-    private MainContr dataManager;
+    private final MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(ShowCompletedOrdersCountAction.class);
 
+    @Autowired
     public ShowCompletedOrdersCountAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }

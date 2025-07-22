@@ -7,14 +7,18 @@ import clientbookstore.model.entity.RequestBook;
 import clientbookstore.ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@Component
 public class CreateBookRequestAction implements IAction {
-    private MainContr dataManager;
+    private final MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(CreateBookRequestAction.class);
 
+    @Autowired
     public CreateBookRequestAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }

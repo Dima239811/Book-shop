@@ -14,12 +14,11 @@ import java.util.Scanner;
 
 @Component
 public class AddBookAction implements IAction {
-    @Autowired
     private final MainContr dataManager;
 
     private static final Logger logger = LoggerFactory.getLogger(AddBookAction.class);
 
-
+    @Autowired
     public AddBookAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }

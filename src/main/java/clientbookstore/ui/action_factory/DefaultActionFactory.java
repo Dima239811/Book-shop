@@ -17,177 +17,185 @@ import clientbookstore.ui.actions.customer.ShowAllCustomer;
 import clientbookstore.ui.actions.request.*;
 import clientbookstore.ui.actions.order.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class DefaultActionFactory implements ActionFactory {
 
+//    @Autowired
+//    private MainContr dataManager;
+
+    private final ApplicationContext context;
+
     @Autowired
-    private MainContr dataManager;
+    public DefaultActionFactory(ApplicationContext context) {
+        this.context = context;
+    }
 
     @Override
     public IAction createAddBookAction() {
-        return new AddBookAction(dataManager);
+        return context.getBean(AddBookAction.class);
     }
 
     @Override
     public IAction writeOffBookAction() {
-        return new WriteOffBookAction(dataManager);
+        return context.getBean(WriteOffBookAction.class);
     }
 
     @Override
     public IAction allBooksListAction() {
-        return new AllBooksListAction(dataManager);
+        return context.getBean(AllBooksListAction.class);
     }
 
     @Override
     public IAction sortBooksByTitleAction() {
-        return new SortBooksByTitleAction(dataManager);
+        return context.getBean(SortBooksByTitleAction.class);
     }
 
     @Override
     public IAction sortBooksByPriceAction() {
-        return new SortBooksByPriceAction(dataManager);
+        return context.getBean(SortBooksByPriceAction.class);
     }
 
     @Override
     public IAction sortBooksByYearDescAction() {
-        return new SortBooksByYearDescAction(dataManager);
+        return context.getBean(SortBooksByYearDescAction.class);
     }
 
     @Override
     public IAction sortBooksByAvailiable() {
-        return new SortBooksByAvailiable(dataManager);
+        return context.getBean(SortBooksByAvailiable.class);
     }
 
     @Override
     public IAction createOrderAction() {
-        return new CreateOrderAction(dataManager);
+        return context.getBean(CreateOrderAction.class);
     }
 
     @Override
     public IAction cancelOrderAction() {
-        return new CancelOrderAction(dataManager);
+        return context.getBean(CancelOrderAction.class);
     }
 
     @Override
     public IAction changeOrderStatusAction() {
-        return new ChangeOrderStatusAction(dataManager);
+        return context.getBean(ChangeOrderStatusAction.class);
     }
 
     @Override
     public IAction showAllOrdersAction() {
-        return new ShowAllOrdersAction(dataManager);
+        return context.getBean(ShowAllOrdersAction.class);
     }
 
     @Override
     public IAction sortOrdersByDateAction() {
-        return new SortOrdersByDateAction(dataManager);
+        return context.getBean(SortOrdersByDateAction.class);
     }
 
     @Override
     public IAction sortOrdersByPriceAction() {
-        return new SortOrdersByPriceAction(dataManager);
+        return context.getBean(SortOrdersByPriceAction.class);
     }
 
     @Override
     public IAction sortOrdersByStatusAction() {
-        return new SortOrdersByStatusAction(dataManager);
+        return context.getBean(SortOrdersByStatusAction.class);
     }
 
     @Override
     public IAction createBookRequestAction() {
-        return new CreateBookRequestAction(dataManager);
+        return context.getBean(CreateBookRequestAction.class);
     }
 
     @Override
     public IAction showAllBookRequestsAction() {
-        return new ShowAllBookRequestsAction(dataManager);
+        return context.getBean(ShowAllBookRequestsAction.class);
     }
 
     @Override
     public IAction sortRequestsByCountAction() {
-        return new SortRequestsByCountAction(dataManager);
+        return context.getBean(SortRequestsByCountAction.class);
     }
 
     @Override
     public IAction sortRequestsByTitleAction() {
-        return new SortRequestsByTitleAction(dataManager);
+        return context.getBean(SortRequestsByTitleAction.class);
     }
 
     @Override
     public IAction sortCompletedOrdersByDateAction() {
-        return new SortCompletedOrdersByDateAction(dataManager);
+        return context.getBean(SortCompletedOrdersByDateAction.class);
     }
 
     @Override
     public IAction sortCompletedOrdersByPriceAction() {
-        return new SortCompletedOrdersByPriceAction(dataManager);
+        return context.getBean(SortCompletedOrdersByPriceAction.class);
     }
 
     @Override
     public IAction showCompletedOrdersCountAction() {
-        return new ShowCompletedOrdersCountAction(dataManager);
+        return context.getBean(ShowCompletedOrdersCountAction.class);
     }
 
     @Override
     public IAction showTotalRevenueAction() {
-        return new ShowTotalRevenueAction(dataManager);
+        return context.getBean(ShowTotalRevenueAction.class);
     }
 
     @Override
     public IAction importBooksAction() {
-        return new ImportBooksAction(dataManager);
+        return context.getBean(ImportBooksAction.class);
     }
 
     @Override
     public IAction exportBooksAction() {
-        return new ExportBookAction(dataManager);
+        return context.getBean(ExportBookAction.class);
     }
 
     @Override
     public IAction exportOrderAction() {
-        return new ExportOrderAction(dataManager);
+        return context.getBean(ExportOrderAction.class);
     }
 
     @Override
     public IAction importOrderAction() {
-        return new ImportOrderAction(dataManager);
+        return context.getBean(ImportOrderAction.class);
     }
 
     @Override
     public IAction showAllCustomer() {
-        return new ShowAllCustomer(dataManager);
+        return context.getBean(ShowAllCustomer.class);
     }
 
     @Override
     public IAction importClient() {
-        return new ImportCustomerAction(dataManager);
+        return context.getBean(ImportCustomerAction.class);
     }
 
     @Override
     public IAction exportClient() {
-        return new ExportCustomerAction(dataManager);
+        return context.getBean(ExportCustomerAction.class);
     }
 
     @Override
     public IAction importRequestAction() {
-        return new ImportRequestAction(dataManager);
+        return context.getBean(ImportRequestAction.class);
     }
 
     @Override
     public IAction exportRequestAction() {
-        return new ExportRequestAction(dataManager);
+        return context.getBean(ExportRequestAction.class);
     }
 
     @Override
     public IAction showStaleBooksAction() {
-        return new ShowStaleBooksAction(dataManager);
+        return context.getBean(ShowStaleBooksAction.class);
     }
 
     @Override
     public IAction addCustomerAction() {
-        return new AddCustomerAction(dataManager);
+        return context.getBean(ShowStaleBooksAction.class);
     }
 }

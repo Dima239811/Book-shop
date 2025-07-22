@@ -284,3 +284,32 @@ java.lang.NullPointerException: Cannot invoke "clientbookstore.util.AppConfig.ge
 2025-07-22 16:43:20 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 2025-07-22 16:43:20 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@12f51a65] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2025-07-22 16:43:20 INFO  [main] c.u.a.book.ShowStaleBooksAction - Найдено 4 залежавшихся книг
+2025-07-22 17:31:28 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-22 17:31:28 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-07-22 17:31:28 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-22 17:31:28 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-07-22 17:31:28 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-07-22 17:31:28 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/bookstore]
+2025-07-22 17:31:28 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2025-07-22 17:31:28 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-07-22 17:31:28 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-07-22 17:31:28 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-22 17:31:29 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-22 17:31:29 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5bb97fe7] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-07-22 17:31:29 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 9 книг
+2025-07-22 17:31:41 INFO  [main] c.ui.actions.book.AddBookAction - Пользователь начал выполнение команды: AddBookAction
+2025-07-22 17:31:57 INFO  [main] c.service.entityService.BookService - Книга 'отверженные' успешно добавлена
+2025-07-22 17:31:57 INFO  [main] c.ui.actions.book.AddBookAction - Книга 'отверженные' успешно добавлена автором 'гюго'
+2025-07-22 17:32:00 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-22 17:32:00 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 10 книг
+2025-07-22 17:32:05 INFO  [main] c.ui.actions.book.WriteOffBookAction - пользователь выбрал списание книги
+2025-07-22 17:32:11 INFO  [main] c.service.entityService.BookService - Книга с id: 15 успешно списана
+2025-07-22 17:32:11 INFO  [main] c.ui.actions.book.WriteOffBookAction - книга с id = 15 успешно списана со склада
+2025-07-22 17:32:14 INFO  [main] c.ui.actions.book.AllBooksListAction - Пользователь выбрал команду: вывод всех книг
+2025-07-22 17:32:14 INFO  [main] c.ui.actions.book.AllBooksListAction - Выведено 10 книг
+2025-07-22 17:32:22 INFO  [main] c.u.actions.customer.ShowAllCustomer - Пользователь выбрал команду: вывод всех клиентов
+2025-07-22 17:32:22 INFO  [main] c.u.actions.customer.ShowAllCustomer - Выведено 9 клиентов
+2025-07-22 17:32:23 INFO  [main] c.u.actions.customer.ShowAllCustomer - Пользователь выбрал команду: вывод всех клиентов
+2025-07-22 17:32:23 INFO  [main] c.u.actions.customer.ShowAllCustomer - Выведено 9 клиентов
+2025-07-22 17:32:31 INFO  [main] c.u.a.order.ShowAllOrdersAction - Пользователь выбрал команду: просмотр  всех заказов
+2025-07-22 17:32:31 INFO  [main] c.u.a.order.ShowAllOrdersAction - выведено 14 заказов

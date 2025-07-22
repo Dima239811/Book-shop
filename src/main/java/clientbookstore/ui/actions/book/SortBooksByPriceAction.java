@@ -6,14 +6,18 @@ import clientbookstore.model.entity.Book;
 import clientbookstore.ui.actions.IAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class SortBooksByPriceAction implements IAction {
+    private final MainContr dataManager;
 
-    private MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(SortBooksByPriceAction.class);
 
+    @Autowired
     public SortBooksByPriceAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }

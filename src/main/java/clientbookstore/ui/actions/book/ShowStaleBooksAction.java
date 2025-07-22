@@ -14,6 +14,7 @@ import java.util.List;
 @Component
 public class ShowStaleBooksAction implements IAction {
     private final MainContr dataManager;
+
     private static final Logger logger = LoggerFactory.getLogger(ShowStaleBooksAction.class);
 
     @Autowired
