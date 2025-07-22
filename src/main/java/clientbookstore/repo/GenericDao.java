@@ -1,4 +1,4 @@
-package clientbookstore.repo.dao;
+package clientbookstore.repo;
 
 import java.sql.SQLException;
 import java.util.List;

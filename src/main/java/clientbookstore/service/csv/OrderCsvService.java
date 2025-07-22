@@ -7,6 +7,7 @@ import clientbookstore.model.exception.DataImportException;
 import clientbookstore.model.entity.Book;
 import clientbookstore.model.entity.Customer;
 import clientbookstore.model.entity.Order;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Date;
 import java.util.Locale;
 
+@Service
 public class OrderCsvService implements ICsvService<Order> {
 
     @Override

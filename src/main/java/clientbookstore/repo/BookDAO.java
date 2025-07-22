@@ -1,11 +1,13 @@
-package clientbookstore.repo.dao;
+package clientbookstore.repo;
 
 import clientbookstore.model.entity.Book;
 import clientbookstore.util.HibernateUtil;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 
+@Repository
 public class BookDAO extends HibernateAbstractDao<Book> {
 
     public BookDAO() {

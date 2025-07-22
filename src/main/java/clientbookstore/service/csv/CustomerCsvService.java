@@ -4,12 +4,14 @@ import clientbookstore.model.exception.DataExportException;
 import clientbookstore.model.exception.DataImportException;
 
 import clientbookstore.model.entity.Customer;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+@Service
 public class CustomerCsvService implements ICsvService<Customer> {
     @Override
     public void exportToCsv(List<Customer> items, String filePath) throws Exception {

@@ -1,7 +1,5 @@
 package clientbookstore.controller;
 
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.dependesies.annotation.PostConstruct;
 import clientbookstore.dependesies.annotation.Qualifier;
 import clientbookstore.model.entity.Book;
 import clientbookstore.model.entity.Customer;
@@ -13,6 +11,8 @@ import clientbookstore.service.entityService.CustomerService;
 import clientbookstore.service.entityService.OrderService;
 import clientbookstore.service.entityService.RequestBookService;
 import clientbookstore.service.entityService.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -20,39 +20,35 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Controller
 public class MainContr {
-    @Inject
+    @Autowired
     private BookService bookService;
 
-    @Inject
+    @Autowired
     private OrderService orderService;
 
-    @Inject
+    @Autowired
     private CustomerService customerService;
 
-    @Inject
+    @Autowired
     private RequestBookService requestService;
 
-    @Inject
+    @Autowired
     @Qualifier("bookCsvService")
     private ICsvService<Book> bookCsvService;
 
-    @Inject
+    @Autowired
     @Qualifier("orderCsvService")
     private ICsvService<Order> orderCsvService;
 
-    @Inject
+    @Autowired
     @Qualifier("customerCsvService")
     private ICsvService<Customer> customerCsvService;
 
-    @Inject
+    @Autowired
     @Qualifier("requestBookCsvService")
     private ICsvService<RequestBook> requestBookCsvService;
-
-    @PostConstruct
-    public void postConstruct() {
-        System.out.println("Дата менеджер создался!");
-    }
 
     public void writeOffBook(int bookId) {
         bookService.writeOffBook(bookId);

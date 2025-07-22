@@ -1,21 +1,27 @@
 package clientbookstore.service.entityService;
 
 import clientbookstore.model.comparator.request.LetterRequestComporator;
-import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.model.enums.RequestStatus;
 import clientbookstore.model.entity.Book;
 import clientbookstore.model.entity.Customer;
 import clientbookstore.model.entity.RequestBook;
-import clientbookstore.repo.dao.RequestBookDAO;
+import clientbookstore.repo.RequestBookDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class RequestBookService implements IService<RequestBook> {
 
-    @Inject
-    private RequestBookDAO requestBookDAO;
+    @Autowired
+    private final RequestBookDAO requestBookDAO;
+
+    public RequestBookService(RequestBookDAO requestBookDAO) {
+        this.requestBookDAO = requestBookDAO;
+    }
 
     public void closeRequest(Book book) {
         List<RequestBook> requestBooks = getAll();

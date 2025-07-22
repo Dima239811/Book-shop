@@ -5,13 +5,14 @@ import clientbookstore.model.exception.DataExportException;
 import clientbookstore.model.exception.DataImportException;
 import clientbookstore.model.exception.DataValidationException;
 import clientbookstore.model.entity.Book;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-
+@Service
 public class BookCsvService implements ICsvService<Book> {
     @Override
     public void exportToCsv(List<Book> items, String filePath) throws DataExportException {

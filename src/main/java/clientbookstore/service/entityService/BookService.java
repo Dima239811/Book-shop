@@ -4,22 +4,28 @@ import clientbookstore.model.comparator.book.AvailiableComporator;
 import clientbookstore.model.comparator.book.LetterComporator;
 import clientbookstore.model.comparator.book.PriceComporator;
 import clientbookstore.model.comparator.book.YearComporator;
-import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.model.enums.StatusBook;
 import clientbookstore.model.entity.Book;
-import clientbookstore.repo.dao.BookDAO;
+import clientbookstore.repo.BookDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-
+@Service
 public class BookService implements IService<Book> {
 
-    @Inject
-    private BookDAO bookDAO;
+    @Autowired
+    private final BookDAO bookDAO;
+
     private static final Logger logger = LoggerFactory.getLogger(BookService.class);
+
+    public BookService(BookDAO bookDAO) {
+        this.bookDAO = bookDAO;
+    }
 
     public void writeOffBook(int bookId) {
         try {

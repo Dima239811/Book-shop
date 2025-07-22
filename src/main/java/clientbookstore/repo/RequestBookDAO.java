@@ -1,4 +1,4 @@
-package clientbookstore.repo.dao;
+package clientbookstore.repo;
 
 import clientbookstore.model.entity.RequestBook;
 import clientbookstore.util.HibernateUtil;
@@ -6,10 +6,12 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.List;
 
+@Repository
 public class RequestBookDAO extends HibernateAbstractDao<RequestBook> {
     private static final Logger logger = LoggerFactory.getLogger(RequestBookDAO.class);
 

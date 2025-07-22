@@ -1,10 +1,12 @@
-package clientbookstore.repo.dao;
+package clientbookstore.repo;
 
 import clientbookstore.util.HibernateUtil;
+import jakarta.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -18,6 +20,7 @@ public class HibernateAbstractDao <T> implements GenericDao<T> {
     }
 
     @Override
+    @Transactional
     public void create(T object) throws SQLException {
         Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
@@ -41,6 +44,7 @@ public class HibernateAbstractDao <T> implements GenericDao<T> {
     }
 
     @Override
+    @Transactional
     public void update(T object) throws SQLException {
         Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
@@ -57,6 +61,7 @@ public class HibernateAbstractDao <T> implements GenericDao<T> {
     }
 
     @Override
+    @Transactional
     public void delete(int id) throws SQLException {
         Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();

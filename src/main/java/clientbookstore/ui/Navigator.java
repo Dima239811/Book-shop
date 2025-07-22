@@ -2,15 +2,17 @@ package clientbookstore.ui;
 
 import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.ui.menu_items.MenuItem;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Stack;
 
 public class Navigator {
+    @Autowired
     private Menu currentMenu;
     private final Stack<Menu> history = new Stack<>();
 
-    @Inject
+
     public Navigator(Menu currentMenu) {
         this.currentMenu = currentMenu;
     }

@@ -1,32 +1,24 @@
 package clientbookstore;
 
 import clientbookstore.controller.MainContr;
-import clientbookstore.dependesies.context.ApplicationContext;
-import clientbookstore.dependesies.factory.BeanFactory;
 import clientbookstore.ui.Builder;
 import clientbookstore.ui.MenuController;
+import clientbookstore.util.SpringConfig;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
 
-    public ApplicationContext run() {
-        ApplicationContext applicationContext = new ApplicationContext();
-        BeanFactory beanFactory = new BeanFactory(applicationContext);
-        applicationContext.setBeanFactory(beanFactory);
-
-        return applicationContext;
-    }
-
     public static void main(String[] args) {
-        //BasicConfigurator.configure();
-        Main main = new Main();
-        ApplicationContext applicationContext = main.run();
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(SpringConfig.class);
 
-        MainContr dataManager = applicationContext.getBean(MainContr.class);
+        MainContr dataManager = context.getBean(MainContr.class);
+        Builder builder = context.getBean(Builder.class);
+        MenuController menuController = context.getBean(MenuController.class);
 
-        Builder builder = applicationContext.getBean(Builder.class);
         builder.buildMenu();
-
-        MenuController menuController = applicationContext.getBean(MenuController.class);
         menuController.run();
+
+        context.registerShutdownHook();
     }
 }

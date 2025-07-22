@@ -7,12 +7,14 @@ import clientbookstore.model.exception.DataImportException;
 import clientbookstore.model.entity.Book;
 import clientbookstore.model.entity.Customer;
 import clientbookstore.model.entity.RequestBook;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+@Service
 public class RequestBookCsvService implements ICsvService<RequestBook> {
 
     @Override

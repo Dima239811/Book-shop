@@ -3,21 +3,27 @@ package clientbookstore.service.entityService;
 import clientbookstore.model.comparator.order.DateOrderComporator;
 import clientbookstore.model.comparator.order.PriceOrderComporator;
 import clientbookstore.model.comparator.order.StatusOrderComporator;
-import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.model.enums.OrderStatus;
 
 import clientbookstore.model.entity.Order;
-import clientbookstore.repo.dao.OrderDAO;
+import clientbookstore.repo.OrderDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class OrderService implements IService<Order> {
 
-    @Inject
-    private OrderDAO orderDAO;
+    @Autowired
+    private final OrderDAO orderDAO;
+
+    public OrderService(OrderDAO orderDAO) {
+        this.orderDAO = orderDAO;
+    }
 
     public void cancelOrder(int orderId) {
         try {

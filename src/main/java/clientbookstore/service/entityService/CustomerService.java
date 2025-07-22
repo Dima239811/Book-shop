@@ -1,23 +1,22 @@
 package clientbookstore.service.entityService;
 
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.dependesies.annotation.PostConstruct;
 import clientbookstore.model.entity.Customer;
-import clientbookstore.repo.dao.CustomerDAO;
+import clientbookstore.repo.CustomerDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
+@Service
 public class CustomerService implements IService<Customer>  {
 
-    @Inject
-    private CustomerDAO customerDAO;
-    //private CustomerCol customerCol;
+    @Autowired
+    private final CustomerDAO customerDAO;
 
-    @PostConstruct
-    public void postConstruct() {
-        System.out.println("CustomerService has been inizialized");
+    public CustomerService(CustomerDAO customerDAO) {
+        this.customerDAO = customerDAO;
     }
 
     @Override

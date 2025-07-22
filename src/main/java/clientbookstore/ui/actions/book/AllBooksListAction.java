@@ -6,13 +6,17 @@ import clientbookstore.ui.actions.IAction;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+
 
 public class AllBooksListAction implements IAction {
 
     private static final Logger logger = LoggerFactory.getLogger(AllBooksListAction.class);
-    private MainContr dataManager;
+
+    @Autowired
+    private final MainContr dataManager;
 
     public AllBooksListAction(MainContr dataManager) {
         this.dataManager = dataManager;

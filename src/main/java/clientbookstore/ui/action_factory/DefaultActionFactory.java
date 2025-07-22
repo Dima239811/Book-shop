@@ -1,10 +1,7 @@
 package clientbookstore.ui.action_factory;
 
 import clientbookstore.controller.MainContr;
-import clientbookstore.dependesies.annotation.Inject;
 import clientbookstore.ui.actions.IAction;
-
-
 import clientbookstore.ui.actions.book.*;
 import clientbookstore.ui.actions.completed_orders.*;
 import clientbookstore.ui.actions.csv.book.ExportBookAction;
@@ -19,12 +16,14 @@ import clientbookstore.ui.actions.customer.AddCustomerAction;
 import clientbookstore.ui.actions.customer.ShowAllCustomer;
 import clientbookstore.ui.actions.request.*;
 import clientbookstore.ui.actions.order.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
-
+@Component
 public class DefaultActionFactory implements ActionFactory {
 
-    @Inject
+    @Autowired
     private MainContr dataManager;
 
     @Override

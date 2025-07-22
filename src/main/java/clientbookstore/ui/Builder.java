@@ -1,18 +1,20 @@
 package clientbookstore.ui;
 
 import clientbookstore.controller.MainContr;
-import clientbookstore.dependesies.annotation.Inject;
-import clientbookstore.dependesies.annotation.PostConstruct;
+import javax.annotation.PostConstruct;
 import clientbookstore.ui.action_factory.ActionFactory;
 import clientbookstore.ui.menu_items.MenuItem;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Builder {
     private Menu rootMenu;
 
-    @Inject
+    @Autowired
     private MainContr dataManager;
 
-    @Inject
+    @Autowired
     private ActionFactory actionFactory;
 
     @PostConstruct
