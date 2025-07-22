@@ -6,13 +6,17 @@ import clientbookstore.ui.actions.IAction;
 import clientbookstore.util.AppConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class ShowStaleBooksAction implements IAction {
     private final MainContr dataManager;
     private static final Logger logger = LoggerFactory.getLogger(ShowStaleBooksAction.class);
 
+    @Autowired
     public ShowStaleBooksAction(MainContr dataManager) {
         this.dataManager = dataManager;
     }
