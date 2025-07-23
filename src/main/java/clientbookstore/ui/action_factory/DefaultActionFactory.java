@@ -1,6 +1,5 @@
 package clientbookstore.ui.action_factory;
 
-import clientbookstore.controller.MainContr;
 import clientbookstore.ui.actions.IAction;
 import clientbookstore.ui.actions.book.*;
 import clientbookstore.ui.actions.completed_orders.*;
@@ -12,7 +11,6 @@ import clientbookstore.ui.actions.csv.order.ExportOrderAction;
 import clientbookstore.ui.actions.csv.order.ImportOrderAction;
 import clientbookstore.ui.actions.csv.request.ExportRequestAction;
 import clientbookstore.ui.actions.csv.request.ImportRequestAction;
-import clientbookstore.ui.actions.customer.AddCustomerAction;
 import clientbookstore.ui.actions.customer.ShowAllCustomer;
 import clientbookstore.ui.actions.request.*;
 import clientbookstore.ui.actions.order.*;

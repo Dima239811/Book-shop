@@ -3,7 +3,6 @@ package clientbookstore;
 import clientbookstore.controller.MainContr;
 import clientbookstore.ui.Builder;
 import clientbookstore.ui.MenuController;
-import clientbookstore.util.AppConfig;
 import clientbookstore.util.SpringConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
